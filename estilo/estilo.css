@@ -1,0 +1,322 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: "bienvenida";
+    src: url('../font/bienvenida.TTF');
+}
+@font-face {
+    font-family: "nombre";
+    src: url('../font/nombre.TTF');
+}
+.bodyAdmin {
+    background-image: url('../Imagen/fondoAdmin.png');
+    background-size: 100% 100%;
+}
+ul {
+    list-style: none;
+}
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    width: 100%;
+    height: 100%;
+}
+.limpiar {
+    clear: both;
+    width: 100%;
+    height: 10px;
+}
+.seccion {
+    width: 100%;
+    height: 100%;
+}
+.division {
+    display: none;
+    padding-top: 50px;
+    width: 100%;
+    height: 100%;
+}
+
+/*Estilos del Login*/
+#divLogin {
+    height: 100%;
+    background-image: url('../Imagen/fondoLogin.png');
+    background-size: 100% 100%;
+}
+#formLogin {
+    width: 300px;
+    display: table;
+    padding: 10px 30px;
+    border-radius: 5px;
+    float: right;
+    margin-right: 150px;
+    margin-top: 100px;
+    background-color: rgba(255,255,255,0.6);
+}
+#formLogin ul {
+    width: 100%;
+    display: table;
+}
+#formLogin ul li {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;    
+    text-align: center;
+}
+#formLogin li h4 {
+    font-family: Candara;
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+#formLogin li input[type=text] {
+    width: 90%;
+    height: 25px;
+    margin-top: 3px;
+}
+#formLogin li input[type=password] {
+    width: 90%;
+    height: 25px;
+    margin-top: 3px;
+}
+#formLogin li input[type=button] {
+    padding: 7px 10px;
+    border-radius: 3px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+/*Estilos del menu Administrativo*/
+.divMenu {
+    width: 100%;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.divMenu h1 {
+    font-family: bienvenida;
+    font-size: 80px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.divMenu h2 {
+    font-family: nombre;
+    font-size: 50px;
+}
+.menuAdmin {
+    margin: auto;
+    display: table;
+}
+.menuAdmin li {
+    padding: 10px;
+    margin: 2px;
+    float: left;
+    cursor: pointer;
+    background-color: purple;
+    color: orange;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 2px 2px 3px black;
+}
+.menuAdmin li:hover {
+    margin-top: -2px;
+    box-shadow: 4px 4px 5px black;
+}
+.menuAdmin li h4 {
+    margin-left: 5px;
+    margin-top: 4px;
+    font-family: calibri;
+    font-size: 20px;
+    text-shadow: 2px 2px 3px black;
+}
+.menuAdmin li img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: 2px solid orange;
+    box-shadow: 2px 2px 3px black;
+}
+/*Estilos submenu del menu Administrativo*/
+.subMenu {
+    text-align: center;
+    display: none;
+    padding-bottom: 5px;
+    margin: 20px auto;
+}
+.subMenu ul {
+    display: table;
+    margin: auto;
+}
+.subMenu ul li {
+    background: orange;
+    color: purple;
+    padding: 10px;
+    float: left;
+    margin: 2px;
+    cursor: pointer;
+}
+.subMenu ul li:hover {
+    margin-top: -2px;
+}
+.subMenu li img {
+    float: left;
+    width: 25px;
+    height: 25px;
+}
+.subMenu li h4 {
+    margin-top: 3px;
+    margin-left: 5px;
+    float: left;
+}
+
+.salir {
+    float: right;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    padding: 10px;
+}
+.formulario {
+    width: 50%;
+    margin: 50px auto;
+    border: 1px solid black;
+    padding: 50px;
+    display: none;
+    text-align: center;
+    background-color: #ECE0F8;
+}
+.formulario ul {
+    width: 90%;
+    margin: auto;
+}
+.formulario ul li {
+    clear: both;
+    width: 100%;
+    margin: 2px;
+    padding: 3px;
+}
+.formulario li h4 {
+    float: left;
+    text-align: right;
+    width: 43%;
+}
+.formulario li input[type=text] {
+    margin-left: 1%;
+    width: 53%;
+    height: 25px;
+    float: left;
+}
+.formulario li input[type=password] {
+    margin-left: 1%;
+    height: 25px;
+    width: 53%;
+    float: left;
+}
+.formulario li select {
+    margin-left: 1%;
+    width: 53%;
+    height: 25px;
+    float: left;
+}
+
+/*Formulario para crear cursos*/
+.formularioCur {
+    width: 100%;
+    margin: auto;
+    padding: 50px;
+    text-align: center;
+    background-color: #E3CEF6;
+}
+.formularioCur ul {
+    width: 90%;
+    margin: auto;
+}
+.formularioCur ul li {
+    clear: both;
+    width: 100%;
+    margin: 2px;
+    padding: 3px;
+}
+.formularioCur li h4 {
+    float: left;
+    text-align: right;
+    width: 43%;
+}
+.formularioCur li input[type=text] {
+    margin-left: 1%;
+    width: 53%;
+    height: 25px;
+    float: left;
+}
+.formularioCur li input[type=password] {
+    margin-left: 1%;
+    height: 25px;
+    width: 53%;
+    float: left;
+}
+.formularioCur li select {
+    margin-left: 1%;
+    width: 53%;
+    height: 25px;
+    float: left;
+}
+
+.formularioCentral {
+    width: 30%;
+    background-color: white;
+    margin: 50px auto;
+    border: 1px solid black;
+    text-align: center;
+}
+.formularioCentral ul  {
+    width: 90%;
+    margin: 10px auto;
+}
+.formularioCentral ul li{
+    width: 100%;
+    height: 25px;
+    
+    padding-top: 5px;
+    padding-bottom: 5px;    
+}
+.formularioCentral li input[type=text] {
+    height: 25px;
+}
+.resultado {
+    background-color: #F6CEF5;
+    display: none;
+}
+.divTabla {
+    width: 100%;
+    height: 300px;
+    overflow-x: hidden;
+}
+.tabla {
+    margin: auto;
+    width: 90%;
+    border-collapse: collapse;
+}
+.tabla tr:nth-child(even) {
+    background-color: blue;
+}
+.tabla td {
+    height: 25px;
+    padding: 3px 10px;
+    border: 1px solid gray;
+}
+.tabla td input[type=button] {
+    padding: 5px;
+    cursor: pointer;
+}
+.media {
+    width: 49%;
+    float: left;
+    text-align: center;
+}
+#crearCurso {
+    background-color: white;
+    padding-bottom: 2px;
+}

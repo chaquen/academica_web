@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EVALUACIONES</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>        
+    <script src="https://apis.google.com/js/platform.js" async defer></script>    
+    <script src="script/inicio.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/funciones/CrudBase.js"></script>
+    <script type="text/javascript" src="js/funciones/formatos.js"></script>
+    <script type="text/javascript" src="js/funciones/peticiones_ajax.js"></script>
+    <script type="text/javascript" src="js/funciones/storage.js"></script>
+    <script type="text/javascript" src="js/funciones/utilidades.js"></script>
+    <script type="text/javascript" src="js/prototipos/prototipos.js"></script>
+    <script type="text/javascript" src="js/globales.js"></script>
+    <script type="text/javascript" src="js/evaluaciones/evaluaciones.js"></script>
+
+    <style type="text/css">
+    	ul{
+    		border: 1px solid black;
+    	}
+    	li{
+    		border: 1px solid blue;
+    	}
+    </style>
+</head>
+<body>	
+	<div id="divCrearEvaluaciones">
+		<form>
+			<ul>
+				<li>
+					<h3>Argumento</h3>
+					<input type="text" name="argumento_pregunta" id="txtArgumentoPre">
+				</li>
+				<li>
+					<h3>Tipo pregunta</h3>
+					<select id="selTipoPregunta">
+						<option value="abierta">abierta</option>
+						<option value="cerrada">cerrada</option>
+						<option value="cerrada_multiple">opcion multiple</option>
+						<option value="cerrada_comentario">cerrada con comentario</option>
+					</select>
+				</li>
+				<li>
+					<h3>Respuestas</h3>
+					<h6>Si su tipo de pregunta es abierta no es necesario agregar respuestas</h6>
+					<input type="number" placeholder="Numero de respuestas" value="2" id="numPreguntas" >
+					<input type="button" value="agregar respuestas" id="btnAgregarPreguntas">
+				</li>
+				<li>
+					<ul id="listaRespuestas"></ul>
+				</li>
+				<li>
+					<input id="btnCrearPregunta" type="button" value="Crear pregunta">
+				</li>
+			</ul>
+		</form>	
+	</div>
+	<div id="divEditarEvaluaciones">
+		<ul >
+			<li><h2>EDITAR PREGUNTAS</h2></li>
+			<li>
+				<h3>Tipo de pregunta</h3>
+				<select id="selTipoEdiPregunta">
+						<option value="0">--selecciona una pregunta--</option>
+						<option value="abierta">abierta</option>
+						<option value="cerrada">cerrada</option>
+						<option value="cerrada_multiple">opcion multiple</option>
+						<option value="cerrada_comentario">cerrada con comentario</option>
+				</select>
+			</li>
+			<li>
+				<h3>selecciona tu pregunta</h3>
+				<div id="divListaPreguntas">
+					<ul>
+						<li><h4>ARGUMENTO</h4></li>
+						<li><input type="radio" ><h5>respuesta 1<h5></li>
+						<li><input type="radio" ><h5>respuesta 2<h5></li>
+					</ul>
+
+				</div>
+			</li>
+		</ul>
+
+	</div>
+	<div id="divCrearEvaluacionesCursos">
+		<form id="formCrearEvaluaciones">
+			<ul>
+				<li><h2>CREAR EVALUACIONES</h2></li>				
+			</ul>
+			<ul>
+				<li>
+					<input id="btnMostrarBanco" type="button" value="VER BANCO PREGUNTAS">
+					<input id="btnOcultarBanco" type="button" value="OCULTAR BANCO PREGUNTAS">
+				</li>
+				<li>
+					<h3>Selecciona del banco de preguntas</h3>
+				</li>
+				<li><h3>ABIERTAS</h3></li>
+				<li id="liAbiertas" style="display: none;">
+
+					
+				</li>
+				<li><h3>CERRADAS</h3></li>
+				<li id="liCerradas" style="display: none;">
+					
+				</li>
+				<li><h3>CERRADAS CON COMENTARIO</h3></li>
+				<li id="liCerradaComentario" style="display: none;">
+					
+				</li>
+				<li><h3>MULTIPLES OPCIONES</h3></li>
+				<li id="liCerradaMultiple" style="display: none;">
+					
+				</li>
+				
+			</ul>
+
+			<ul>
+				<li>
+					<h3>Buscar del curso</h3>
+					<input id="txtBuscarCurso" type="text" placeholder="Nombre" list="listaCursos">
+					<datalist id="listaCursos"></datalist>
+				</li>
+				<li>
+					<h3>Modulo curso</h3>
+					<select id="selModuloCursoEva"></select>
+				</li>
+				<li>
+					<h3>Actividad curso</h3>
+					<select id="selActividadModuloEva"></select>
+				</li>
+				<li>
+					<h3>Nombre de la evaluacion</h3>
+					<input type="text" placeholder="Nombre" id="txtNombreEvaluacion" >
+				</li>
+				<li>
+					<h3>Fecha y hora de inicio  de la evaluacion</h3>
+					<input type="date"  id="dtFechaInicio" >
+					<input type="time"  id="dthHoraInicio" >
+				</li>
+				<li>
+					<h3>Fecha y hora de finalizacion de la evaluacion</h3>
+					<input type="date"  id="dtFechaFin" >
+					<input type="time"  id="dtHoraFin" >
+				</li>
+				<li>
+					<input id="btnMostrar" type="button" value="VER FORMULARIO CREAR PREGUNTAS">
+					<input id="btnOcultar" type="button" value="OCULTAR FORMULARIO CREAR PREGUNTAS">
+				</li>
+				<li id="liCrearPreguntas" style="display: none">
+					<ul>
+						<li>
+							<h3>Crear  preguntas</h3>
+						</li>	
+						<li>
+							<h3>Argumento</h3>
+							<input type="text" name="argumento_pregunta" id="txtArgumentoPre1">
+						</li>
+						<li>
+							<h3>Tipo pregunta</h3>
+							<select id="selTipoPregunta1">
+								<option value="abierta">abierta</option>
+								<option value="cerrada">cerrada</option>
+								<option value="cerrada_multiple">opcion multiple</option>
+								<option value="cerrada_comentario">cerrada con comentario</option>
+							</select>
+						</li>
+						<li>
+							<h3>Respuestas</h3>
+							<h6>Si su tipo de pregunta es abierta no es necesario agregar respuestas</h6>
+							<input type="number" placeholder="Numero de respuestas" value="2" id="numPreguntas1" >
+							<input type="button" value="agregar respuestas" id="btnAgregarPreguntas1">
+						</li>
+						<li>
+							<ul id="listaRespuestas1"></ul>
+						</li>
+						<li>
+							<input id="btnCrearPregunta1" type="button" value="Crear pregunta">
+						</li>
+					</ul>
+	
+				</li>
+
+				<li>
+					<h3>LISTA DE PREGUNTAS</h3>
+					<div id="divListaPreguntas1">
+						
+					</div>
+				</li>
+				<li>
+					<input id="btnCrearEvaluacion" type="button" value="Crear evaluacion" >
+				</li>
+			</ul>
+		</form>
+	</div>
+
+
+</body>
+</html>

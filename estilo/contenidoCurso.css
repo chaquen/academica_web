@@ -1,0 +1,194 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29/08/2017, 02:08:00 PM
+    Author     : DarkShinobi
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+}
+ul {
+    list-style: none;
+}
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    width: 100%;
+    height: 100%;
+}
+.limpiar {
+    clear: both;
+    width: 100%;
+    height: 5px;
+}
+.menuVistaAl {
+    width: 100%;
+    height: 50px;
+    background-color: purple;
+    color: orange;
+    padding-bottom: 20px;
+}
+.menuVistaAl li {
+    float: right;
+    padding: 20px;
+    margin: 2px;
+    border: 1px solid purple;
+}
+.menuVistaAl li:first-child {
+    float: left;
+}
+.menuVistaAl a {
+    color: orange;
+}
+.menuVistaAl li img {
+    float: right;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.menuVistaAl li h4 {
+    float: right;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.contenidoCurso {
+    width: 20%;
+    float: left;
+}
+.vistaContenidoCurso {
+    width: 79%;
+    float: right;
+    height: 600px;
+    border-left: 1px solid red;
+}
+.divListaCursosAlum {
+    width: 69%;
+    float: left;
+    padding-top: 30px;
+}
+.descripcionCurso {
+    border-top: 4px solid purple;
+    width: 90%;
+    margin: auto;
+    padding: 20px 10px 20px 10px;
+    background: linear-gradient(0deg, #BDBDBD, #FAFAFA, #F2F2F2, #FFFFFF);
+}
+.descripcionCurso a {
+    text-decoration: none;
+    font-family: Constantia;
+    color: purple;
+}
+.descripcionCurso ul {
+    width: 90%;
+    margin: 10px auto;
+}
+.descripcionCurso ul li {
+    float: left;
+    margin: 2px;
+    padding: 5px;
+}
+.descripcionCurso ul li:hover {
+    cursor: pointer;
+}
+.descripcionCurso li img {
+    width: 25px;
+    height: 25px;
+    float: left;
+}
+.descripcionCurso li h4 {
+    float: left;
+    margin-left: 5px;
+    margin-top: 3px;
+    float: left;
+}
+.calendarioAl {
+    width: 29%;
+    float: right;
+}
+.calendarioAl h4 {
+    color: orange;
+    font-family: arial;
+}
+.calendarioAl h3 {
+    color: purple;
+    font-family: arial;
+}
+.calendarioAl h5 {
+    font-family: arial;
+}
+.imgCalendario {
+    width: 300px;
+    height: 300px;
+    border: 1px solid;
+    margin-bottom: 10px;
+}
+.proxActividad {
+    width: 100%;
+    padding: 10px 0;
+    border-top: 1px #BDBDBD dashed;
+    border-bottom: 3px solid gray;
+    margin-top: 2px;
+    background: linear-gradient(240deg, #F5DA81, white);
+}
+.proxActividad h3,h4,h5 {
+    margin-left: 5px;
+}
+.mascara {
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    position: fixed;
+    display: none;
+    margin-top: -490px;
+    background-color: rgba(1,1,1,0.7);
+    padding-top: 100px;
+}
+.formulario {
+    width: 50%;
+    margin: 50px auto;
+    border: 1px solid black;
+    padding: 50px;
+    text-align: center;
+    background-color: white;
+}
+.formulario ul {
+    width: 90%;
+    margin: auto;
+}
+.formulario ul li {
+    clear: both;
+    width: 100%;
+    margin: 2px;
+    padding: 3px;
+}
+.formulario li h4 {
+    float: left;
+    text-align: right;
+    width: 43%;
+}
+.formulario li input[type=text] {
+    margin-left: 1%;
+    width: 53%;
+    height: 25px;
+    float: left;
+}
+.formulario li input[type=password] {
+    margin-left: 1%;
+    height: 25px;
+    width: 53%;
+    float: left;
+}
+.formulario li select {
+    margin-left: 1%;
+    width: 53%;
+    height: 25px;
+    float: left;
+}
+
