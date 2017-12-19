@@ -1,6 +1,7 @@
 function iniciar_contenido_curso(){
-	var params=recibirValorGet();	
-	consultar_curso(params);	
+	var params=recibirValorGet();
+	console.log(params[0].split("=")[1]);	
+	consultar_curso(params[0].split("=")[1]);	
 }
 
 

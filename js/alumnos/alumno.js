@@ -6,14 +6,17 @@ function iniciar_alumno(){
         var datos = $("#formUsuarioPerfil").serializarFormulario();
         if(datos.password[0]==datos.password[1]){
             datos.password=datos.password[0];
-            editarDato("usuarios/"+globales._usuario.id,datos,function(rs){
-                mostrarMensaje(rs);
-                if(rs.respuesta){
-                    globales._usuario=rs.datos[0];
-                    cargar_datos_perfil(globales._usuario);
-                    agregar_session_storage("ssGlobales",globales);
-                }
-            });
+            if(datos.correo_usuario[0]==datos.correo_usuario[1]){
+                    editarDato("usuarios/"+globales._usuario.id,datos,function(rs){
+                        mostrarMensaje(rs);
+                        if(rs.respuesta){
+                            globales._usuario=rs.datos[0];
+                            cargar_datos_perfil(globales._usuario);
+                            agregar_session_storage("ssGlobales",globales);
+                        }
+                    });
+            }
+            
         }else{
             mostrarMensaje("Contraseñas no son iguales");
         }
@@ -169,4 +172,5 @@ function cargar_datos_perfil(us){
     document.getElementById("txt_tel_alumno").value=us.telefono_usuario;
     document.getElementById("txt_dir_alumno").value=us.direccion_usuario;
     document.getElementById("txt_mail_alumno").value=us.correo_usuario; 
+    document.getElementById("txt_mail_alumno_2").value=us.correo_usuario; 
 }   

@@ -73,4 +73,33 @@ function iniciar_login(){
 			}
 			
 		});
+
+		agregarEvento("txt_pin","keypress",function(e){
+			if(e.key=="Enter" && this.value.length==6){
+				consultar_pin(this.value);
+			}else{
+				if(e.key=="Enter"){
+					mostrarMensaje("Este codigo no es valido");	
+				}
+				
+			}
+		});
+		agregarEvento("btn_pin","click",function(){
+			if(document.getElementById("txt_pin").value.length==6){
+				consultar_pin(document.getElementById("txt_pin").value);	
+			}else{
+				mostrarMensaje("Este codigo no es valido");
+			}
+		});
+}
+
+function consultar_pin(pin){
+	consultarDatos("consultar_pin/"+pin,{},function(rs){
+		console.log(rs);
+		if(rs.respuesta){
+			 iniciar_panel(false,rs.curso,pin);
+		}else{
+			mostrarMensaje(rs);
+		}
+	});
 }

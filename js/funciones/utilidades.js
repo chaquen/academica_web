@@ -563,7 +563,8 @@ function salir(_usuario){
 function recibirValorGet(){
   console.log(window.location.href);
   console.log(window.location.pathname);
-    params=window.location.href.split("=")[1];
+    params=window.location.href.split("?");
+    params=params[1].split("&");
     if(params!=""){
         return params;
     }else{
@@ -963,17 +964,22 @@ $.fn.serializarFormulario = function()
   {div_oculto}=>div que se desea ocultar,
   {div_activo}=>div que se desea mostrar,
  */
- function iniciar_panel(usuario){
-    globales._usuario=usuario;
-    //document.getElementById('status').innerHTML ='Gracias por registrate, ' + globales._usuario.nombre_alumno + '! ';
-    agregar_session_storage("ssGlobales",globales);
-    //$('#'+div_oculto).fadeOut('fast');
-    //$('#'+div_activo).fadeIn('slow');
+ function iniciar_panel(usuario,curso,pin){
+  if(usuario==false){
+      location.href="alumno_registro.html?c="+curso+"&p="+pin;  
+  }else{
+      globales._usuario=usuario;
+      //document.getElementById('status').innerHTML ='Gracias por registrate, ' + globales._usuario.nombre_alumno + '! ';
+      agregar_session_storage("ssGlobales",globales);
+      //$('#'+div_oculto).fadeOut('fast');
+      //$('#'+div_activo).fadeIn('slow');
+      
+      if(globales._usuario.nombre_rol=="alumno"){
+        location.href="alumno.html";  
+      }else{
+        location.href="admin.html";  
+      }  
+  }
     
-    if(globales._usuario.nombre_rol=="alumno"){
-      location.href="alumno.html";  
-    }else{
-      location.href="admin.html";  
-    }
     
 }
