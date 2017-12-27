@@ -7,6 +7,7 @@ function iniciar_alumno(){
         if(datos.password[0]==datos.password[1]){
             datos.password=datos.password[0];
             if(datos.correo_usuario[0]==datos.correo_usuario[1]){
+                    datos.correo_usuario=datos.correo_usuario[0];
                     editarDato("usuarios/"+globales._usuario.id,datos,function(rs){
                         mostrarMensaje(rs);
                         if(rs.respuesta){
