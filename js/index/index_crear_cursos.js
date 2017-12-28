@@ -62,20 +62,23 @@ function iniciar_crear_cursos(){
 					document.getElementById("liFechaFinModulo").style.display="none";					
 					break;	
 			}
+			cursos_obj.tiempo_curso=this.value;
 		
 	});
 	agregarEvento("selTipoCurso","change",function(){
 		if(this.value!="0"){
 			if(this.value=="pago"){
 				document.getElementById("liValorCurso").style.display="";
-				
+				document.getElementById("hValorCurso").innerHTML="$ .";
 			}else{
 				document.getElementById("liValorCurso").style.display="none";
+				document.getElementById("hValorCurso").innerHTML="GRATIS";
 				
 			}
 			cursos_obj.tipo_curso=this.value;
 				document.getElementById("hTipoCurso").innerHTML="Tipo de curso: "+this.options[this.selectedIndex].innerHTML;
 				document.getElementById("hTipoCurso").value=this.value;
+
 		}else{
 			document.getElementById("liValorCurso").style.display="none";
 			cursos_obj.tipo_curso="";
@@ -103,6 +106,7 @@ function iniciar_crear_cursos(){
 
 	agregarEvento("dtFIniCur","change",function(){
 		if(this.value!=""){
+
 			cursos_obj.fecha_inicio_curso=this.value;	
 			document.getElementById("hFechaInicioCursoCrear").innerHTML=this.value;
 		}
@@ -111,8 +115,21 @@ function iniciar_crear_cursos(){
 
 	agregarEvento("dtFFinCur","change",function(){
 		if(this.value!=""){
-			cursos_obj.fecha_fin_curso=this.value;
-			document.getElementById("hFechaFinCursoCrear").innerHTML=this.value;
+			console.log(new Date(cursos_obj.fecha_inicio_curso));
+
+			console.log(new Date(this.value));
+			var f1=new Date(cursos_obj.fecha_inicio_curso);
+			var f2=new Date(this.value);
+			if(f2>f1){
+
+				cursos_obj.fecha_fin_curso=this.value;
+
+				document.getElementById("hFechaFinCursoCrear").innerHTML=this.value;	
+			}else{
+				mostrarMensaje("La fecha debe ser despues del inicio del curso");
+			}	
+
+			
 		}			
 	});
 
@@ -126,33 +143,71 @@ function iniciar_crear_cursos(){
 	});
 	agregarEvento("dtFIniMod","change",function(){
 		if(this.value!=""){
-			modulos.fecha_inicio_modulo=this.value;
+
+				modulos.fecha_inicio_modulo=this.value;	
+				
+			
+			
 		}
 	});
 	agregarEvento("dtFFinMod","change",function(){
-		if(this.value!=""){
+		var f1=new Date(modulos.fecha_inicio_modulo);
+		var f2=new Date(this.value);
+		
+		if(f2>f1){
+
 			modulos.fecha_fin_modulo=this.value;
-		}	
+		}else{
+			mostrarMensaje("La fecha debe ser despues de la de inicio");
+		}
 	});
 	agregarEvento("btnAgregraModulo","click",function(){
 		//agregar un nuevo elemento al array cursos_obj.modulos
 		
-		
-			cursos_obj.modulos.push(modulos);
+			if(modulos.nombre_modulo!="" ){
+				if(cursos_obj.tiempo_curso!="perpetuo"){
+					if( modulos.fecha_inicio_modulo != "" && fecha_fin_modulo != ""){
+						cursos_obj.modulos.push(modulos);
 
 			
+						
+						modulos={
+							nombre_modulo:"",
+							contenidos:[],
+							fecha_inicio_modulo:"",
+							fecha_fin_modulo:"",
+							
+						};	
+						document.getElementById("txtNombreModulo").value="";
+
+						dibujar_modulos();
+						dibujar_select();	
+					}else{
+						mostrarMensaje("Debes ingresar todos los datos del modulo nombre y fechas");
+					}
+				}else{
+					cursos_obj.modulos.push(modulos);
+
 			
-			modulos={
-				nombre_modulo:"",
-				contenidos:[],
-				fecha_inicio_modulo:"",
-				fecha_fin_modulo:"",
 				
-			};	
-			document.getElementById("txtNombreModulo").value="";
+					modulos={
+						nombre_modulo:"",
+						contenidos:[],
+						fecha_inicio_modulo:"",
+						fecha_fin_modulo:"",
+						
+					};	
+					document.getElementById("txtNombreModulo").value="";
 
-			dibujar_modulos();
-			dibujar_select();
+					dibujar_modulos();
+					dibujar_select();	
+				}
+				
+			}else{
+				mostrarMensaje("Debes ingresar todos los datos del modulo nombre y fechas");
+			}
+
+			
 
 		
 	});

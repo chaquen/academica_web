@@ -373,7 +373,7 @@ function dibujar_modulos_edicion(){
 		var h4=document.createElement("h4");		
 		h4.innerHTML=mod[e].nombre_modulo;
 		var h5=document.createElement("h5");		
-		h5.setAttribute("onclick","quitarModulo("+e+")");
+		h5.setAttribute("onclick","quitarModuloEdi("+e+")");
 		h5.innerHTML="X";
 		lis.appendChild(h5);
 		lis.appendChild(h4);
@@ -386,7 +386,7 @@ function dibujar_modulos_edicion(){
 			li.appendChild(h5);
 			var h6=document.createElement("h6");
 			h6.innerHTML="X";
-			h6.setAttribute("onclick","quitarContenido("+e+","+c+")");	
+			h6.setAttribute("onclick","quitarContenidoEdi("+e+","+c+")");	
 			li.appendChild(h6);				
 			ul.appendChild(li);
 		}
@@ -417,7 +417,7 @@ function dibujar_select_edicion(){
 
 
 }
-function quitarContenido(posicion_modulo,posicion_contenido){
+function quitarContenidoEdi(posicion_modulo,posicion_contenido){
 
 	if(confirm("¿Desea quitar este contenido del modulo?")){
 		//quitar elemento 
@@ -427,7 +427,7 @@ function quitarContenido(posicion_modulo,posicion_contenido){
 	}
 }
 
-function quitarModulo(posicion_modulo){
+function quitarModuloEdi(posicion_modulo){
 
 	if(confirm("¿Desea quitar este modulo?")){
 		//quitar elemento 
