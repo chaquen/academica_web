@@ -54,6 +54,14 @@ and open the template in the editor.
                     <img src="Imagen/menuAlumno.png">
                     <h4>Alumnos</h4>
                 </li>
+                <li>
+                    <img src="">
+                    <h4>Pin</h4>
+                </li>
+                <li>
+                    <img src="">
+                    <h4>Evaluaciones</h4>
+                </li>
                 <li id="menuSalir">
                     <img src="Imagen/cerrar.png">
                     <h4>Salir</h4>
@@ -68,15 +76,15 @@ and open the template in the editor.
                     <img>
                     <h4>Crear Curso</h4>
                 </li>
-                <li>
+                <li id="editarCur">
                     <img>
                     <h4>Editar Curso</h4>
                 </li>
-                <li >
+                <li class="consultaCur">
                     <img>
                     <h4>Consultar Curso</h4>
                 </li>
-                <li>
+                <li class="consultaCur">
                     <img>
                     <h4>Eliminar Curso</h4>
                 </li>
@@ -170,8 +178,9 @@ and open the template in the editor.
             <!--Formulario crear curso-->
             <div class="division" id="crearCurso">
                 <i class="salir">Salir</i>
+                <div class="limpiar"></div>
                 <div class="media">
-                    <h2>Crear Curso</h2>
+                    <h1>Crear Curso</h1>
                     <form id="formCrearCurso" class="formularioCur">
                         <ul>
                             <li>
@@ -220,7 +229,7 @@ and open the template in the editor.
                            
                             <li>
                                 <h4>Agregar Modulo</h4>
-                                <input id="txtNombreModulo" type="text" placeholder="Modulo">                            
+                                <input id="txtNombreModulo" type="text" placeholder="Nombre del Modulo">                            
                             </li>
                              <li id="liFechaIniModulo">
                                 <h4>FECHA INICIO DEL MODULO</h4>
@@ -235,7 +244,7 @@ and open the template in the editor.
                             </li>
                             <li>
                                 <h4>Agregar Contenido o actividad</h4>
-                                <input id="txtContenidos" type="text" placeholder="Contenido">
+                                <input id="txtContenidos" type="text" placeholder="Nombre del Contenido">
                             </li>
                             <li>
                                 <h4>Tipo de contenido o actividad</h4>
@@ -339,9 +348,10 @@ and open the template in the editor.
                 <div class="limpiar"></div>
             </div>
             <!--Formulario Consultar Curso-->
-            <div class="division" id="consultaCurso">
-                <i class="salir salirFor">Salir</i>                
+            
+                                
                 <form class="formulario" id="formBuscarCurso">
+                    <i class="salir salirFor">Salir</i>
                     <ul>
                         <li>
                             <h2>Consultar Curso</h2>
@@ -356,7 +366,6 @@ and open the template in the editor.
                         </li>
                     </ul>
                 </form>
-            </div>
             <!--Resultado Busqueda de Cursos-->
             <div class="resultado" id="resultadoCur">
                 <i class="salir salirFor">Salir</i>
@@ -377,9 +386,10 @@ and open the template in the editor.
             <!--Formulario Editar Curso-->
             <div class="division" id="editarCurso">
                 <i class="salir">Salir</i>
+                <div class="limpiar"></div>
                 <div class="media">
                     <h2>Editar Curso</h2>
-                    <form id="formEditarCurso">
+                    <form id="formEditarCurso" class="formularioCur">
                         <ul>
                             <li>
                                 <h4>Nombre de Curso</h4>
@@ -496,49 +506,11 @@ and open the template in the editor.
                             </li>
                         </ul>
                     </form>
-                    <form>
-                        <ul>
-                            <li>
-                                <h4>Nombre de Curso</h4>
-                                <input type="text" placeholder="Nombre Curso">
-                            </li>
-                            <li>
-                                <h4>Agregar Modulo</h4>
-                                <input type="text" placeholder="Modulo">                            
-                            </li>
-                            <li>
-                                <input type="button" value="Agregar Modulo">
-                            </li>
-                            <li>
-                                <h4>Agregar Contenido</h4>
-                                <input type="text" placeholder="Contenido">
-                            </li>
-                            <li>
-                                <h4>Subir Archivo</h4>
-                                <input type="file">
-                            </li>
-                            <li>
-                                <h4>Seleccionar Modulo del Curso</h4>
-                                <select>
-                                    <option>Modulo 1</option>
-                                    <option>Modulo 2</option>
-                                    <option>Modulo 3</option>
-                                    <option>Modulo 4</option>
-                                </select>
-                            </li>
-                            <li>
-                                <input type="button" value="Agregar contenido">
-                            </li>                        
-                            <li>
-                                <input type="button" value="Editar Curso">
-                            </li>
-                        </ul>
-                    </form>
                 </div>
                 <!--Vista del formulario-->
                 <div class="media">
-                    <h2 id="hNombreCursoEdi">Nombre del curso</h2>
-                    <h2 id="hDescripcionCursoEdi">Descripcion del curso</h2>
+                    <h1 id="hNombreCursoEdi">Nombre del curso</h1>
+                    <p id="hDescripcionCursoEdi">Descripcion del curso</p>
                     <h2 id="hTipoCursoEdi">Tipo de curso</h2>
                     <h2 id="hValorCursoEdi">Valor curso</h2>
                     <h2 id="hFechaInicioCurso"></h2>

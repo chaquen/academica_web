@@ -28,7 +28,7 @@ $(document).ready(function(){
     
     //Salir de los formularios
     $('.salirFor, .salir').click(function(){
-        $('.formulario, #crearCurso, #respuestaProfesor').fadeOut('fast');
+        $('.formulario, #crearCurso, #respuestaProfesor, #editarCurso').fadeOut('fast');
     });
     
     
@@ -95,8 +95,22 @@ $(document).ready(function(){
         $('#crearAgenda').fadeIn('slow');
     });
     
+    //Formularios de Cursos 
+
     //Crear Curso
     $('#crearCur').click(function(){
-        $('#crearCurso').fadeIn('');
+        $('#editarCurso, #formBuscarCurso').fadeOut('fast');
+        $('#crearCurso').fadeIn('slow');
     });
+    //Consultar Curso
+    $('.consultaCur').click(function(){
+        $('#crearCurso, #editarCurso').fadeOut('fast');
+        $('#formBuscarCurso').fadeIn('slow');
+    });
+    //Editar Curso
+    $('#editarCur').click(function(){
+        $('#crearCurso, #formBuscarCurso').fadeOut('fast');
+        $('#editarCurso').fadeIn('slow');
+    });
+    
 });

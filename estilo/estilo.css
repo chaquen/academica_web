@@ -11,6 +11,19 @@
     font-family: "nombre";
     src: url('../font/nombre.TTF');
 }
+@font-face {
+    font-family: "Titulo1";
+    src: url('../font/arial.TTF');
+}
+@font-face {
+    font-family: "parrafo";
+    src: url('../font/parrafo.ttf');
+}
+@font-face {
+    font-family: "media";
+    src: url('../font/media.ttf');
+}
+
 .bodyAdmin {
     background-image: url('../Imagen/fondoAdmin.png');
     background-size: 100% 100%;
@@ -43,12 +56,44 @@ body {
 }
 
 /*Estilos del Login*/
+
+#logo {
+    margin-left: 100px;
+    margin-top: 120px;
+    background-color: rgba(1,1,1,0.1);
+    border-radius: 20px;
+    float: left;
+}
+
+#recuperaContra {
+    display: none;
+}
+.mensajes {
+    width: 300px;
+    margin-top: 100px;
+    margin-right: 150px;
+    display: none;
+    background-color: rgba(255,255,255,0.6);
+    font-size: 20px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    text-align: center;
+    float: right;
+}
+.btnAceptar{
+    padding: 7px 10px;
+    border-radius: 3px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
 #divLogin {
     height: 100%;
     background-image: url('../Imagen/fondoLogin.png');
     background-size: 100% 100%;
 }
-#formLogin {
+
+.formLogin {
     width: 300px;
     display: table;
     padding: 10px 30px;
@@ -58,32 +103,32 @@ body {
     margin-top: 100px;
     background-color: rgba(255,255,255,0.6);
 }
-#formLogin ul {
+.formLogin ul {
     width: 100%;
     display: table;
 }
-#formLogin ul li {
+.formLogin ul li {
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;    
     text-align: center;
 }
-#formLogin li h4 {
+.formLogin li h4 {
     font-family: Candara;
     font-size: 20px;
     margin-bottom: 3px;
 }
-#formLogin li input[type=text] {
+.formLogin li input[type=text] {
     width: 90%;
     height: 25px;
     margin-top: 3px;
 }
-#formLogin li input[type=password] {
+.formLogin li input[type=password] {
     width: 90%;
     height: 25px;
     margin-top: 3px;
 }
-#formLogin li input[type=button] {
+.formLogin li input[type=button] {
     padding: 7px 10px;
     border-radius: 3px;
     margin-top: 3px;
@@ -226,7 +271,7 @@ body {
 .formularioCur {
     width: 100%;
     margin: auto;
-    padding: 50px;
+    padding-top: 50px;
     text-align: center;
     background-color: #E3CEF6;
 }
@@ -315,6 +360,17 @@ body {
     width: 49%;
     float: left;
     text-align: center;
+    border: 1px solid black;
+}
+.media h1 {
+    font-family: Titulo1;
+}
+.media h2 {
+    font-family: parrafo;
+    font-size: 25px;
+}
+.media h3 {
+    font-family: media;
 }
 #crearCurso {
     background-color: white;
