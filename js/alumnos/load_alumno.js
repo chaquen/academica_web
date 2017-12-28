@@ -48,98 +48,120 @@ function iniciar_app_alumno(){
 function consulta_inicial_alumno(){
 	consultarDatos("consulta_inicial_alumno/"+globales._usuario.id,{},function(rs){
 		 
-		  console.log(rs.datos);
-		  var server_eventos=rs.datos.eventos[0];	
-		   var eventos=[];
-		  dibujar_cursos_alumno(rs.datos.cursos);
+		  console.log(rs.respuesta);
+		  if(rs.respuesta==true){
 
-		  dibujar_actividades_alumno(rs.datos.eventos);
+			  	  	var server_eventos=rs.datos.eventos[0];	
+			   	  	var eventos=[];
+				  	dibujar_cursos_alumno(rs.datos.cursos);
 
-		  //creo los eventos del alumno
-		  		var date = new Date();
-		   		var d = date.getDate();
-                var m = date.getMonth();
-                var y = date.getFullYear();
+				 	dibujar_actividades_alumno(rs.datos.eventos);
 
-                for(var f in server_eventos){
-                	console.log(server_eventos[f]);
-                 //AQUI CONSTRUYO EL OBJETO JS PARA AGREGARLO AL CALENDARIO
-                 	var fecha=server_eventos[f].activo_desde.split(" ");
-                 	var fecha2=server_eventos[f].activo_hasta.split(" ");
-                 	console.log(fecha);
-                 	console.log(fecha2);
-                	var ev={
-                		
+			  		//creo los eventos del alumno
+			  		var date = new Date();
+			   		var d = date.getDate();
+	                var m = date.getMonth();
+	                var y = date.getFullYear();
 
-                            title: server_eventos[f].nombre_actividad,
-                            start: new Date(fecha[0].split("-")[0], Number(fecha[0].split("-")[1])-1, fecha[0].split("-")[2],fecha[1].split(":")[0],fecha[1].split(":")[1],fecha[1].split(":")[2]),
-                            end: new Date(fecha2[0].split("-")[0], Number(fecha2[0].split("-")[1])-1, fecha2[0].split("-")[2],fecha2[1].split(":")[0],fecha2[1].split(":")[1],fecha2[1].split(":")[2]),
-                            description:server_eventos[f].tipo_actividad,
-                            course:server_eventos[f].nombre_curso,
-                            
-                            
-                        
-                	};
-                	if(server_eventos[f].tipo_actividad=="evento"){
-                		//ev.url=server_eventos[f].actividad_recurso;
-                	}
-                	eventos.push(ev);
-                }
+	                for(var f in server_eventos){
+	                	console.log(server_eventos[f]);
+	                 //AQUI CONSTRUYO EL OBJETO JS PARA AGREGARLO AL CALENDARIO
+	                 	var fecha=server_eventos[f].activo_desde.split(" ");
+	                 	var fecha2=server_eventos[f].activo_hasta.split(" ");
+	                 	console.log(fecha);
+	                 	console.log(fecha2);
+	                	var ev={
+	                		
+
+	                            title: server_eventos[f].nombre_actividad,
+	                            start: new Date(fecha[0].split("-")[0], Number(fecha[0].split("-")[1])-1, fecha[0].split("-")[2],fecha[1].split(":")[0],fecha[1].split(":")[1],fecha[1].split(":")[2]),
+	                            end: new Date(fecha2[0].split("-")[0], Number(fecha2[0].split("-")[1])-1, fecha2[0].split("-")[2],fecha2[1].split(":")[0],fecha2[1].split(":")[1],fecha2[1].split(":")[2]),
+	                            description:server_eventos[f].tipo_actividad,
+	                            course:server_eventos[f].nombre_curso,
+	                            
+	                            
+	                        
+	                	};
+	                	if(server_eventos[f].tipo_actividad=="evento"){
+	                		//ev.url=server_eventos[f].actividad_recurso;
+	                	}
+	                	eventos.push(ev);
+	                }
 
 
-		  /*var eventos2=[
-                        {
-                            title: 'ª..ª METAL FOR EVER',
-                            start: new Date(y, m, 1,11.59,59),
-                            description:" |..| ",
-                        },
-                        {
-                            title: 'evento largo',
-                            start: new Date(y, m, d-7),
-                            //end: new Date(y, m, d+6),
-                            description:" |..| ",
-                            allDay:true,
-                        },
-                        {
-                            id: 999,
-                            title: 'Repeating Event',
-                            start: new Date(y, m, 23, 16, 10),
-                            allDay: false,
-                            description:"descripcion",
-                        },
-                        {
-                            id: 999,
-                            title: 'Repeating Event',
-                            start: new Date(y, m, d+4, 16, 0),
-                            allDay: false
-                        },
-                        {
-                            title: 'Meeting',
-                            start: new Date(y, m, d, 10, 30),
-                            allDay: false
-                        },
-                        {
-                            title: 'Lunch',
-                            start: new Date(y, m, d, 12, 0),
-                            end: new Date(y, m, d, 14, 0),
-                            allDay: false
-                        },
-                        {
-                            title: 'Birthday Party',
-                            start: new Date(y, m, d+1, 19, 0),
-                            end: new Date(y, m, d+1, 22, 30),
-                            allDay: false
-                        },
-                        {
-                            title: 'Click for Google',
-                            start: new Date(y, m, 28),
-                            end: new Date(y, m, 29),
-                            url: 'http://google.com/'
-                        }
-                    ];
-          console.log(eventos);
-          console.log(eventos2);*/
-		  iniciar_eventos(eventos);
+			  /*var eventos2=[
+	                        {
+	                            title: 'ª..ª METAL FOR EVER',
+	                            start: new Date(y, m, 1,11.59,59),
+	                            description:" |..| ",
+	                        },
+	                        {
+	                            title: 'evento largo',
+	                            start: new Date(y, m, d-7),
+	                            //end: new Date(y, m, d+6),
+	                            description:" |..| ",
+	                            allDay:true,
+	                        },
+	                        {
+	                            id: 999,
+	                            title: 'Repeating Event',
+	                            start: new Date(y, m, 23, 16, 10),
+	                            allDay: false,
+	                            description:"descripcion",
+	                        },
+	                        {
+	                            id: 999,
+	                            title: 'Repeating Event',
+	                            start: new Date(y, m, d+4, 16, 0),
+	                            allDay: false
+	                        },
+	                        {
+	                            title: 'Meeting',
+	                            start: new Date(y, m, d, 10, 30),
+	                            allDay: false
+	                        },
+	                        {
+	                            title: 'Lunch',
+	                            start: new Date(y, m, d, 12, 0),
+	                            end: new Date(y, m, d, 14, 0),
+	                            allDay: false
+	                        },
+	                        {
+	                            title: 'Birthday Party',
+	                            start: new Date(y, m, d+1, 19, 0),
+	                            end: new Date(y, m, d+1, 22, 30),
+	                            allDay: false
+	                        },
+	                        {
+	                            title: 'Click for Google',
+	                            start: new Date(y, m, 28),
+	                            end: new Date(y, m, 29),
+	                            url: 'http://google.com/'
+	                        }
+	                    ];
+	          console.log(eventos);
+	          console.log(eventos2);*/
+	          if(eventos==undefined){
+	          	eventos=[
+	                        {
+	                            title: 'Bienvenido '+globales._usuario.nombre_usuario,
+	                            start: new Date(),
+	                            description:"Que HOY es tu mejor dia!",
+	                        }]
+	          }
+			  iniciar_eventos(eventos);
+		  }else{
+		  	
+	         	var eventos=[
+	                        {
+	                            title: 'Bienvenido '+globales._usuario.nombre_usuario,
+	                            start: new Date(),
+	                            description:"Que HOY es tu mejor dia!",
+	                        }]
+	          
+			  iniciar_eventos(eventos);
+		  	mostrarMensaje("Aun no tienes cursos pendientes");
+		  }
 
 	});
 }

@@ -876,6 +876,8 @@ $.fn.serializarFormulario = function()
         if(elementos[e].required==true && elementos[e].value ==""){
           elementos[e].style.borderColor="red";
           return false;
+        }else if(elementos[e].required!=undefined){
+          elementos[e].style.borderColor="";
         }
       }
 

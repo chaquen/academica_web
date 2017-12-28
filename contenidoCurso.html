@@ -60,7 +60,9 @@ and open the template in the editor.
                   }else if (node.data.tipo=="documento") {
                     document.getElementById("ifYoutube").style.display="none";
                     document.getElementById("ifDocu").style.display="";
-                    document.getElementById("ifDocu").src="archivos/"+node.data.recurso;  
+                    var ar=node.data.nombre_curso.split(" ");
+                    var ur=globales._URL+"recursos/cursos/"+ar.join("")+"/"+node.data.recurso;
+                    document.getElementById("ifDocu").src=ur;  
                   }else if(node.data.tipo=="evaluacion"){
                     document.getElementById("ifYoutube").style.display="none";
                     document.getElementById("ifDocu").style.display="none";
