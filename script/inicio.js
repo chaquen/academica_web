@@ -116,7 +116,7 @@ $(document).ready(function(){
     //Editar Curso
     $('#editarCur').click(function(){
         $('#crearCurso, #formBuscarCurso').fadeOut('fast');
-        $('#editarCurso').fadeIn('slow');
+        $('#formBuscarCurso').fadeIn('slow');
     });
     
     //Formularios de PINES *****************************************************

@@ -9,9 +9,10 @@ var cursos_obj_edi={
 	fecha_fin_curso:""
 };
 var modulos_edi={
+	fk_id_curso:0,
 	nombre_modulo:"",
-	fecha_inicio_modulo:"",
-	fecha_fin_modulo:"",
+	fecha_inicio_modulo:"0000-00-00 00:00:00",
+	fecha_fin_modulo:"0000-00-00 00:00:00",
 	actividades:[],
 	
 };
@@ -138,23 +139,56 @@ function iniciar_editar_cursos(){
 	});
 	agregarEvento("btnAgregraModuloEdi","click",function(){
 		//agregar un nuevo elemento al array cursos_obj.modulos
-		
-			console.log(modulos_edi);
-			cursos_obj_edi.modulos.push(modulos_edi);
+		 if(modulos_edi.nombre_modulo!=""){
+		 		var valido;
+		 		modulos_edi.fk_id_curso=cursos_obj_edi.id;
+		 		if(cursos_obj_edi.fecha_inicio_curso=="0000-00-00 00:00:00" && cursos_obj_edi.fecha_fin_curso=="0000-00-00 00:00:00"){
+		 			valido=true;
+		 		}else{
+		 			
+		 			if(document.getElementById("dtFIniModEdi").value!="" && document.getElementById("dtFFinModEdi").value!=""){
+		 				var f1=new Date(document.getElementById("dtFIniModEdi").value);	
+		 				var f2=new Date( document.getElementById("dtFFinModEdi").value);	
+		 				var f3=new Date(horaCliente().split(" ")[0]);	
+		 				if(f1>=f3 && f2>=f3 && f2>=f1){
+							valido=true
+		 				}else{
+		 					valido=false;
+		 					mostrarMensaje("Las dos fechas deben tener un periodo logico para su desarrollo");	
+		 				}
+		 			}else{
+		 				valido=false;
+		 				mostrarMensaje("Las dos fechas son obligatorias");
+		 			}
+		 		}
+		 		if(valido){
+		 			registrarDato("modulos",modulos_edi,function(rs){
+						if(rs.datos){
+							console.log(modulos_edi);
+							cursos_obj_edi.modulos.push(modulos_edi);
 
-			
-			
-			modulos_edi={
-				nombre_modulo:"",
-				actividades:[],
-				fecha_inicio_modulo:"",
-				fecha_fin_modulo:"",
-				
-			};	
-			document.getElementById("txtNombreModuloEdi").value="";
+							
+							
+							modulos_edi={
+								fk_id_curso:cursos_obj_edi.id,
+								nombre_modulo:"",
+								actividades:[],
+								fecha_inicio_modulo:"0000-00-00",
+								fecha_fin_modulo:"0000-00-00",
+								
+							};	
+							document.getElementById("txtNombreModuloEdi").value="";
 
-			dibujar_modulos_edicion();
-			dibujar_select_edicion();
+							dibujar_modulos_edicion();
+							dibujar_select_edicion();
+						}
+					});	
+		 		}
+		 		
+		 }else{
+		 	mostrarMensaje("Debes ingresar un nombre al modulo");
+		 }
+			
 
 		
 	});
@@ -319,7 +353,7 @@ function iniciar_editar_cursos(){
 					document.getElementById("hTipoCursoEdi").value="";
 					document.getElementById("hValorCursoEdi").innerHTML="";
 					document.getElementById("hValorCursoEdi").value="";
-					
+					$('#editarCurso').fadeOut('slow');
 				}
 			},"formEditarCurso");	
 		}
@@ -329,7 +363,8 @@ function iniciar_editar_cursos(){
 
 }
 function dibujar_modulos_edicion(){
-
+	$('#crearCurso, #formBuscarCurso, #resultadoCur, #tblCursos').fadeOut('fast');
+    $('#editarCurso').fadeIn('slow');
 	if(cursos_obj_edi.valor_curso==null){
 		cursos_obj_edi.valor_curso=0;
 	}
@@ -421,19 +456,26 @@ function quitarContenidoEdi(posicion_modulo,posicion_contenido){
 
 	if(confirm("¿Desea quitar este contenido del modulo?")){
 		//quitar elemento 
-		console.log(cursos_obj_edi.modulos[posicion_modulo]);
-		cursos_obj_edi.modulos[posicion_modulo].actividades.splice(posicion_contenido,1);	
-		dibujar_modulos_edicion();
+		eliminarDato("agenda/"+cursos_obj_edi.modulos[posicion_modulo].actividades[posicion_contenido].id,{},function(rs){
+			console.log(cursos_obj_edi.modulos[posicion_modulo]);
+			cursos_obj_edi.modulos[posicion_modulo].actividades.splice(posicion_contenido,1);	
+			dibujar_modulos_edicion();
+		});
+		
 	}
 }
 
 function quitarModuloEdi(posicion_modulo){
 
-	if(confirm("¿Desea quitar este modulo?")){
+	if(confirm("¿Desea quitar este modulo?, recuerda que esto eliminara las actividades asocadas")){
 		//quitar elemento 
-		console.log(cursos_obj.modulos[posicion_modulo]);
-		cursos_obj_edi.modulos.splice(posicion_modulo,1);	
-		dibujar_modulos_edicion();
+		eliminarDato("modulos/"+cursos_obj.modulos[posicion_modulo].id,{},function(rs){
+			console.log(cursos_obj.modulos[posicion_modulo]);
+			cursos_obj_edi.modulos.splice(posicion_modulo,1);	
+			dibujar_modulos_edicion();
+			dibujar_select_edicion();
+		});
+		
 	}
 }
 function mostrar_editar_curso(id){

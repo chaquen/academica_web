@@ -14,7 +14,7 @@ function iniciar_curso(){
 	});
 	//BUSCAR CURSOS
 	agregarEvento("txtBuscarCurso","change",function(){
-		consultarDatos("cursos/id&=&"+this.value,{},function(rs){
+		consultarDatos("cursos/nombre_curso&LIKE&"+this.value,{},function(rs){
 			console.log(rs);
 			if(rs.respuesta){
 					dibujar_cursos_consultados(rs.datos);
@@ -24,7 +24,7 @@ function iniciar_curso(){
 	//BUSCAR CURSOS
 	agregarEvento("btnBuscarCurso","click",function(){
 		if(document.getElementById("txtBuscarCurso").value!="" || document.getElementById("txtBuscarCurso").value!=" "){
-			consultarDatos("cursos/id&LIKE&"+document.getElementById("txtBuscarCurso").value,{},function(rs){
+			consultarDatos("cursos/nombre_curso&LIKE&"+document.getElementById("txtBuscarCurso").value,{},function(rs){
 				console.log(rs);
 				if(rs.respuesta){
 					dibujar_cursos_consultados(rs.datos);
@@ -35,9 +35,13 @@ function iniciar_curso(){
 		}
 		
 	});
+	
+
 }
 
 function dibujar_cursos_consultados(cursos){
+	$('#crearCurso, #formBuscarCurso').fadeOut('fast');
+    $('#resultadoCur, #tblCursos').fadeIn('slow');
 	var tblCursos=document.getElementById("tblCursos");
 	tblCursos.innerHTML="";
 		var tr=document.createElement("tr");
@@ -74,6 +78,7 @@ function dibujar_cursos_consultados(cursos){
 		var td=document.createElement("td");
 		td.innerHTML=cursos[c].estado_curso;
 		tr.appendChild(td);
+
 		var td=document.createElement("td");
 		var inp=document.createElement("input");
 		inp.setAttribute("type","button");

@@ -14,11 +14,12 @@ function consultar_curso(params){
 	}
 
 	if(false!=existe._usuario && undefined!=existe._usuario){
+		globales=existe;
 		consultarDatos("cursos/id&=&"+params,{},function(rs){
 			if(rs.respuesta){
 				
 				document.getElementById("h4NombreUsuario").innerHTML=globales._usuario.nombre_usuario;
-			
+				document.getElementById("tlContenidoCurso").innerHTML=rs.datos[0].nombre_curso;
 				
 				
 				agregarEvento("liSalir","click",function(){
