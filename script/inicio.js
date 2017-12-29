@@ -13,18 +13,23 @@ $(document).ready(function(){
     });
         //Menu de Profesor
     $('#menuProf').click(function(){
-        $('#menuAlumno, #menuCurso, #menuAgenda, .formulario, #menuPines').fadeOut('fast');
+        $('#menuAlumno, #menuCurso, #menuAgenda, .formulario, #menuPines, #menuEvaluacion').fadeOut('fast');
         $('#menuProfesor').fadeIn('slow');
     });
         //Menu de Agenda
     $('#menuAg').click(function(){
-        $('#menuAlumno, #menuProfesor, #menuCurso, .formulario, #menuPines').fadeOut('fast');
+        $('#menuAlumno, #menuProfesor, #menuCurso, .formulario, #menuPines, #menuEvaluacion').fadeOut('fast');
         $('#menuAgenda').fadeIn('slow');
     });
         //Menu de los PINES
     $('#menuPin').click(function(){
-        $('#menuAlumno, #menuProfesor, #menuCurso, .formulario, #menuAgenda').fadeOut('fast');
+        $('#menuAlumno, #menuProfesor, #menuCurso, .formulario, #menuAgenda, #menuEvaluacion').fadeOut('fast');
         $('#menuPines').fadeIn('slow');
+    });
+        //Manu de Evalucaión
+    $('#menuEva').click(function(){
+        $('#menuAlumno, #menuProfesor, #menuCurso, .formulario, #menuAgenda, #menuPines').fadeOut('fast');
+        $('#menuEvaluacion').fadeIn('slow');
     });
     
     //Salir de los Menus
@@ -153,4 +158,19 @@ $(document).ready(function(){
         $('#eliminarPin').fadeIn('slow');
     });
     
+    //Formularios de las Preguntas
+    //Crear Preguntas
+    $('#crearPre').click(function(){
+        $('.subMenu').fadeOut('fast');
+        $('#crearPregunta').fadeIn('slow');
+    });
+    //Consulta de preguntas
+    $('#consultaPre').click(function(){
+        $('.subMenu').fadeOut('fast');
+        $('#consultaPregunta').fadeIn('slow');
+    });
+    $('#crearEv').click(function(){
+        $('.subMenu').fadeOut('fast');
+        $('#crearEvaluacion').fadeIn('slow');
+    });
 });

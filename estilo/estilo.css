@@ -142,13 +142,13 @@ body {
     text-align: center;
 }
 .divMenu h1 {
-    font-family: bienvenida;
+    font-family: Titulo1;
     font-size: 80px;
     margin-top: 20px;
     margin-bottom: 10px;
 }
 .divMenu h2 {
-    font-family: nombre;
+    font-family: parrafo;
     font-size: 50px;
 }
 .menuAdmin {
