@@ -54,7 +54,7 @@ and open the template in the editor.
                     <img src="Imagen/menuAlumno.png">
                     <h4>Alumnos</h4>
                 </li>
-                <li>
+                <li id="menuPin">
                     <img src="">
                     <h4>Pin</h4>
                 </li>
@@ -172,6 +172,25 @@ and open the template in the editor.
                 </li>
             </ul>
         </div>
+        
+        <!--Sub Menu Pines-->
+        <div class="subMenu" id="menuPines">
+            <ul>
+                <li id="crearP">
+                    <img>
+                    <h4>Crear PINES</h4>
+                </li>
+                <li id="consultaP">
+                    <img>
+                    <h4>Consultar PINES</h4>
+                </li>
+                <li id="eliminarP">
+                    <img>
+                    <h4>Eliminar PINES</h4>
+                </li>
+            </ul>
+        </div>
+        <!--Fin Sub Menu Pines-->
         
         <!--Formularios de Cursos-->
         <div id="Curso">
@@ -1078,5 +1097,102 @@ and open the template in the editor.
             </div>
         </div>
         <!--Fin division de agenda-->
+        
+        <!--Division de los PINES-->
+        <div>
+            <!--Crear PINES-->
+            <div class="formulario" id="crearPin">
+                <i class="salirFor salir">Salir</i>
+                <form>
+                    <ul>
+                        <li>
+                            <h2>Crear PINES</h2>
+                        </li>
+                        <li>
+                            <h4>Curso al que le va crear los PINES</h4>
+                            <select>
+                                <option>Seleccione el curso para crear los pines</option>
+                                <option>curso 1</option>
+                                <option>curso 2</option>
+                                <option>curso 3</option>
+                                <option>curso 4</option>
+                            </select>
+                        </li>
+                        <li>
+                            <h4>Cuantos PINES va crear</h4>
+                            <input type="text" placeholder="Escriba la cantidad en número">
+                        </li>
+                        <li>
+                            <input type="button" value="Crear">
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <!--Fin Crear Pines-->
+            
+            <!--Consulta de Pines-->
+            <div class="formulario" id="consultaPin">
+                <i class="salirFor salir">Salir</i>
+                <form>
+                    <ul>
+                        <li>
+                            <h2>Consulta de Pines</h2>
+                        </li>
+                        <li>
+                            <h4>Seleccione el curso para buscar</h4>
+                            <select>
+                                <option>Seleccione el curso</option>
+                                <option>Curso 1</option>
+                                <option>Curso 2</option>
+                                <option>Curso 3</option>
+                            </select>
+                        </li>
+                        <li>
+                            <h4>Ingrese el PIN para validar si existe</h4>
+                            <input type="text" placeholder="Digite el Pin">
+                        </li>
+                        <li>
+                            <input type="button" value="Buscar">
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <!--Fin Editar Pines-->
+            
+            <!--Eliminar Pines-->
+            <div class="formulario" id="eliminarPin">
+                <i class="salirFor salir">Salir</i>
+                <form>
+                    <ul>
+                        <li>
+                            <h2>Eliminar Pines</h2>
+                        </li>
+                        <li>
+                            <h4>Si solo va a elimiar un Pin digitelo</h4>
+                            <input type="text" placeholder="Digite el Pin para eliminar">
+                        </li>
+                        <li>
+                            <input type="button" value="Eliminar un solo PIN">
+                        </li>
+                        <li>
+                            <h4>Si desea Eliminar todos los pines de un Curso seleccionelo a continuación</h4>
+                            <select>
+                                <option>Seleccione el curso al cual se le eliminar todos los PINES</option>
+                                <option>Curso 1</option>
+                                <option>Curso 2</option>
+                                <option>Curso 3</option>
+                                <option>Curso 4</option>
+                            </select>
+                        </li>
+                        <li>
+                            <input type="button" value="Eliminar todos los Pines de un curso">
+                        </li>
+                    </ul>           
+                </form>
+            </div>
+            <!---->
+            
+        </div>
+        <!--Fin PINES-->
     </body>
 </html>
