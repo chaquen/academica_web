@@ -521,36 +521,17 @@ function abrir_ventana(url,u){
 
 function salir(_usuario){
     
-    if(usuario!=false){
-     if(confirm("Desea salir de la aplicacion?")){
-            //Creo el objeto que voy a enviar con datos a la peticion
-        /*var datos={
-            id:_usuario.id_usuario
-                     
-        };*/
-        //Invoco mi funcion 
-        cerrar_ventana();
-        //eliminarDato("salir/"+usuario.id,datos,cerrar_ventana);
-        if(obtener_local_storage("mis_tickets_"+_usuario.id_usuario+"_"+_IdSede)!=false){
-          if(confirm("¿Tienes facturas pendientes por registrar desea eliminarlas?")){
-            eliminar_local_storage("mis_tickets_"+_usuario.id_usuario+"_"+_IdSede);
-            eliminar_local_storage("btn_tk_"+_usuario.id_usuario+"_"+_IdSede) 
-            document.getElementById("tbCuerpoFactura").innerHTML="";
-            
-          }
-        }
-        eliminar_session_storage("ssUsuario");
-
-        $('#menuGeneral, #ventas, #clientes, #productos, #inventarios, #configuracion, #cortes, #perfil').fadeOut('fast');
-        $('#formLogueo, #divInicio').fadeIn('slow');
-        _usuario=false;
+    if(confirm("Desea salir de la aplicacion?")){
+        globales._usuario=false;
+        globales._cerrar_sesion=true;
         
-        inicia_app();
+        agregar_session_storage("ssGlobales",globales);
+        if(obtener_local_storage("ssGlobales")){
+          
+          agregar_local_storage("ssGlobales",globales);
+        }  
+        location.href="index.html";
      }
-    }else{
-       mostrarMensaje({mensaje:"por favor ingresa correctamente al sistema"});
-       
-    }
 }
 
 
@@ -969,13 +950,8 @@ $.fn.serializarFormulario = function()
  function iniciar_panel(usuario,curso,pin){
   if(usuario==false){
       location.href="alumno_registro.html?c="+curso+"&p="+pin;  
-  }else{
-      globales._usuario=usuario;
-      //document.getElementById('status').innerHTML ='Gracias por registrate, ' + globales._usuario.nombre_alumno + '! ';
+  }else{      
       agregar_session_storage("ssGlobales",globales);
-      //$('#'+div_oculto).fadeOut('fast');
-      //$('#'+div_activo).fadeIn('slow');
-      
       if(globales._usuario.nombre_rol=="alumno"){
         location.href="alumno.html";  
       }else{

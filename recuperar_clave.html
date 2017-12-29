@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="google-signin-client_id" content="890314147809-bn5vg72isfh5g5apomnf8ff683sq3mkk.apps.googleusercontent.com">
@@ -23,7 +23,7 @@ and open the template in the editor.
         <script type="text/javascript" src="js/funciones/utilidades.js"></script>
         <script type="text/javascript" src="js/prototipos/prototipos.js"></script>
         <script type="text/javascript" src="js/globales.js"></script>
-        <script type="text/javascript" src="js/index/login.js"></script>       
+        <script type="text/javascript" src="js/index/recuperar_clave.js"></script>       
         <!--<script type="text/javascript" src="js/index/load.js"></script>-->
     </head>
     <body>
@@ -32,70 +32,51 @@ and open the template in the editor.
         <div class="seccion" id="divLogin">
             <div>
                 <img src="imagen/Logo.png" id="logo">
-                <form class="formLogin" id="formLogin">
+                <form class="formLogin" id="formCambioClave">
                     <ul>                            
                         <li>
-                            <h4>Usuario</h4>
-                            <input id="txt_usuario" type="text" placeholder="Usuario" name="usuario"> 
+                        	<h4 id="msnUsuario">Ingrea tu nueva contraseña</h4>
                         </li>
                         <li>
-                            <h4>Contraseña</h4>
+                            <h4>Nueva Contraseña</h4>
                             <input id="txt_pass" type="password" placeholder="Contraseña" name="clave">
                         </li>
                         <li>
-                            <input type="button" value="Ingresar" id="btnIngresar">
-                            <input type="button" value="Olvide La Contraseña" id="olvidoContra">
+                            <h4>Confirma tu nueva Contraseña</h4>
+                            <input id="txt_pass_2" type="password" placeholder="Contraseña" name="clave">
                         </li>
                         <li>
-                            <h4>Redime tu PIN</h4>
-                            <input id="txt_pin" type="text" placeholder="Codigo o PIN">
+                            <input type="button" value="Cambiar clave" id="btnCambioClave">
                             
-                        </li>
-                        <li>
-                            <input id="btn_pin" type="button" value="Redimir PIN">
-                        </li>
-                        
+                        </li>                                              
                     </ul>
                     
                 </form>
-                <form class="formLogin" id="recuperaContra">
-                    <ul>
-                        <li>
-                            <h4>Escriba el correo electrónico</h4>
-                            <input name="email" type="text" placeholder="Correo electronico" required>
-                        </li>
-                        <li>
-                            <input type="button" value="Recuperar" id="btnRecuperar">
-                            <input type="button" value="Cancelar" id="btnCancelaRec">
-                        </li>
-                    </ul>
-                </form>
+                
                 
                 <p class="mensajes" id="mensajeRec">
-                    Se ha enviado un link al correo electronico <b id="correoRec">correo@correo.com</b>, por favor verifique
-                    en su correo e ingrese al link para que pueda cambiar la contraseña y acceda al sistema.
+                    Gracias por usar el sistema de recuperacion de contraseñas ya puede ingresar y seguir aprendiendo 
                     <br><br>
-                    GRACIAS.
+                    Te deseamos lo mejor en tu dia 
                     <br><br>
-                    <input type="button" value="aceptar" id="btnAceptarRec" class="btnAceptar">
+                    <input type="button" value="aceptar" id="btnLoginRecuperado" class="btnAceptar">
                 </p>
                 
                 <p class="mensajes" id="mensajeBienvenida">
                     Bienvenido <br>
                     <b id="nombreLogin">Nombre de la persona que ingresa</b>.
                     <br><br>
-                    <input type="checkbox" value="recordarme" id="chRecormarme">Recordarme
-                    <br>
-                    <input type="button" value="Aceptar" class="btnAceptar" id="btnContinuarLogin">
+                    <input type="checkbox" value="recordarme" >Recordarme
+                    <input type="button" value="Aceptar" class="btnAceptar">
                 </p>
                 
                 <p class="mensajes" id="mensajeErroIngreso">
-                    Lo sentimos pero los datos suministrados no son correctos <br>
-                    
+                    Lo sentimos pero el correo <br>
+                    <b>correo que ingresaron</b>
                     <br>
-                    
+                    No aparece registrado en el sistema
                     <br><br>
-                    <input type="button" value="Aceptar" class="btnAceptar" >
+                    <input type="button" value="Aceptar" class="btnAceptar">
                 </p>
                 
             </div>
