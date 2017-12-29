@@ -48,7 +48,11 @@ function consulta_inicial(){
 		  
 		  
      	  crear_select("selAgendaCurso",rs.datos.cursos,"id","nombre_curso");
-
+     	  crear_select("selCursosPines",rs.datos.cursos,"id","nombre_curso");
+     	  crear_select("selBusCurPines",rs.datos.cursos,"id","nombre_curso");
+     	  crear_select("selEliPinCur",rs.datos.cursos,"id","nombre_curso");
+     	  
+     	  
 	});
 }
 

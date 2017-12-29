@@ -28,7 +28,8 @@ and open the template in the editor.
         <script type="text/javascript" src="js/index/index_cursos.js"></script>
         <script type="text/javascript" src="js/index/index_agenda.js"></script>
         <script type="text/javascript" src="js/index/index_profesores.js"></script>
-        <script type="text/javascript" src="js/index/load_admin.js"></script>   
+        <script type="text/javascript" src="js/index/load_admin.js"></script>  
+         <script type="text/javascript" src="js/index/pines.js"></script>  
         <!--FIN SCRIPT MANEJO DE DATOS-->
     </head>
     <body class="bodyAdmin">
@@ -1017,7 +1018,7 @@ and open the template in the editor.
                         </li>
                         <li>
                             <h4>Modulo</h4>
-                            <select id="selAgendaModulos" name="id_modulo">
+                            <select id="selAgendaModulos" name="fk_id_modulo_curso">
                                
                             </select>
                         </li>
@@ -1036,12 +1037,12 @@ and open the template in the editor.
                        
                         <li>
                             <h4>Desde</h4>
-                            <input id="dtFechaEventoIni" type="date" name="fecha_inicio_evento">
+                            <input id="dtFechaEventoIni" type="date" name="activo_desde">
                             <input id="tmHoraEventoIni" type="time" name="hora_inicio_evento">
                         </li>
                         <li>
                             <h4>Hasta</h4>
-                            <input id="dtFechaEventoFin" type="date" name="fecha_fin_evento">
+                            <input id="dtFechaEventoFin" type="date" name="activo_hasta">
                             <input id="tmHoraEventoFin" type="time" name="hora_fin_evento">
                         </li>                     
                         <li>
@@ -1100,14 +1101,14 @@ and open the template in the editor.
             <!--Crear PINES-->
             <div class="formulario" id="crearPin">
                 <i class="salirFor salir">Salir</i>
-                <form>
+                <form id="formCrearPines">
                     <ul>
                         <li>
                             <h2>Crear PINES</h2>
                         </li>
                         <li>
                             <h4>Curso al que le va crear los PINES</h4>
-                            <select>
+                            <select id="selCursosPines" name="curso" required>
                                 <option>Seleccione el curso para crear los pines</option>
                                 <option>curso 1</option>
                                 <option>curso 2</option>
@@ -1117,10 +1118,10 @@ and open the template in the editor.
                         </li>
                         <li>
                             <h4>Cuantos PINES va crear</h4>
-                            <input type="text" placeholder="Escriba la cantidad en número">
+                            <input type="text" placeholder="Escriba la cantidad en número" name="numero_pines" required>
                         </li>
                         <li>
-                            <input type="button" value="Crear">
+                            <input type="button" value="Crear" id="btnCrearPines">
                         </li>
                     </ul>
                 </form>
@@ -1130,14 +1131,14 @@ and open the template in the editor.
             <!--Consulta de Pines-->
             <div class="formulario" id="consultaPin">
                 <i class="salirFor salir">Salir</i>
-                <form>
+                <form id="formBuscaPin">
                     <ul>
                         <li>
                             <h2>Consulta de Pines</h2>
                         </li>
                         <li>
                             <h4>Seleccione el curso para buscar</h4>
-                            <select>
+                            <select id="selBusCurPines" name="curso"  required>
                                 <option>Seleccione el curso</option>
                                 <option>Curso 1</option>
                                 <option>Curso 2</option>
@@ -1146,10 +1147,17 @@ and open the template in the editor.
                         </li>
                         <li>
                             <h4>Ingrese el PIN para validar si existe</h4>
-                            <input type="text" placeholder="Digite el Pin">
+                            <input type="text" placeholder="Digite el Pin" name="pin" value="*">
                         </li>
                         <li>
-                            <input type="button" value="Buscar">
+                            <h4>QUIERES EXPORTAR TU RESULTADO</h4>
+                            <input type="button" value="exportar" id="btnExportar">
+                        </li>
+                        <li>
+                            <a id="aExportado" target="_onblank"></a>
+                        </li>
+                        <li>
+                            <input type="button" value="Buscar" id="btnBuscarPin">
                         </li>
                     </ul>
                 </form>
@@ -1159,21 +1167,21 @@ and open the template in the editor.
             <!--Eliminar Pines-->
             <div class="formulario" id="eliminarPin">
                 <i class="salirFor salir">Salir</i>
-                <form>
+                <form id="formEliPins">
                     <ul>
                         <li>
                             <h2>Eliminar Pines</h2>
                         </li>
                         <li>
                             <h4>Si solo va a elimiar un Pin digitelo</h4>
-                            <input type="text" placeholder="Digite el Pin para eliminar">
+                            <input type="text" placeholder="Digite el Pin para eliminar" name="pin">
                         </li>
                         <li>
-                            <input type="button" value="Eliminar un solo PIN">
+                            <input type="button" value="(BUSCAR)Eliminar un solo PIN" id="btnRliminarPin">
                         </li>
                         <li>
                             <h4>Si desea Eliminar todos los pines de un Curso seleccionelo a continuación</h4>
-                            <select>
+                            <select id="selEliPinCur" name="curso">
                                 <option>Seleccione el curso al cual se le eliminar todos los PINES</option>
                                 <option>Curso 1</option>
                                 <option>Curso 2</option>
@@ -1182,12 +1190,27 @@ and open the template in the editor.
                             </select>
                         </li>
                         <li>
-                            <input type="button" value="Eliminar todos los Pines de un curso">
+                            <input type="button" value="(BUSCAR)Eliminar todos los Pines de un curso" id="btnEliminarPines">
                         </li>
                     </ul>           
                 </form>
             </div>
-            <!---->
+            <!--resultado de pines-->
+            <div class="resultado" id="respuestaPin">
+                <div class="divTabla">
+                    <i class="salirFor salir">Salir</i>
+                    <table class="tabla" >
+                        <tr>
+                            <td>Numero</td>
+                             <td>Nombre curso</td>
+                            <td>PIN </td>
+                            <td>ESTADO</td>
+                            
+                        </tr>
+                        <tbody id="tbConsultalPines"></tbody>
+                    </table>
+                </div>
+            </div>
             
         </div>
         <!--Fin PINES-->

@@ -773,7 +773,7 @@ function crear_tablas(id_tabla,datos,columnas,clase_tabla,clase_fila,clase_celda
   console.log(datos);
   console.log(columnas);
   var existe=false;
-  var div=document.getElementById("miTabla");
+  var div=document.getElementById(id_tabla);
   var tabla=document.createElement("table");
   if(clase_tabla!=undefined){
     tabla.setAttribute("class",clase_tabla);
@@ -850,41 +850,45 @@ $.fn.serializarFormulario = function()
       {
       var o = {};
       console.log(this);
-      console.log(this[0].elements);
-      var elementos=this[0].elements;
-      for(var e in elementos){
-        console.log(elementos[e].required);
-        if(elementos[e].required==true && elementos[e].value ==""){
-          elementos[e].style.borderColor="red";
-          return false;
-        }else if(elementos[e].required!=undefined){
-          elementos[e].style.borderColor="";
-        }
-      }
-
-      var a = this.serializeArray();
       
-      $.each(a, function() {
-            
+      if(this[0]!=undefined){
+        var elementos=this[0].elements;
+        for(var e in elementos){
+          console.log(elementos[e].required);
+          if(elementos[e].required==true && elementos[e].value ==""){
+            elementos[e].style.borderColor="red";
+            return false;
+          }else if(elementos[e].required!=undefined){
+            elementos[e].style.borderColor="";
+          }
+        }
 
-         if (o[this.name]) {
-            
-
-             if (!o[this.name].push) {
-                 o[this.name] = [o[this.name]];
-             }
-              console.log(this.name);
-              
-             o[this.name].push(this.value || '');
-         } else {
-              
-              o[this.name] = this.value || '';
-              
-         }
-
+        var a = this.serializeArray();
         
-      });
-      return o;
+        $.each(a, function() {
+              
+
+           if (o[this.name]) {
+              
+
+               if (!o[this.name].push) {
+                   o[this.name] = [o[this.name]];
+               }
+                console.log(this.name);
+                
+               o[this.name].push(this.value || '');
+           } else {
+                
+                o[this.name] = this.value || '';
+                
+           }
+
+          
+        });
+        return o;
+      }else{
+        return false;
+      }
 };
 //FUNCION PARA LIMPIAR LOS FORMULARIOS
  function limpiarFormulario(idForm){

@@ -6,6 +6,16 @@
 agregarEventoLoad(iniciar_evaluacion);
 function iniciar_evaluacion(){
 	consultar_todas_las_preguntas();
+	agregarEvento("selTipoPregunta","change",function(){
+		switch(this.value){
+			case "abierta":
+				document.getElementById("numPreguntas").value=0;
+				break;
+			default:
+				document.getElementById("numPreguntas").value=2;
+				break;	
+		}
+	});
 	agregarEvento("btnAgregarPreguntas","click",function(){
 		
 		if(document.getElementById("txtArgumentoPre").value!=""){
@@ -191,7 +201,7 @@ function iniciar_evaluacion(){
 			registrarDato("preguntas",preguntas,function(rs){
 				console.log(rs);
 				mostrarMensaje(rs);
-				agregar_a_evaluacion(id);
+				agregar_a_evaluacion(rs.id);
 			});
 		}else{
 			mostrarMensaje("Ingresa un argumento para la pregunta");
@@ -267,7 +277,7 @@ function iniciar_evaluacion(){
 	});
 	agregarEvento("txtBuscarCurso","keypress",function(e){
 		if(this.value!="" && e.keyCode!=13){
-			consultarDatos("cursos/id&=&"+this.value,{},function(rs){
+			consultarDatos("cursos/nombre_curso&LIKE&"+this.value.trim(),{},function(rs){
 				crear_data_list("listaCursos",rs.datos,"id","nombre_curso");
 			});
 		}else if(this.value != "" && e.keyCode == 13){
@@ -425,7 +435,7 @@ function dibujar_preguntas_por_tipo(datos){
 		var li=document.createElement("li");
 		var sel=document.createElement("select");
 		sel.setAttribute("id","sel_tipo_"+datos[d].id);
-		sel.setAttribute("onchange","editar_argumento_pregunta('"+datos[d].id+"');");
+		sel.setAttribute("onchange","editar_tipo_pregunta('"+datos[d].id+"');");
 		
 		var op=document.createElement("option");
 		op.setAttribute("value","abierta");
@@ -521,6 +531,23 @@ function dibujar_preguntas_por_tipo(datos){
 }
 
 function editar_argumento_pregunta(id){
+	if(confirm("¿Desea editar esta pregunta?")){
+		var v=document.getElementById("arg_"+id);
+		var s=document.getElementById("sel_tipo_"+id);
+		if(s.value=="abierta"){
+			//eliminar respueastas
+		}
+		editarDato("preguntas/"+id,{
+		argumento_pregunta:v.value,
+		tipo_pregunta:s.value
+		},function(rs){
+		console.log(rs);
+		consultar_preguntas(document.getElementById("selTipoEdiPregunta").value);
+		});	
+	}
+	
+}
+function editar_tipo_pregunta(id){
 	if(confirm("¿Desea editar esta pregunta?")){
 		var v=document.getElementById("arg_"+id);
 		var s=document.getElementById("sel_tipo_"+id);
