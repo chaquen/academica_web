@@ -3,24 +3,30 @@ $(document).ready(function(){
     //Division del Menu Administrativo
         //Menu de Curso
     $('#menuCur').click(function(){
-        $('#menuAlumno, #menuProfesor, #menuAgenda, .formulario').fadeOut('fast');
+        $('#menuAlumno, #menuProfesor, #menuAgenda, .formulario, #menuPines').fadeOut('fast');
         $('#menuCurso').fadeIn('slow');
     });
         //Menu de Alumno
     $('#menuAl').click(function(){
-        $('#menuCurso, #menuProfesor, #menuAgenda, .formulario').fadeOut('fast');
+        $('#menuCurso, #menuProfesor, #menuAgenda, .formulario, #menuPines').fadeOut('fast');
         $('#menuAlumno').fadeIn('slow');
     });
         //Menu de Profesor
     $('#menuProf').click(function(){
-        $('#menuAlumno, #menuCurso, #menuAgenda, .formulario').fadeOut('fast');
+        $('#menuAlumno, #menuCurso, #menuAgenda, .formulario, #menuPines').fadeOut('fast');
         $('#menuProfesor').fadeIn('slow');
     });
         //Menu de Agenda
     $('#menuAg').click(function(){
-        $('#menuAlumno, #menuProfesor, #menuCurso, .formulario').fadeOut('fast');
+        $('#menuAlumno, #menuProfesor, #menuCurso, .formulario, #menuPines').fadeOut('fast');
         $('#menuAgenda').fadeIn('slow');
     });
+        //Menu de los PINES
+    $('#menuPin').click(function(){
+        $('#menuAlumno, #menuProfesor, #menuCurso, .formulario, #menuAgenda').fadeOut('fast');
+        $('#menuPines').fadeIn('slow');
+    });
+    
     //Salir de los Menus
     $('.salirMenu').click(function(){
         $('.subMenu').fadeOut('fast');
@@ -32,7 +38,7 @@ $(document).ready(function(){
     });
     
     
-    //Formularios Alumnos
+    //Formularios Alumnos ******************************************************
        
     //Crear Alumno
     $('#crearAl').click(function(){
@@ -64,7 +70,7 @@ $(document).ready(function(){
         $('#formUsuarioLog').fadeIn('slow');
     });
     
-    //Formularios de Profesores
+    //Formularios de Profesores *************************************************
    
     //Crear Profesor
     $('#crearPr').click(function(){
@@ -90,12 +96,12 @@ $(document).ready(function(){
         $('#editarProfesor').fadeIn('slow');
     });
     
-    //Formularios de Agenda
+    //Formularios de Agenda ****************************************************
     $('#crearAg').click(function(){
         $('#crearAgenda').fadeIn('slow');
     });
     
-    //Formularios de Cursos 
+    //Formularios de Cursos ****************************************************
 
     //Crear Curso
     $('#crearCur').click(function(){
@@ -111,6 +117,23 @@ $(document).ready(function(){
     $('#editarCur').click(function(){
         $('#crearCurso, #formBuscarCurso').fadeOut('fast');
         $('#editarCurso').fadeIn('slow');
+    });
+    
+    //Formularios de PINES *****************************************************
+    //Crear Pin
+    $('#crearP').click(function(){
+        $('#consultaPin, #eliminarPin').fadeOut('fast');
+        $('#crearPin').fadeIn('slow');
+    });
+    //Consulta Pin
+    $('#consultaP').click(function(){
+        $('#crearPin, #eliminarPin').fadeOut('fast');
+        $('#consultaPin').fadeIn('slow');
+    });
+    //Eliminar Pin
+    $('#eliminarP').click(function(){
+        $('#crearPin, #consultaPin').fadeOut('fast');
+        $('#eliminarPin').fadeIn('slow');
     });
     
 });
