@@ -29,6 +29,7 @@ and open the template in the editor.
         <script type="text/javascript" src="js/index/index_agenda.js"></script>
         <script type="text/javascript" src="js/index/index_profesores.js"></script>
         <script type="text/javascript" src="js/index/load_admin.js"></script>   
+        <script type="text/javascript" src="js/evaluaciones/evaluaciones.js"></script>
         <!--FIN SCRIPT MANEJO DE DATOS-->
     </head>
     <body class="bodyAdmin">
@@ -57,7 +58,7 @@ and open the template in the editor.
                     <img src="">
                     <h4>Pin</h4>
                 </li>
-                <li>
+                <li id="menuEva">
                     <img src="">
                     <h4>Evaluaciones</h4>
                 </li>
@@ -153,15 +154,15 @@ and open the template in the editor.
                     <img>
                     <h4>Crear Agenda</h4>
                 </li>
-                <li id="editarAg">
+                <li class="consultaAg">
                     <img>
                     <h4>Editar Agenda</h4>
                 </li>
-                <li id="consultaAg">
+                <li class="consultaAg">
                     <img>
                     <h4>Consultar Agenda</h4>
                 </li>
-                <li id="eliminarAg">
+                <li class="consultaAg">
                     <img>
                     <h4>Eliminar Agenda</h4>
                 </li>
@@ -187,9 +188,38 @@ and open the template in the editor.
                     <img>
                     <h4>Eliminar PINES</h4>
                 </li>
+                <li class="salirMenu">
+                    <img>
+                    <h4>Salir</h4>
+                </li>
             </ul>
         </div>
         <!--Fin Sub Menu Pines-->
+        
+        <!--Sub Menu Evaluación-->
+        <div class="subMenu" id="menuEvaluacion">
+            <ul>
+                <li id="crearPre">
+                    <img>
+                    <h4>Crear Preguntas</h4>
+                </li>
+                <li id="consultaPre">
+                    <img>
+                    <h4>Consultar Preguntas</h4>
+                </li>
+                <li id="crearEv">
+                    <img>
+                    <h4>Crear Evalución</h4>
+                </li>
+                <li class="salirMenu">
+                    <img>
+                    <h4>Salir</h4>
+                </li>
+            </ul>
+            
+        </div>
+        <!--Fin Sub Menu Evaluación-->
+        
         
         <!--Formularios de Cursos-->
         <div id="Curso">
@@ -1095,6 +1125,104 @@ and open the template in the editor.
         </div>
         <!--Fin division de agenda-->
         
+        <!--Consultar Agenda-->
+        <div class="formulario" id="consultaAgenda">
+            <i class="salirFor salir">Salir</i>
+            <form>
+                <ul>
+                    <li>
+                        <h2>Consulta de Agenda</h2>
+                    </li>
+                    <li>
+                        <h4>Seleccione el curso</h4>
+                        <select>
+                            <option>Seleccione el curso</option>
+                            <option>Curso 1</option>
+                            <option>Curso 2</option>
+                            <option>Curso 3</option>
+                        </select>
+                    </li>
+                    <li>
+                        <input type="button" value="Buscar" id="btnBuscarAgenda">
+                    </li>
+                </ul>
+            </form>            
+        </div>
+        <!--Fin Consulta Agenda-->
+        
+        <!--Respuesta Consulta Agenda-->
+        <div id="respuestaAgenda" class="tabla">
+            <i class="salir">Salir</i>
+            <table>
+                <tr>
+                    <td>Modulo</td>
+                    <td>Nombre del Evento</td>
+                    <td>
+                        <input type="button" value="Editar" class="btnEditarAgenda">
+                    </td>
+                    <td>
+                        <input type="button" value="Eliminar">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--Fin Consulta Agenda-->
+        
+        <!--Editar Agenda-->
+        <div class="formulario" id="editarAgenda">
+            <i class="salirFor salir">Salir</i>
+            <form>
+                <ul>
+                    <li>
+                        <h2>Editar Agenda</h2>
+                    </li>
+                     <li>
+                        <h4>Curso</h4>
+                        <select id="selAgendaCurso" name="id_curso">
+                            <option>Seleccione curso</option>
+
+                        </select>
+                    </li>
+                    <li>
+                        <h4>Modulo</h4>
+                        <select id="selAgendaModulos" name="id_modulo">
+
+                        </select>
+                    </li>
+                    <li>
+                        <h4>Tipo evento</h4>
+                        <select id="selTipoEventoAgenda" name="tipo_evento">
+                            <option value="0">SELECCIONA UN TIPO DE EVENTO</option>
+                            <option value="evento">WEBINAR O CONFERENCIA</option>
+                            <option value="evaluacion">EVALUACION</option>
+                        </select>
+                    </li>
+                    <li>
+                        <h4>Nombre del Evento</h4>
+                        <input type="text" placeholder="Nombre Evento" name="nombre_actividad">
+                    </li>
+
+                    <li>
+                        <h4>Desde</h4>
+                        <input id="dtFechaEventoIni" type="date" name="fecha_inicio_evento">
+                        <input id="tmHoraEventoIni" type="time" name="hora_inicio_evento">
+                    </li>
+                    <li>
+                        <h4>Hasta</h4>
+                        <input id="dtFechaEventoFin" type="date" name="fecha_fin_evento">
+                        <input id="tmHoraEventoFin" type="time" name="hora_fin_evento">
+                    </li>                     
+                    <li>
+                        <h4>URL EVENTO</h4>
+                        <input type="text" name="url_evento">
+                    </li>  
+                    <li>
+                        <input id="btnCrearEventoAgenda" type="button" value="Crear Evento">
+                    </li> 
+                </ul>
+            </form>
+        </div>        
+        
         <!--Division de los PINES-->
         <div>
             <!--Crear PINES-->
@@ -1191,5 +1319,182 @@ and open the template in the editor.
             
         </div>
         <!--Fin PINES-->
+        
+        <!--Crear Preguntas-->
+        <div class="formulario "id="crearPregunta">
+            <i class="salirFor salir">Salir</i>
+            <form>
+                <ul>
+                    <li>
+                        <h2>Crear Preguntas</h2>
+                    </li>
+                    <li>
+                        <h4>Argumento</h4>
+                        <input type="text" name="argumento_pregunta" id="txtArgumentoPre">
+                    </li>
+                    <li>
+                        <h4>Tipo pregunta</h4>
+                        <select id="selTipoPregunta">
+                                <option value="abierta">abierta</option>
+                                <option value="cerrada">cerrada</option>
+                                <option value="cerrada_multiple">opcion multiple</option>
+                                <option value="cerrada_comentario">cerrada con comentario</option>
+                        </select>
+                    </li>
+                    <li>
+                        <h3>Ingrese la cantidad de respuestas que tendra la pregunta</h3>
+                        <br>
+                        <h3>Si su pregunta es abierta la cantidad debe ser 0</h3>
+                        <input type="number" placeholder="Numero de respuestas" value="2" id="numPreguntas" >
+                        <input type="button" value="agregar respuestas" id="btnAgregarPreguntas">
+                    </li>
+                    <li>
+                        <ul id="listaRespuestas"></ul>
+                    </li>
+                    <li>
+                        <input id="btnCrearPregunta" type="button" value="Crear pregunta">
+                    </li>
+                </ul>
+            </form>	
+	</div>
+        <!--Fin Crear Preguntas-->
+        
+        <!--Consulta de Preguntas-->
+        <div class="formulario" id="consultaPregunta">
+            <i class="salirFor salir">Salir</i>
+            <ul>
+                <li><h2>Consulta de Preguntas.</h2></li>
+                <li>
+                    <h4>Tipo de pregunta</h4>
+                    <select id="selTipoEdiPregunta">
+                        <option value="0">--selecciona una pregunta--</option>
+                        <option value="abierta">abierta</option>
+                        <option value="cerrada">cerrada</option>
+                        <option value="cerrada_multiple">opcion multiple</option>
+                        <option value="cerrada_comentario">cerrada con comentario</option>
+                    </select>
+                </li>
+                <li>
+                    <h3>Para Editar las preguntas solo tiene que sobre escribir en ellas.</h3>
+                    <div id="divListaPreguntas">
+                       
+                    </div>
+                </li>
+            </ul>
+	</div>	
+        <!--Fin consulta Pregunta-->    
+        <!--Crear Evaluación-->
+        <div class="formulario" id="crearEvaluacion">
+            <i class="salirFor salir">Salir</i>
+            <form id="formCrearEvaluaciones">
+                <ul>
+                    <li><h2>CREAR EVALUACIONES</h2></li>				
+                </ul>
+                <ul>
+                    <li>
+                        <input id="btnMostrarBanco" type="button" value="VER BANCO PREGUNTAS">
+                        <input id="btnOcultarBanco" type="button" value="OCULTAR BANCO PREGUNTAS">
+                    </li>
+                    <li>
+                        <h3>Selecciona del banco de preguntas</h3>
+                    </li>
+                    <li><h3>ABIERTAS</h3></li>
+                    <li id="liAbiertas" style="display: none;">
+
+
+                    </li>
+                    <li><h3>CERRADAS</h3></li>
+                    <li id="liCerradas" style="display: none;">
+
+                    </li>
+                    <li><h3>CERRADAS CON COMENTARIO</h3></li>
+                    <li id="liCerradaComentario" style="display: none;">
+
+                    </li>
+                    <li><h3>MULTIPLES OPCIONES</h3></li>
+                    <li id="liCerradaMultiple" style="display: none;">
+
+                    </li>
+
+                </ul>
+
+                <ul>
+                    <li>
+                        <h4>Buscar del curso</h4>
+                        <input id="txtBuscarCurso" type="text" placeholder="Nombre" list="listaCursos">
+                        <datalist id="listaCursos"></datalist>
+                    </li>
+                    <li>
+                        <h4>Modulo curso</h4>
+                        <select id="selModuloCursoEva"></select>
+                    </li>
+                    <li>
+                        <h4>Actividad curso</h4>
+                        <select id="selActividadModuloEva"></select>
+                    </li>
+                    <li>
+                        <h4>Nombre de la evaluacion</h4>
+                        <input type="text" placeholder="Nombre" id="txtNombreEvaluacion" >
+                    </li>
+                    <li>
+                        <h4>Fecha y hora de inicio  de la evaluacion</h4>
+                        <input type="date"  id="dtFechaInicio" >
+                        <input type="time"  id="dthHoraInicio" >
+                    </li>
+                    <li>
+                        <h4>Fecha y hora de finalizacion de la evaluacion</h4>
+                        <input type="date"  id="dtFechaFin" >
+                        <input type="time"  id="dtHoraFin" >
+                    </li>
+                    <li>
+                        <input id="btnMostrar" type="button" value="VER FORMULARIO CREAR PREGUNTAS">
+                        <input id="btnOcultar" type="button" value="OCULTAR FORMULARIO CREAR PREGUNTAS">
+                    </li>
+                    <li id="liCrearPreguntas" style="display: none">
+                        <ul>
+                            <li>
+                                <h3>Crear  preguntas</h3>
+                            </li>	
+                            <li>
+                                <h4>Argumento</h4>
+                                <input type="text" name="argumento_pregunta" id="txtArgumentoPre1">
+                            </li>
+                            <li>
+                                <h4>Tipo pregunta</h4>
+                                <select id="selTipoPregunta1">
+                                    <option value="abierta">abierta</option>
+                                    <option value="cerrada">cerrada</option>
+                                    <option value="cerrada_multiple">opcion multiple</option>
+                                    <option value="cerrada_comentario">cerrada con comentario</option>
+                                </select>
+                            </li>
+                            <li>
+                                <h3>Respuestas</h3>
+                                <h6>Si su tipo de pregunta es abierta no es necesario agregar respuestas</h6>
+                                <input type="number" placeholder="Numero de respuestas" value="2" id="numPreguntas1" >
+                                <input type="button" value="agregar respuestas" id="btnAgregarPreguntas1">
+                            </li>
+                            <li>
+                                <ul id="listaRespuestas1"></ul>
+                            </li>
+                            <li>
+                                <input id="btnCrearPregunta1" type="button" value="Crear pregunta">
+                            </li>
+                        </ul>	
+                    </li>
+                    <li>
+                        <h3>LISTA DE PREGUNTAS</h3>
+                        <div id="divListaPreguntas1">
+
+                        </div>
+                    </li>
+                    <li>
+                        <input id="btnCrearEvaluacion" type="button" value="Crear evaluacion" >
+                    </li>
+                </ul>
+            </form>
+	</div>
+        <!--Fin Crear Evaluación-->
+        
     </body>
 </html>
