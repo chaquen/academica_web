@@ -73,7 +73,7 @@ function dibujar_tabla_pines(datos){
 	$('#crearPin, #consultaPin').fadeOut('fast');
 	$('#respuestaPin').fadeIn('slow');
 	document.getElementById("aExportado").href="";
-	document.getElementById("aExportado").innerHTML="";
+	document.getElementById("aExportado").innerHTML="google.js";
 	var tabl=document.getElementById("tbConsultalPines");
 	tabl.innerHTML="";
 	for(var f in datos){
