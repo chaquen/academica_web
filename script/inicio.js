@@ -97,8 +97,25 @@ $(document).ready(function(){
     });
     
     //Formularios de Agenda ****************************************************
+    //Crear Agenda
     $('#crearAg').click(function(){
+        $('#consultaAgenda, #editarAgenda').fadeOut('fast');
         $('#crearAgenda').fadeIn('slow');
+    });
+    //Consulta Agenda
+    $('.consultaAg').click(function(){
+        $('#crearAgenda, #editarAgenda').fadeOut('fast');
+        $('#consultaAgenda').fadeIn('slow');
+    });
+    //Respuesta Agenda
+    $('#btnBuscarAgenda').click(function(){
+        $('#consultaAgenda').fadeOut('fast');
+        $('#respuestaAgenda').fadeIn('slow');
+    });
+    //Editar Agenda
+    $('.btnEditarAgenda').click(function(){
+        $('#crearAgenda, #consultaAgenda, .tabla').fadeOut('fast');
+        $('#editarAgenda').fadeIn('slow');
     });
     
     //Formularios de Cursos ****************************************************

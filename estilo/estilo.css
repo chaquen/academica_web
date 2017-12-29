@@ -340,6 +340,7 @@ body {
     overflow-x: hidden;
 }
 .tabla {
+    display: none;
     margin: auto;
     width: 90%;
     border-collapse: collapse;

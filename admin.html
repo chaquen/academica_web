@@ -153,15 +153,15 @@ and open the template in the editor.
                     <img>
                     <h4>Crear Agenda</h4>
                 </li>
-                <li id="editarAg">
+                <li class="consultaAg">
                     <img>
                     <h4>Editar Agenda</h4>
                 </li>
-                <li id="consultaAg">
+                <li class="consultaAg">
                     <img>
                     <h4>Consultar Agenda</h4>
                 </li>
-                <li id="eliminarAg">
+                <li class="consultaAg">
                     <img>
                     <h4>Eliminar Agenda</h4>
                 </li>
@@ -1094,6 +1094,105 @@ and open the template in the editor.
             </div>
         </div>
         <!--Fin division de agenda-->
+        
+        <!--Consultar Agenda-->
+        <div class="formulario" id="consultaAgenda">
+            <i class="salirFor salir">Salir</i>
+            <form>
+                <ul>
+                    <li>
+                        <h2>Consulta de Agenda</h2>
+                    </li>
+                    <li>
+                        <h4>Seleccione el curso</h4>
+                        <select>
+                            <option>Seleccione el curso</option>
+                            <option>Curso 1</option>
+                            <option>Curso 2</option>
+                            <option>Curso 3</option>
+                        </select>
+                    </li>
+                    <li>
+                        <input type="button" value="Buscar" id="btnBuscarAgenda">
+                    </li>
+                </ul>
+            </form>            
+        </div>
+        <!--Fin Consulta Agenda-->
+        
+        <!--Respuesta Consulta Agenda-->
+        <div id="respuestaAgenda" class="tabla">
+            <i class="salir">Salir</i>
+            <table>
+                <tr>
+                    <td>Modulo</td>
+                    <td>Nombre del Evento</td>
+                    <td>
+                        <input type="button" value="Editar" class="btnEditarAgenda">
+                    </td>
+                    <td>
+                        <input type="button" value="Eliminar">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--Fin Consulta Agenda-->
+        
+        <!--Editar Agenda-->
+        <div class="formulario" id="editarAgenda">
+            <i class="salirFor salir">Salir</i>
+            <form>
+                <ul>
+                    <li>
+                        <h2>Editar Agenda</h2>
+                    </li>
+                     <li>
+                        <h4>Curso</h4>
+                        <select id="selAgendaCurso" name="id_curso">
+                            <option>Seleccione curso</option>
+
+                        </select>
+                    </li>
+                    <li>
+                        <h4>Modulo</h4>
+                        <select id="selAgendaModulos" name="id_modulo">
+
+                        </select>
+                    </li>
+                    <li>
+                        <h4>Tipo evento</h4>
+                        <select id="selTipoEventoAgenda" name="tipo_evento">
+                            <option value="0">SELECCIONA UN TIPO DE EVENTO</option>
+                            <option value="evento">WEBINAR O CONFERENCIA</option>
+                            <option value="evaluacion">EVALUACION</option>
+                        </select>
+                    </li>
+                    <li>
+                        <h4>Nombre del Evento</h4>
+                        <input type="text" placeholder="Nombre Evento" name="nombre_actividad">
+                    </li>
+
+                    <li>
+                        <h4>Desde</h4>
+                        <input id="dtFechaEventoIni" type="date" name="fecha_inicio_evento">
+                        <input id="tmHoraEventoIni" type="time" name="hora_inicio_evento">
+                    </li>
+                    <li>
+                        <h4>Hasta</h4>
+                        <input id="dtFechaEventoFin" type="date" name="fecha_fin_evento">
+                        <input id="tmHoraEventoFin" type="time" name="hora_fin_evento">
+                    </li>                     
+                    <li>
+                        <h4>URL EVENTO</h4>
+                        <input type="text" name="url_evento">
+                    </li>  
+                    <li>
+                        <input id="btnCrearEventoAgenda" type="button" value="Crear Evento">
+                    </li> 
+                </ul>
+            </form>
+        </div>
+        
         
         <!--Division de los PINES-->
         <div>
