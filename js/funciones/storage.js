@@ -54,8 +54,9 @@ function obtener_id_usuario(){
 function eliminar_local_storage(nombre){
     if(nombre!=undefined){
         console.log(nombre);
-        localStorage.removeItem(nombre);        
-        console.log(localStorage);
+        localStorage.removeItem(nombre);
+        localStorage.removeItem("fecha_creacion");
+
     }else{
         localStorage.clear();
     }

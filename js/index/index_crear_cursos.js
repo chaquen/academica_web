@@ -106,18 +106,9 @@ function iniciar_crear_cursos(){
 
 	agregarEvento("dtFIniCur","change",function(){
 		if(this.value!=""){
-			var f1=new Date(horaCliente().split(" ")[0]);
-			var f2=new Date(this.value);
-			if(f2>=f1){
-				cursos_obj.fecha_inicio_curso=this.value;	
-				document.getElementById("hFechaInicioCursoCrear").innerHTML=this.value;
-				document.getElementById("hFechaInicioCursoCrear").innerHTML=this.value;
-			}else{
-				mostrarMensaje("La fecha no puede ser menor a hoy");
-				this.value="";
-				document.getElementById("hFechaInicioCursoCrear").innerHTML="fecha inicio curso";
-			}
-			
+
+			cursos_obj.fecha_inicio_curso=this.value;	
+			document.getElementById("hFechaInicioCursoCrear").innerHTML=this.value;
 		}
 		
 	});
@@ -136,8 +127,6 @@ function iniciar_crear_cursos(){
 				document.getElementById("hFechaFinCursoCrear").innerHTML=this.value;	
 			}else{
 				mostrarMensaje("La fecha debe ser despues del inicio del curso");
-				this.value="";
-				document.getElementById("hFechaFinCursoCrear").innerHTML="fecha fin curso";
 			}	
 
 			
@@ -154,18 +143,8 @@ function iniciar_crear_cursos(){
 	});
 	agregarEvento("dtFIniMod","change",function(){
 		if(this.value!=""){
-				var f1=new Date(horaCliente().split(" ")[0]);
-				var f2=new Date(this.value);
-			if(f2>=f1){
+
 				modulos.fecha_inicio_modulo=this.value;	
- 		 
-			}else{
-				mostrarMensaje("Debes ingresar una fecha diferente a la de hoy");
-				modulos.fecha_inicio_modulo="";
-				this.value="";
-			}
-				
-			
 				
 			
 			
@@ -176,11 +155,10 @@ function iniciar_crear_cursos(){
 		var f2=new Date(this.value);
 		
 		if(f2>f1){
+
 			modulos.fecha_fin_modulo=this.value;
 		}else{
 			mostrarMensaje("La fecha debe ser despues de la de inicio");
-			modulos.fecha_fin_modulo="";
-			this.value="";
 		}
 	});
 	agregarEvento("btnAgregraModulo","click",function(){
@@ -188,7 +166,7 @@ function iniciar_crear_cursos(){
 		
 			if(modulos.nombre_modulo!="" ){
 				if(cursos_obj.tiempo_curso!="perpetuo"){
-					if( modulos.fecha_inicio_modulo != "" && modulos.fecha_fin_modulo != ""){
+					if( modulos.fecha_inicio_modulo != "" && fecha_fin_modulo != ""){
 						cursos_obj.modulos.push(modulos);
 
 			
@@ -201,8 +179,7 @@ function iniciar_crear_cursos(){
 							
 						};	
 						document.getElementById("txtNombreModulo").value="";
-						document.getElementById("dtFIniMod").value="";
-						document.getElementById("dtFFinMod").value="";
+
 						dibujar_modulos();
 						dibujar_select();	
 					}else{
@@ -466,7 +443,6 @@ function quitarModulo(posicion_modulo){
 		//quitar elemento 
 		console.log(cursos_obj.modulos[posicion_modulo]);
 		cursos_obj.modulos.splice(posicion_modulo,1);	
-		dibujar_select();	
 		dibujar_modulos();
 	}
 }

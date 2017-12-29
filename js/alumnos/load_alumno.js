@@ -3,31 +3,40 @@ agregarEventoLoad(iniciar_app_alumno);
 
 function iniciar_app_alumno(){
 	var existe=obtener_session_storage("ssGlobales");
-	if(existe._usuario==false){
-		existe=obtener_local_storage("ssGlobales");
+	if(!existe){
+		existe=globales;
 	}
 
-	if(false!=existe && undefined!=existe._usuario && existe._cerrar_sesion==false){
-		if(existe._usuario.nombre_rol=="alumno"){
-			globales=existe;
+	if(false!=existe._usuario && undefined!=existe._usuario){
+		globales=existe;
 		
-			consulta_inicial_alumno();
-			
-			
-			document.getElementById("h4NombreUsuario").innerHTML=globales._usuario.nombre_usuario;
-			
-			document.getElementById("tlAlumno").innerHTML="Bienvenido, "+globales._usuario.nombre_usuario;
-			
-			agregarEvento("liSalir","click",function(){
-				salir();
-			});
+		consulta_inicial_alumno();
+		
+		
+		document.getElementById("h4NombreUsuario").innerHTML=globales._usuario.nombre_usuario;
+		
+		document.getElementById("tlAlumno").innerHTML="Bienvenido, "+globales._usuario.nombre_usuario;
+		
+		agregarEvento("liSalir","click",function(){
+
+			if(confirm("¿Desea salir de la aplicación?")){
+				
+				globales._usuario=false;
+				globales._cerrar_sesion=true;
+				console.log(globales);	
+				
+				agregar_session_storage("ssGlobales",globales);
+				
+				location.href="index.html";
+			}
 
 
-			iniciar_alumno();
+			
+		});
 
-		}else{
-			location.href="index.html";			
-		}
+
+		iniciar_alumno();
+
 
 	}else{
 

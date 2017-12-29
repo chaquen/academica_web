@@ -1,15 +1,14 @@
 agregarEventoLoad(iniciar_app_contenido_curso);
 function iniciar_app_contenido_curso(){
-	var existe=obtener_session_storage("ssGlobales");
-	if(existe!=false){
-		if(existe._usuario==false){
-			existe=obtener_local_storage("ssGlobales");
-		}
+	var existe;
+	if(!obtener_session_storage("ssGlobales")){
+		existe=globales;
 	}else{
-
-		existe=obtener_local_storage("ssGlobales");
-			
+		existe=obtener_session_storage("ssGlobales");
+		globales=existe;
+		console.log(globales);
 	}
+	console.log(obtener_session_storage("ssGlobales"));
 	
 	if(false!=existe._usuario && undefined!=existe._usuario){
 		console.log(window.location.href);

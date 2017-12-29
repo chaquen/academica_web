@@ -6,23 +6,22 @@ $(document).ready(function(){
     });
     
     //Aparece el mensaje que confirma la recuperacion en el correo
-    //$('#btnRecuperar').click(function(){
-        //$('#recuperaContra').fadeOut('fast');
-        //$('#mensajeRec').fadeIn('slow');
-    //});
-
+    $('#btnRecuperar').click(function(){
+        $('#recuperaContra').fadeOut('fast');
+        $('#mensajeRec').fadeIn('slow');
+    });
     
     //Aparece el formulario de Login
     $('#btnCancelaRec, .btnAceptar').click(function(){
-        $('#recuperaContra, #mensajeRec, #mensajeBienvenida ,#mensajeErroIngreso').fadeOut('fast');
+        $('#recuperaContra, #mensajeRec, #mensajeBienvenida').fadeOut('fast');
         $('#formLogin').fadeIn('slow');
     });
     
     //Aparece el mensaje de ingreso
-    /*$('#btnIngresar').click(function(){
+    $('#btnIngresar').click(function(){
         $('#formLogin').fadeOut('fast');
         $('#mensajeBienvenida').fadeIn('slow');
-    });*/
+    });
     
         
     

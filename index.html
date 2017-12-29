@@ -61,8 +61,8 @@ and open the template in the editor.
                 <form class="formLogin" id="recuperaContra">
                     <ul>
                         <li>
-                            <h4>Escriba el correo electrónico</h4>
-                            <input name="email" type="text" placeholder="Correo electronico" required>
+                            <h4>Escriba el correo electronico</h4>
+                            <input type="text" placeholder="Correo electronico">
                         </li>
                         <li>
                             <input type="button" value="Recuperar" id="btnRecuperar">
@@ -84,18 +84,16 @@ and open the template in the editor.
                     Bienvenido <br>
                     <b id="nombreLogin">Nombre de la persona que ingresa</b>.
                     <br><br>
-                    <input type="checkbox" value="recordarme" id="chRecormarme">Recordarme
-                    <br>
-                    <input type="button" value="Aceptar" class="btnAceptar" id="btnContinuarLogin">
+                    <input type="button" value="Aceptar" class="btnAceptar">
                 </p>
                 
                 <p class="mensajes" id="mensajeErroIngreso">
-                    Lo sentimos pero los datos suministrados no son correctos <br>
-                    
+                    Lo sentimos pero el correo <br>
+                    <b>correo que ingresaron</b>
                     <br>
-                    
+                    No aparece registrado en el sistema
                     <br><br>
-                    <input type="button" value="Aceptar" class="btnAceptar" >
+                    <input type="button" value="Aceptar" class="btnAceptar">
                 </p>
                 
             </div>

@@ -2,13 +2,16 @@ agregarEventoLoad(inicia_app);
 
 function inicia_app(){
 	
-	
-
 	var existe=obtener_session_storage("ssGlobales");
-	if(existe._usuario==false){
-		existe=obtener_local_storage("ssGlobales");
+	
+	if(!existe){
+
+		existe=globales;
+
 	}
-	if(false!=existe && undefined!=existe._usuario){
+
+	console.log(existe);
+	if(false!=existe._usuario && undefined!=existe._usuario){
 	
 		globales=existe;
 		document.getElementById("h2NombreDelUsuario").innerHTML=globales._usuario.nombre_usuario;
@@ -22,19 +25,30 @@ function inicia_app(){
 		iniciar_agenda();
 		iniciar_profesores();
 
-		agregarEvento("menuSalir","click",function(){
-			salir();
-		});
 	}else{
 
-		//location.href="index.html";
+		location.href="index.html";
 
 		//$('#divMenuAdmin').fadeOut('fast');
     	//$('#divLogin').fadeIn('slow');
 
 	}
 	
-	
+	agregarEvento("menuSalir","click",function(){
+
+		if(confirm("¿Desea salir de la aplicación?")){
+			
+			globales._usuario=false;
+			globales._cerrar_sesion=true;
+			
+			agregar_session_storage("ssGlobales",globales);
+			
+			location.href="index.html";
+
+        	
+		}
+		
+	});
 }
 
 function consulta_inicial(){
