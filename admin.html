@@ -344,7 +344,7 @@ and open the template in the editor.
                                 <input id="btnAgregarContenido" type="button" value="Agregar contenido">
                             </li>                        
                             <li>
-                                <input id="btnCrearCurso" type="button" value="Crear Curso">
+                                <input id="btnCrearCurso" type="button" value="Crear Curso" class="boton">
                             </li>
                         </ul>
                     </form>
@@ -397,20 +397,20 @@ and open the template in the editor.
             </div>
             <!--Formulario Consultar Curso-->
             <form class="formulario" id="formBuscarCurso">
-                    <i class="salir salirFor">Salir</i>
-                    <ul>
-                        <li>
-                            <h2>Consultar Curso</h2>
-                        </li>
-                        <li>
-                            <h4>Nombre o Codigo del Curos</h4>
-                            <input id="txtBuscarCurso" type="text" placeholder="Nombre - Curso" list="dtCursos">
-                            <datalist id="dtCursos"></datalist>
-                        </li>
-                        <li>
-                            <input id="btnBuscarCurso" type="button" value="Buscar">
-                        </li>
-                    </ul>
+                <i class="salir salirFor">Salir</i>
+                <ul>
+                    <li>
+                        <h2>Consultar Curso</h2>
+                    </li>
+                    <li>
+                        <h4>Nombre o Codigo del Curos</h4>
+                        <input id="txtBuscarCurso" type="text" placeholder="Nombre - Curso" list="dtCursos">
+                        <datalist id="dtCursos"></datalist>
+                    </li>
+                    <li>
+                        <input id="btnBuscarCurso" type="button" value="Buscar">
+                    </li>
+                </ul>
             </form>
             <!--Resultado Busqueda de Cursos-->
             <div class="resultado" id="resultadoCur">
@@ -661,9 +661,8 @@ and open the template in the editor.
                                 <option>Programa 3</option>
                             </select>
                         </li>
-                        
                         <li>
-                            <input id="btnCrearAlumno" type="button" value="Crear Alumno" >
+                            <input id="btnCrearAlumno" type="button" value="Crear Alumno">
                         </li>
                     </ul>
                 </form>
@@ -926,6 +925,20 @@ and open the template in the editor.
                 </form>
             </div>                
             <!--Fin Consulta de Profesores-->
+            
+            <div class="tabla">
+                <i class="salir">Salir</i>
+                <table>
+                    <tr>
+                        <td>documento</td>
+                        <td>Nombre Completo</td>
+                        <td>Telefono</td>
+                        <td>Correo Electronico</td>
+                        <td><input type="button" value="Editar"></td>
+                        <td><input type="button" value="Eliminar"></td>
+                    </tr>
+                </table>
+            </div>
             
             <!--Editar Profesor-->
             <div class="formulario" id="editarProfesor">

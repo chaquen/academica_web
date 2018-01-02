@@ -25,7 +25,7 @@
 }
 
 .bodyAdmin {
-    background-image: url('../Imagen/fondoAdmin.png');
+    background-color: rgba(211,211,211,0.6);
     background-size: 100% 100%;
 }
 ul {
@@ -92,7 +92,6 @@ body {
     background-image: url('../Imagen/fondoLogin.png');
     background-size: 100% 100%;
 }
-
 .formLogin {
     width: 300px;
     display: table;
@@ -254,6 +253,13 @@ body {
     height: 25px;
     float: left;
 }
+.formulario li input[type=button]{
+    padding: 10px 15px;
+    background-color: darkblue;
+    color: white;
+    border: 1px solid darkblue;
+    cursor: pointer;
+}
 .formulario li input[type=password] {
     margin-left: 1%;
     height: 25px;
@@ -301,6 +307,10 @@ body {
     height: 25px;
     width: 53%;
     float: left;
+}
+.formularioCur li input[type=button] {
+    padding: 10px 15px;
+    background-color: rgba(211,211,211,0.8);
 }
 .formularioCur li select {
     margin-left: 1%;

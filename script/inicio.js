@@ -39,7 +39,7 @@ $(document).ready(function(){
     
     //Salir de los formularios
     $('.salirFor, .salir').click(function(){
-        $('.formulario, #crearCurso, #respuestaProfesor, #editarCurso').fadeOut('fast');
+        $('.formulario, #crearCurso, #respuestaProfesor, #editarCurso, .tabla').fadeOut('fast');
     });
     
     
@@ -169,8 +169,16 @@ $(document).ready(function(){
         $('.subMenu').fadeOut('fast');
         $('#consultaPregunta').fadeIn('slow');
     });
+    //Crear Evaluacion
     $('#crearEv').click(function(){
         $('.subMenu').fadeOut('fast');
         $('#crearEvaluacion').fadeIn('slow');
     });
+    
+    //Formulario de la vista del usuario
+   $('#datosUsuario').click(function(){
+        $('#formUsuarioLog').fadeIn('slow');
+    });
+    
+    
 });
