@@ -45,12 +45,14 @@ function consulta_inicial(){
 		  crear_select("selCatCurso",rs.datos.categorias,"id","nombre_categoria");
 		  crear_select("selCatCursoEdi",rs.datos.categorias,"id","nombre_categoria");
 		  crear_select("selCurso",rs.datos.cursos,"id","nombre_curso");
+		  crear_select("selBuscarCursoEva",rs.datos.cursos,"id","nombre_curso");
 		  
 		  
      	  crear_select("selAgendaCurso",rs.datos.cursos,"id","nombre_curso");
      	  crear_select("selCursosPines",rs.datos.cursos,"id","nombre_curso");
      	  crear_select("selBusCurPines",rs.datos.cursos,"id","nombre_curso");
      	  crear_select("selEliPinCur",rs.datos.cursos,"id","nombre_curso");
+     	  crear_select("selCursoActivo",rs.datos.cursos,"id","nombre_curso");
      	  
      	  
 	});

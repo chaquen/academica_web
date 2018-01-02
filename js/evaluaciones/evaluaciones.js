@@ -105,6 +105,7 @@ function iniciar_evaluacion(){
 			}
 			registrarDato("preguntas",preguntas,function(rs){
 				console.log(rs);
+				mostrarMensaje(rs);
 			});
 		}else{
 			mostrarMensaje("Ingresa un argumento para la pregunta");
@@ -210,47 +211,60 @@ function iniciar_evaluacion(){
 	});
 	agregarEvento("btnCrearEvaluacion","click",function(){
 		console.log(lista_preguntas);
-		
+		if(lista_preguntas.length==0){
+			mostrarMensaje("Debe agregar preguntas a la evaluacion");
+			return false;
+		}
 		if(document.getElementById("txtNombreEvaluacion").value==""){
-			return false;
+			
 			mostrarMensaje("Por favor ingresa un nombre para la evaluacion");
-		}
-		if(document.getElementById("txtBuscarCurso").value==""){
 			return false;
+		}
+		if(document.getElementById("selBuscarCursoEva").value=="0"){
+			
 			mostrarMensaje("Por favor selecciona un curso");
-		}
-		if(document.getElementById("selActividadModuloEva").value=="0"){
 			return false;
+		}
+		/*if(document.getElementById("selActividadModuloEva").value=="0"){
+			
 			mostrarMensaje("Por favor selecciona una actividad ");
-		}
-		if(document.getElementById("dtFechaInicio").value==""){
 			return false;
+		}*/
+		if(document.getElementById("dtFechaInicioEva").value==""){
+			
 			mostrarMensaje("Por favor ingresa una fecha de inicio del curso");
-		}
-		if(document.getElementById("dthHoraInicio").value==""){
 			return false;
+		}
+		if(document.getElementById("dthHoraInicioEva").value==""){
+			
 			mostrarMensaje("Por favor ingresa una hora de inicio");
-		}
-		if(document.getElementById("dtFechaFin").value==""){
 			return false;
+		}
+		if(document.getElementById("dtFechaFinEva").value==""){
+			
 			mostrarMensaje("Por favor ingresa una fecha de finalizacion");
-		}
-		if(document.getElementById("dtHoraFin").value==""){
 			return false;
+		}
+		if(document.getElementById("dtHoraFinEva").value==""){
+			
 			mostrarMensaje("Por favor ingresa una hora de finalizacion");
+			return false;
 		}
 
 		var evaluacion={
 			
-			fk_id_curso:document.getElementById("txtBuscarCurso").value,
+			fk_id_curso:document.getElementById("selBuscarCursoEva").value,
 			tipo_evaluacion:"examen",
+			fk_id_modulo_curso:document.getElementById("selModuloCursoEva").value,
+			nombre_evaluacion:document.getElementById("txtNombreEvaluacion").value,
 			fk_id_actividad:document.getElementById("selActividadModuloEva").value,//esta valor sale del modulo y de la actividad
-			fecha_evaluacion_inicio:document.getElementById("dtFechaInicio").value+" "+document.getElementById("dthHoraInicio").value,
-			fecha_evaluacion_fin:document.getElementById("dtFechaFin").value+" "+document.getElementById("dtHoraFin").value,
+			fecha_evaluacion_inicio:document.getElementById("dtFechaInicioEva").value+" "+document.getElementById("dthHoraInicioEva").value,
+			fecha_evaluacion_fin:document.getElementById("dtFechaFinEva").value+" "+document.getElementById("dtHoraFinEva").value,
 			preguntas:lista_preguntas
 		};
 		registrarDato("evaluacion",evaluacion,function(rs){
 			console.log(rs);
+			mostrarMensaje(rs);
 		});
 	});
 
@@ -275,12 +289,8 @@ function iniciar_evaluacion(){
 		$("#liCerradaComentario").hide();
 		$("#liCerradaMultiple").hide();
 	});
-	agregarEvento("txtBuscarCurso","keypress",function(e){
-		if(this.value!="" && e.keyCode!=13){
-			consultarDatos("cursos/nombre_curso&LIKE&"+this.value.trim(),{},function(rs){
-				crear_data_list("listaCursos",rs.datos,"id","nombre_curso");
-			});
-		}else if(this.value != "" && e.keyCode == 13){
+	agregarEvento("selBuscarCursoEva","change",function(e){
+		if(this.value!="0" ){
 			consultarDatos("cursos/id&=&"+this.value,{},function(rs){
 				console.log(rs);
 				if(rs.respuesta){
@@ -297,7 +307,25 @@ function iniciar_evaluacion(){
 			});
 		}
 	});
+	agregarEvento("dtFechaInicioEva","change",function(){
+		var f1=new Date(horaCliente().split(" ")[0]);
+		var f2=new Date(this.value);
+		if(f2<f1){
+			mostrarMensaje("La fecha debe ser mayor a hoy");
+			this.value="";
+		}
+	});
+	agregarEvento("dtFechaFinEva","change",function(){
+		var f1=new Date(horaCliente().split(" ")[0]);
+		var f2=new Date(this.value);
+		var f3=new Date(document.getElementById("dtFechaInicioEva").value);
+		if(f2<f1 && f2<f3){
 
+			mostrarMensaje("La fecha debe ser despues de hoy y despues de la fecha de inicio ");
+			this.value="";
+		}
+	});
+	agregarEvento("","change",function(){});
 }
 var lista_preguntas=[];
 function agregar_a_evaluacion(id){
@@ -426,7 +454,7 @@ function dibujar_preguntas_por_tipo(datos){
 		var li=document.createElement("li");
 		var inp=document.createElement("input");
 		inp.setAttribute("type","text");
-		inp.setAttribute("id","arg_"+datos[d].id);
+		inp.setAttribute("id","arg_edi"+datos[d].id);
 		inp.setAttribute("onchange","editar_argumento_pregunta('"+datos[d].id+"');");
 		inp.value=datos[d].argumento_pregunta;
 		li.appendChild(inp);
@@ -532,7 +560,7 @@ function dibujar_preguntas_por_tipo(datos){
 
 function editar_argumento_pregunta(id){
 	if(confirm("¿Desea editar esta pregunta?")){
-		var v=document.getElementById("arg_"+id);
+		var v=document.getElementById("arg_edi"+id);
 		var s=document.getElementById("sel_tipo_"+id);
 		if(s.value=="abierta"){
 			//eliminar respueastas
@@ -722,7 +750,7 @@ function dibujar_preguntas_todas(datos){
 				var li=document.createElement("li");
 					var inp=document.createElement("input");
 					inp.setAttribute("type","button");
-					inp.setAttribute("id","arg_"+datos[d].id);
+					inp.setAttribute("id","btn_agre_"+datos[d].id);
 					inp.setAttribute("onclick","agregar_a_evaluacion('"+datos[d].id+"');");
 					inp.value="Agregar a la evaluacion";
 					li.appendChild(inp);
@@ -731,7 +759,7 @@ function dibujar_preguntas_todas(datos){
 			var li=document.createElement("li");
 					var inp=document.createElement("input");
 					inp.setAttribute("type","button");
-					inp.setAttribute("id","arg_"+datos[d].id);
+					inp.setAttribute("id","btn_agre_"+datos[d].id);
 					inp.setAttribute("onclick","agregar_a_evaluacion('"+datos[d].id+"');");
 					inp.value="Agregar a la evaluacion";
 					li.appendChild(inp);

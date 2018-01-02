@@ -57,8 +57,8 @@ $(document).ready(function(){
     });
     //Resultado de la busqueda Alumno
     $('#btnconsultaAl').click(function(){
-        $('#consultaAlumno').fadeOut('fast');
-        $('#resultadoAl').fadeIn('slow');
+        //$('#consultaAlumno').fadeOut('fast');
+        //$('#resultadoAl').fadeIn('slow');
     });
     //Editar Alumno
     $('#editarAl').click(function(){

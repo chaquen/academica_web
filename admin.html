@@ -10,8 +10,8 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="estilo/estilo.css" rel="stylesheet" type="text/css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>        
-        <script src="https://apis.google.com/js/platform.js" async defer></script>    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>                
+        <script src="https://apis.google.com/js/platform.js" async defer></script>   
         <script src="script/inicio.js" type="text/javascript"></script>
         <!--SCRIPTS MANEJO DE DATOS-->
         <script type="text/javascript" src="js/funciones/CrudBase.js"></script>
@@ -302,6 +302,7 @@ and open the template in the editor.
                                        <option value="documento">DOCUMENTO</option>
                                        <option value="video">VIDEO</option>    
                                        <option value="evento">EVENTO</option>  
+                                       <option value="audio">AUDIO</option>  
                                 </select>
                             </li>
                             <li id="liDoc">
@@ -333,6 +334,9 @@ and open the template in the editor.
                                     </li>
                                 </ul>
 
+                            </li>
+                            <li id="liAudio">
+                                <input id="txtAudio" type="text" placeholder="iframe">
                             </li>
 
                             <li>
@@ -776,15 +780,28 @@ and open the template in the editor.
                             <h4>Correo Electronico</h4>
                             <input id="txtCorreoAlumnoEdi" type="text" placeholder="Correo Electronico" name="correo_usuario">
                         </li>
-                        
                         <li>
-                            <h4>Programa </h4>
+                            <h4>Cursos activos</h4>
+                            <ul id="liMisCursos">
+                                <li>un curso de prueba</li>
+                                <li>un curso de prueba</li>
+                                <li>un curso de prueba</li>
+                                <li>un curso de prueba</li>
+                                <li>un curso de prueba</li>
+                                <li>un curso de prueba</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4>Inscribir</h4>
                             <select id="selCursoActivo" name="curso">
                                 <option>Seleccione un programa</option>
                                 <option>Programa 1</option>
                                 <option>Programa 2</option>
                                 <option>Programa 3</option>
                             </select>
+                        </li>
+                         <li>
+                            <input id="btnInscribirAlumno" type="button" value="Inscribir en curso" >
                         </li>
                         <li>
                             <input id="btnEditarAlumno" type="button" value="Guardar Cambios" >
@@ -1179,20 +1196,20 @@ and open the template in the editor.
                     </li>
                      <li>
                         <h4>Curso</h4>
-                        <select id="selAgendaCurso" name="id_curso">
+                        <select id="selAgendaCursoEdi" name="id_curso">
                             <option>Seleccione curso</option>
 
                         </select>
                     </li>
                     <li>
                         <h4>Modulo</h4>
-                        <select id="selAgendaModulos" name="id_modulo">
+                        <select id="selAgendaModulosEdi" name="id_modulo">
 
                         </select>
                     </li>
                     <li>
                         <h4>Tipo evento</h4>
-                        <select id="selTipoEventoAgenda" name="tipo_evento">
+                        <select id="selTipoEventoAgendaEdi" name="tipo_evento">
                             <option value="0">SELECCIONA UN TIPO DE EVENTO</option>
                             <option value="evento">WEBINAR O CONFERENCIA</option>
                             <option value="evaluacion">EVALUACION</option>
@@ -1205,20 +1222,20 @@ and open the template in the editor.
 
                     <li>
                         <h4>Desde</h4>
-                        <input id="dtFechaEventoIni" type="date" name="fecha_inicio_evento">
-                        <input id="tmHoraEventoIni" type="time" name="hora_inicio_evento">
+                        <input id="dtFechaEventoIniedi" type="date" name="fecha_inicio_evento">
+                        <input id="tmHoraEventoIniEdi" type="time" name="hora_inicio_evento">
                     </li>
                     <li>
                         <h4>Hasta</h4>
-                        <input id="dtFechaEventoFin" type="date" name="fecha_fin_evento">
-                        <input id="tmHoraEventoFin" type="time" name="hora_fin_evento">
+                        <input id="dtFechaEventoFinEdi" type="date" name="fecha_fin_evento">
+                        <input id="tmHoraEventoFinEdi" type="time" name="hora_fin_evento">
                     </li>                     
                     <li>
                         <h4>URL EVENTO</h4>
                         <input type="text" name="url_evento">
                     </li>  
                     <li>
-                        <input id="btnCrearEventoAgenda" type="button" value="Crear Evento">
+                        <input id="btnEditarEventoAgenda" type="button" value="Crear Evento">
                     </li> 
                 </ul>
             </form>
@@ -1444,8 +1461,7 @@ and open the template in the editor.
                 <ul>
                     <li>
                         <h4>Buscar del curso</h4>
-                        <input id="txtBuscarCurso" type="text" placeholder="Nombre" list="listaCursos">
-                        <datalist id="listaCursos"></datalist>
+                        <select id="selBuscarCursoEva"></select>
                     </li>
                     <li>
                         <h4>Modulo curso</h4>
@@ -1461,13 +1477,13 @@ and open the template in the editor.
                     </li>
                     <li>
                         <h4>Fecha y hora de inicio  de la evaluacion</h4>
-                        <input type="date"  id="dtFechaInicio" >
-                        <input type="time"  id="dthHoraInicio" >
+                        <input type="date"  id="dtFechaInicioEva" >
+                        <input type="time"  id="dthHoraInicioEva" >
                     </li>
                     <li>
                         <h4>Fecha y hora de finalizacion de la evaluacion</h4>
-                        <input type="date"  id="dtFechaFin" >
-                        <input type="time"  id="dtHoraFin" >
+                        <input type="date"  id="dtFechaFinEva" >
+                        <input type="time"  id="dtHoraFinEva" >
                     </li>
                     <li>
                         <input id="btnMostrar" type="button" value="VER FORMULARIO CREAR PREGUNTAS">

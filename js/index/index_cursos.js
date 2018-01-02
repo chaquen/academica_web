@@ -23,15 +23,21 @@ function iniciar_curso(){
 	});
 	//BUSCAR CURSOS
 	agregarEvento("btnBuscarCurso","click",function(){
-		if(document.getElementById("txtBuscarCurso").value!="" || document.getElementById("txtBuscarCurso").value!=" "){
-			consultarDatos("cursos/nombre_curso&LIKE&"+document.getElementById("txtBuscarCurso").value,{},function(rs){
+		if(document.getElementById("txtBuscarCurso").value!="" && document.getElementById("txtBuscarCurso").value!=" "){
+			consultarDatos("cursos/id&=&"+document.getElementById("txtBuscarCurso").value,{},function(rs){
 				console.log(rs);
 				if(rs.respuesta){
 					dibujar_cursos_consultados(rs.datos);
 				}
 			});	
 		}else{
-			mostrarMensaje("Por favor ingresa datos para buscar");
+			consultarDatos("cursos",{},function(rs){
+				console.log(rs);
+				if(rs.respuesta){
+					dibujar_cursos_consultados(rs.datos);
+				}
+			});	
+			//mostrarMensaje("Por favor ingresa datos para buscar");
 		}
 		
 	});

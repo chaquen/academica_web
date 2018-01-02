@@ -433,6 +433,26 @@ function dibujar_modulos_edicion(){
 			var h5=document.createElement("h5");		
 			h5.innerHTML=mod[e].actividades[c].nombre_actividad;
 			li.appendChild(h5);
+			
+			var h5=document.createElement("h5");		
+			switch(mod[e].actividades[c].tipo_actividad){
+				case "video":
+					var a=document.createElement("a");		
+					a.innerHTML=mod[e].actividades[c].nombre_actividad;	
+					a.setAttribute("target","_blank");
+					a.href="https://www.youtube.com/watch?v="+mod[e].actividades[c].actividad_recurso;
+					h5.appendChild(a);
+				break;
+				case "documento":
+					var a=document.createElement("a");		
+					a.innerHTML=mod[e].actividades[c].nombre_actividad;	
+					a.href=globales._URL+"recursos/cursos/"+cursos_obj_edi.id+"/"+mod[e].actividades[c].actividad_recurso;
+					h5.appendChild(a);
+				break;
+			}
+			
+			li.appendChild(h5);
+
 			var h6=document.createElement("h6");
 			h6.innerHTML="X";
 			h6.setAttribute("onclick","quitarContenidoEdi("+e+","+c+")");	

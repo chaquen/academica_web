@@ -955,6 +955,7 @@ $.fn.serializarFormulario = function()
   if(usuario==false){
       location.href="alumno_registro.html?c="+curso+"&p="+pin;  
   }else{      
+      
       agregar_session_storage("ssGlobales",globales);
       if(globales._usuario.nombre_rol=="alumno"){
         location.href="alumno.html";  

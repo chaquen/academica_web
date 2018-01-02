@@ -52,27 +52,41 @@ and open the template in the editor.
                   // A node was activated: display its title:
 
                   var node = data.node;
-                  
+                  console.log(node);
                   if(node.data.tipo=="video"){
                     document.getElementById("ifYoutube").style.display="";
                     document.getElementById("ifYoutube").src="https://www.youtube.com/embed/"+node.data.recurso;
                     document.getElementById("ifDocu").style.display="none";
+                    document.getElementById("divAudio").innerHTML="";
                   }else if (node.data.tipo=="documento") {
                     document.getElementById("ifYoutube").style.display="none";
                     document.getElementById("ifDocu").style.display="";
                     console.log(node.data.nombre_curso.split(" "));
-                    var ar=node.data.nombre_curso.split(" ");
-                    var ur=globales._URL+"recursos/cursos/"+ar.join("")+"/"+node.data.recurso;
+                    var ar=node.data.id_curso;
+                    var ur=globales._URL+"recursos/cursos/"+ar+"/"+node.data.recurso;
+                    document.getElementById("divAudio").innerHTML="";
+                     document.getElementById("ifYoutube").innerHTML="";
                     document.getElementById("ifDocu").src=ur;  
                   }else if(node.data.tipo=="evaluacion"){
                     document.getElementById("ifYoutube").style.display="none";
                     document.getElementById("ifDocu").style.display="none";
+                    document.getElementById("divAudio").innerHTML="";
+                    document.getElementById("ifYoutube").innerHTML="";
                     if(node.data.valor!=undefined){
                       consultar_examen(node.data.valor);
                     }
                   }else if(node.data.tipo=="evento"){
                     document.getElementById("ifYoutube").style.display="none";
                     document.getElementById("ifDocu").style.display="none";
+                    document.getElementById("divAudio").innerHTML="";
+                    document.getElementById("ifYoutube").innerHTML="";
+                  }else if(node.data.tipo=="audio"){
+                     document.getElementById("ifYoutube").style.display="none";
+                     document.getElementById("ifYoutube").innerHTML="";
+                    document.getElementById("ifDocu").style.display="none";
+                    document.getElementById("divExamen").style.display="none";
+                    document.getElementById("divAudio").style.display="";
+                    document.getElementById("divAudio").innerHTML=node.data.recurso;
                   }
                   //node.icon = "iconos_arbol/descarga1.jpg";
                 },
@@ -142,6 +156,7 @@ and open the template in the editor.
              <iframe class="iframe"  id="ifDocu"></iframe>
             <iframe id="ifYoutube" class="iframe" frameborder="0" allowfullscreen></iframe>     
             <div id="divExamen"></div>
+            <div id="divAudio"></div>
         </div>
        
     </body>
