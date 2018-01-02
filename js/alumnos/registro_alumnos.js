@@ -18,8 +18,10 @@ agregarEventoLoad(function(){
                            registrarDato("usuarios",datos,function(rs){
                                 mostrarMensaje(rs);
                                 if(rs.respuesta){
-                                    iniciar_panel(rs.datos);
-                                    globales._usuario=rs.datos;
+                                   globales._usuario=rs.datos;
+                                   globales._cerrar_sesion=false;
+                                   iniciar_panel(rs.datos);
+                                   
                                 }
                             });
                     }else{

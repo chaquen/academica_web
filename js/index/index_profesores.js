@@ -38,8 +38,16 @@ function iniciar_profesores(){
 				consultarDatos("usuarios/"+document.getElementById("txtBuscarProfesor").value,{},function(rs){
 					if(rs.respuesta){
 						 $('#crearProfesor, #consultaProfesor, #editarProfesor').fadeOut('fast');
-        				 $('#respuestaProfesor').fadeIn('slow');
+        				 $('#respuestaProfesor, #tbConsultalProfesores').fadeIn('slow');
         				dibujar_profesor_consultado(rs.datos);
+					}
+				});
+		}else{
+			consultarDatos("usuarios",{},function(rs){
+					if(rs.respuesta){
+						 $('#crearProfesor, #consultaProfesor, #editarProfesor').fadeOut('fast');
+        				 $('#respuestaProfesor, #tbConsultalProfesores').fadeIn('slow');
+        				 dibujar_profesor_consultado(rs.datos);
 					}
 				});
 		}
@@ -61,6 +69,7 @@ function iniciar_profesores(){
 					});		*/
 					datos.rol="2";//2 => profesor
 					datos.curso="0";//0 => n/a
+					datos.clave=datos.clave[0];
 					registrarDato("usuarios",datos,function(rs){
 						mostrarMensaje(rs);
 					},"formCrearProfesor");
@@ -150,7 +159,7 @@ function dibujar_profesor_consultado(datos){
 			tr.appendChild(td);
 
 			var td=document.createElement("td");
-			td.innerHTML="Direccion Electronico";
+			td.innerHTML="Direccion ";
 			tr.appendChild(td);
 
 			var td=document.createElement("td");
@@ -183,6 +192,15 @@ function dibujar_profesor_consultado(datos){
 			tr.appendChild(td);
 
 			var td=document.createElement("td");
+			td.innerHTML=datos[e].direccion_usuario;
+			tr.appendChild(td);
+
+			var td=document.createElement("td");
+			td.innerHTML=datos[e].telefono_usuario;
+			tr.appendChild(td);
+
+
+			/*var td=document.createElement("td");
 			var sele=document.createElement("select");
 			for (var c in datos[e].cursos){
 				var opt=document.createElement("option");
@@ -191,7 +209,7 @@ function dibujar_profesor_consultado(datos){
 				sele.appendChild(opt);
 			}
 			td.appendChild(sele);
-			tr.appendChild(td);
+			tr.appendChild(td);*/
 
 			
 

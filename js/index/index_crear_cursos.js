@@ -38,6 +38,7 @@ function iniciar_crear_cursos(){
 	document.getElementById("liValorCurso").style.display="none";
 	document.getElementById("liDoc").style.display="none";
 	document.getElementById("liVideo").style.display="none";
+	document.getElementById("liAudio").style.display="none";
 	document.getElementById("liEvento").style.display="none";
 
 	agregarEvento("selTiempoCurso","change",function(){
@@ -251,7 +252,7 @@ function iniciar_crear_cursos(){
 		if(this.value!=""){
 
 			contenidos.recurso=this.files[0].name;
-			registrarDatoArchivo("subir_archivos",{},this,"",function(rs){
+			registrarDatoArchivo("subir_archivos",{nombre_carpeta:cursos_obj.nombre_curso.split(" ").join("")},this,"",function(rs){
 				mostrarMensaje(rs);
 			});
 
@@ -283,6 +284,7 @@ function iniciar_crear_cursos(){
 				document.getElementById("txtContenidos").value="";
 				document.getElementById("flvArchivoContenido").value="";
 				document.getElementById("txtVideo").value="";
+				document.getElementById("liVideo").value="";
 				document.getElementById("selTipoEvento").selectedIndex=0;
 				console.log(document.getElementById("selTipoEvento").selectedIndex);
 				document.getElementById("dtFIniEve").value="";
@@ -302,6 +304,12 @@ function iniciar_crear_cursos(){
 	agregarEvento("txtVideo","change",function(){
 		if(this.value!=""){
 			contenidos.recurso=this.value.split("https://www.youtube.com/watch?v=")[1];
+		}
+	});
+
+	agregarEvento("txtAudio","change",function(){
+		if(this.value!=""){
+			contenidos.recurso=this.value;
 		}
 	});
 
@@ -347,6 +355,7 @@ function iniciar_crear_cursos(){
 					document.getElementById("liDoc").style.display="";
 					document.getElementById("liVideo").style.display="none";
 					document.getElementById("liEvento").style.display="none";
+					document.getElementById("liAudio").style.display="none";
 					contenidos.tipo_recurso="documento";
 
 				break;
@@ -354,14 +363,24 @@ function iniciar_crear_cursos(){
 					document.getElementById("liDoc").style.display="none";
 					document.getElementById("liVideo").style.display="";
 					document.getElementById("liEvento").style.display="none";
+					document.getElementById("liAudio").style.display="none";
 					contenidos.tipo_recurso="video";
 				break;
 			case "evento":
 					document.getElementById("liDoc").style.display="none";
 					document.getElementById("liVideo").style.display="none";
+					document.getElementById("liAudio").style.display="none";
 					document.getElementById("liEvento").style.display="";
 					
 					contenidos.recurso="evento";
+				break;	
+			case "audio":
+					document.getElementById("liDoc").style.display="none";
+					document.getElementById("liVideo").style.display="none";
+					document.getElementById("liEvento").style.display="none";
+					document.getElementById("liAudio").style.display="";
+					
+					contenidos.tipo_recurso="audio";
 				break;	
 			case "0":
 					document.getElementById("liDoc").style.display="none";
@@ -394,7 +413,8 @@ function iniciar_crear_cursos(){
 					document.getElementById("hTipoCurso").value="";
 					document.getElementById("hValorCurso").innerHTML="";
 					document.getElementById("hValorCurso").value="";
-					document.getElementById().innerHTML="";
+					
+					consulta_inicial();
 				}
 			},"formCrearCurso");	
 		}

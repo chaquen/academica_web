@@ -27,8 +27,16 @@ function iniciar_index_alumno(){
 		if(document.getElementById("txtBuscarAlumno").value!=""){
 				consultarDatos("usuarios/"+document.getElementById("txtBuscarAlumno").value,{},function(rs){
 					if(rs.respuesta){
-						$('#consultaAlumno').fadeOut('fast');
-        				$('#resultadoAl').fadeIn('slow');
+						 $('#consultaAlumno').fadeOut('fast');
+        				 $('#resultadoAl, #tblAlumnos').fadeIn('slow');
+        				dibujar_alumno_consultado(rs.datos);
+					}
+				});	
+		}else{
+			consultarDatos("usuarios_index",{},function(rs){
+					if(rs.respuesta){
+						 $('#consultaAlumno').fadeOut('fast');
+        				 $('#resultadoAl, #tblAlumnos').fadeIn('slow');
         				dibujar_alumno_consultado(rs.datos);
 					}
 				});	
@@ -46,11 +54,16 @@ function iniciar_index_alumno(){
 		if(datos.correo_usuario[0]!=datos.correo_usuario[1]){
 			mostrarMensaje("Correos no coinciden");
 			return false;
+		}else{
+			datos.correo_usuario=datos.correo_usuario[0];
 		}
 		if(datos.clave[0]!=datos.clave[1]){
 			mostrarMensaje("Claves no coinciden");
 			return false;
+		}else{
+			datos.clave=datos.clave[0];
 		}
+
 		registrarDato("usuarios",datos,function(rs){
 			mostrarMensaje(rs);
 		},"formCrearAlumno");
@@ -62,6 +75,21 @@ function iniciar_index_alumno(){
 		editarDato("usuarios/"+datos.id_usuario,datos,function(rs){
 			mostrarMensaje(rs);
 		},"formEditarAlumno");
+	});
+	agregarEvento("btnInscribirAlumno","click",function(){
+		if(confirm("Desea inscribir a este alumno el curso?")){
+			var datos = $("#formEditarAlumno").serializarFormulario();		
+			if(document.getElementById("selCursoActivo").value!="0"){
+				datos.rol="alumno";
+				registrarDato("detalle_usuario_curso",datos,function(rs){
+					mostrarMensaje(rs);
+					//mostrar_editar(datos.id_usuario);
+				},"formCrearAlumno");		
+			}else{
+				mostrarMensaje("Debes seleccioanr un curso");
+			}
+		}
+		
 	});
 }
 
@@ -116,12 +144,20 @@ function dibujar_alumno_consultado(datos){
 
 			var td=document.createElement("td");
 			var sele=document.createElement("select");
-			for (var c in datos[e].cursos){
+			if(datos[e].cursos.length>0){
+				for (var c in datos[e].cursos){
+					var opt=document.createElement("option");
+					opt.innerHTML=datos[e].cursos[c].nombre_curso;
+					opt.value=datos[e].cursos[c].id;
+					sele.appendChild(opt);
+				}	
+			}else{
 				var opt=document.createElement("option");
-				opt.innerHTML="";
-				opt.value="";
+				opt.innerHTML="Sin cursos";
+				opt.value="0";
 				sele.appendChild(opt);
 			}
+			
 			td.appendChild(sele);
 			tr.appendChild(td);
 
@@ -160,8 +196,20 @@ function mostrar_editar(id){
 			document.getElementById("txtTelefonoAlumnoEdi").value=al.telefono_usuario;
 			document.getElementById("txtDireccionAlumnoEdi").value=al.direccion_usuario;
 			document.getElementById("txtCorreoAlumnoEdi").value=al.correo_usuario;
-			//document.getElementById("selCursoActivo").value=al.curso;
-			
+			document.getElementById("liMisCursos").innerHTML="";
+			for(var c in al.cursos){
+				var li=document.createElement("li");
+				li.innerHTML=al.cursos[c].nombre_curso;
+				document.getElementById("liMisCursos").appendChild(li);
+
+				var li=document.createElement("li");
+				var inp=document.createElement("input");
+				inp.setAttribute("type","button");
+				inp.setAttribute("value","eliminar");
+				inp.setAttribute("onclick","eliminar_suscripcion_curso("+al.cursos[c].id+")");
+				li.appendChild(inp);
+				document.getElementById("liMisCursos").appendChild(li);
+			}
 			$('#resultadoAl').fadeOut('fast');
         	$('#editarAlumno').fadeIn('slow');
 		}
@@ -187,3 +235,11 @@ function buscar_alumno_js(id){
 	return false;
 }
 
+function eliminar_suscripcion_curso(curso){
+	if(confirm("Desea eliminar este alumno del curso?")){
+		eliminarDato("detalle_usuario_curso/"+curso,{},function(rs){
+			mostrarMensaje(rs);
+		});	
+	}
+	
+}

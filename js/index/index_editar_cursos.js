@@ -17,11 +17,14 @@ var modulos_edi={
 	
 };
 var actividades_edi={
+						fk_id_modulo_curso:0,
 						nombre_actividad:"",
 						actividad_recurso:"",
-						tipo_actividad:"",
+						tipo_evento:"",
 						activo_desde:"",
+						hora_inicio_evento:"",
 						activo_hasta:"",
+						hora_fin_evento:""
 				};
 function iniciar_editar_cursos(){
 
@@ -165,9 +168,11 @@ function iniciar_editar_cursos(){
 		 			registrarDato("modulos",modulos_edi,function(rs){
 						if(rs.datos){
 							console.log(modulos_edi);
+							modulos_edi.id=rs.datos;
 							cursos_obj_edi.modulos.push(modulos_edi);
 
-							
+							dibujar_modulos_edicion();
+							dibujar_select_edicion();
 							
 							modulos_edi={
 								fk_id_curso:cursos_obj_edi.id,
@@ -179,8 +184,7 @@ function iniciar_editar_cursos(){
 							};	
 							document.getElementById("txtNombreModuloEdi").value="";
 
-							dibujar_modulos_edicion();
-							dibujar_select_edicion();
+							
 						}
 					});	
 		 		}
@@ -209,7 +213,7 @@ function iniciar_editar_cursos(){
 		if(this.value!=""){
 
 			actividades_edi.actividad_recurso=this.files[0].name;
-			registrarDatoArchivo("subir_archivos",{},this,"",function(rs){
+			registrarDatoArchivo("subir_archivos",{nombre_carpeta:cursos_obj_edi.nombre_curso.split(" ").join("")},this,"",function(rs){
 				mostrarMensaje(rs);
 			});
 
@@ -223,22 +227,32 @@ function iniciar_editar_cursos(){
 		
 
 			if(document.getElementById("txtContenidosEdi").value!="" && document.getElementById("selTipoContenidoEdi").value!="0" ){
-				actividades_edi.tipo_actividad=document.getElementById("selTipoContenidoEdi").value;
+
+
 				console.log(document.getElementById("selModulosCrearCursoEdi").value);
 				console.log(cursos_obj_edi.modulos[Number(document.getElementById("selModulosCrearCursoEdi").value)-1]);
 				console.log(cursos_obj_edi.modulos[Number(document.getElementById("selModulosCrearCursoEdi").value)-1].actividades);	
+				actividades_edi.tipo_evento=document.getElementById("selTipoContenidoEdi").value;
+				actividades_edi.fk_id_modulo_curso=cursos_obj_edi.modulos[Number(document.getElementById("selModulosCrearCursoEdi").value)-1].id;
+				actividades_edi.url_evento=actividades_edi.actividad_recurso;
+				registrarDato("agenda",actividades_edi,function(rs){
+					cursos_obj_edi.modulos[Number(document.getElementById("selModulosCrearCursoEdi").value)-1].actividades.push(actividades_edi);
+					dibujar_modulos_edicion();
+					actividades_edi={
+							fk_id_modulo_curso:0,
+							nombre_actividad:"",
+							actividad_recurso:"",
+							tipo_evento:"",
+							activo_desde:"0000-00-00",
+							hora_inicio_evento:"",
+							activo_hasta:"0000-00-00",
+							hora_fin_evento:""
+					};
+					
 
-				cursos_obj_edi.modulos[Number(document.getElementById("selModulosCrearCursoEdi").value)-1].actividades.push(actividades_edi);
-
-				actividades_edi={
-						nombre_actividad:"",
-						actividad_recurso:"",
-						tipo_actividad:"",
-						activo_desde:"",
-						activo_hasta:"",
-				};
+				});
 				
-
+				
 
 				document.getElementById("txtContenidosEdi").value="";
 				document.getElementById("flvArchivoContenidoEdi").value="";
@@ -250,7 +264,7 @@ function iniciar_editar_cursos(){
 				document.getElementById("dtFFinEveEdi").value="";
 				document.getElementById("tmHFinEveEdi").value="";
 				
-				dibujar_modulos_edicion();
+				
 			}else{
 				mostrarMensaje("Por favor ingresa una descripcion del contenido");
 			}
@@ -272,7 +286,7 @@ function iniciar_editar_cursos(){
 	});
 	agregarEvento("tmHIniEveEdi","change",function(){
 		if(this.value!=""){
-			actividades_edi.activo_desde+=" "+this.value+":00";
+			actividades_edi.hora_inicio_evento=this.value+":00";
 		}
 	});
 	agregarEvento("dtFFinEveEdi","change",function(){
@@ -282,7 +296,7 @@ function iniciar_editar_cursos(){
 	});
 	agregarEvento("tmHFinEveEdi","change",function(){
 		if(this.value!=""){
-			actividades_edi.activo_hasta+=" "+this.value+":00";
+			actividades_edi.hora_fin_evento=this.value+":00";
 		}
 	});
 	agregarEvento("selTipoEventoEdi","change",function(){
@@ -419,6 +433,26 @@ function dibujar_modulos_edicion(){
 			var h5=document.createElement("h5");		
 			h5.innerHTML=mod[e].actividades[c].nombre_actividad;
 			li.appendChild(h5);
+			
+			var h5=document.createElement("h5");		
+			switch(mod[e].actividades[c].tipo_actividad){
+				case "video":
+					var a=document.createElement("a");		
+					a.innerHTML=mod[e].actividades[c].nombre_actividad;	
+					a.setAttribute("target","_blank");
+					a.href="https://www.youtube.com/watch?v="+mod[e].actividades[c].actividad_recurso;
+					h5.appendChild(a);
+				break;
+				case "documento":
+					var a=document.createElement("a");		
+					a.innerHTML=mod[e].actividades[c].nombre_actividad;	
+					a.href=globales._URL+"recursos/cursos/"+cursos_obj_edi.id+"/"+mod[e].actividades[c].actividad_recurso;
+					h5.appendChild(a);
+				break;
+			}
+			
+			li.appendChild(h5);
+
 			var h6=document.createElement("h6");
 			h6.innerHTML="X";
 			h6.setAttribute("onclick","quitarContenidoEdi("+e+","+c+")");	
@@ -469,8 +503,8 @@ function quitarModuloEdi(posicion_modulo){
 
 	if(confirm("¿Desea quitar este modulo?, recuerda que esto eliminara las actividades asocadas")){
 		//quitar elemento 
-		eliminarDato("modulos/"+cursos_obj.modulos[posicion_modulo].id,{},function(rs){
-			console.log(cursos_obj.modulos[posicion_modulo]);
+		eliminarDato("modulos/"+cursos_obj_edi.modulos[posicion_modulo].id,{},function(rs){
+			console.log(cursos_obj_edi.modulos[posicion_modulo]);
 			cursos_obj_edi.modulos.splice(posicion_modulo,1);	
 			dibujar_modulos_edicion();
 			dibujar_select_edicion();
