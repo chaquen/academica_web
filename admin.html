@@ -1107,51 +1107,14 @@ and open the template in the editor.
                         </li>                     
                         <li>
                             <h4>URL EVENTO</h4>
-                            <input type="text" name="url_evento">
+                            <input type="text" name="url_evento" id="txt_url_agenda" style="display: none;">
                         </li>  
                         <li>
                             <input id="btnCrearEventoAgenda" type="button" value="Crear Evento">
                         </li> 
                     </ul>
                 </form>
-                <!--<form>
-                    <ul>
-                        <li>
-                            <h2>Crear Agenda</h2>
-                        </li>
-                         <li>
-                            <h4>Curso</h4>
-                            <select>
-                                <option>Seleccione curso</option>
-                                <option>Curso 1</option>
-                                <option>Curso 2</option>
-                                <option>Curso 3</option>
-                            </select>
-                        </li>
-                        <li>
-                            <h4>Modulo</h4>
-                            <select>
-                                <option>Modulo</option>
-                                <option>Modulo 1</option>
-                                <option>Modulo 2</option>
-                                <option>Modulo 3</option>
-                            </select>
-                        </li>
-                        <li>
-                            <h4>Nombre del Evento</h4>
-                            <input type="text" placeholder="Nombre Evento">
-                        </li>
-                       
-                        <li>
-                            <h4>Desde</h4>
-                            <input type="date">
-                        </li>
-                        <li>
-                            <h4>Hasta</h4>
-                            <input type="date">
-                        </li>                        
-                    </ul>
-                </form>-->
+        
             </div>
         </div>
         <!--Fin division de agenda-->
@@ -1159,14 +1122,14 @@ and open the template in the editor.
         <!--Consultar Agenda-->
         <div class="formulario" id="consultaAgenda">
             <i class="salirFor salir">Salir</i>
-            <form>
+            <form id="formConsultarAgenda">
                 <ul>
                     <li>
                         <h2>Consulta de Agenda</h2>
                     </li>
                     <li>
                         <h4>Seleccione el curso</h4>
-                        <select>
+                        <select id="selCursosConsultaAgenda" name="id_curso" required>
                             <option>Seleccione el curso</option>
                             <option>Curso 1</option>
                             <option>Curso 2</option>
@@ -1184,17 +1147,16 @@ and open the template in the editor.
         <!--Respuesta Consulta Agenda-->
         <div id="respuestaAgenda" class="tabla">
             <i class="salir">Salir</i>
-            <table>
+            <table >
                 <tr>
                     <td>Modulo</td>
                     <td>Nombre del Evento</td>
-                    <td>
-                        <input type="button" value="Editar" class="btnEditarAgenda">
-                    </td>
-                    <td>
-                        <input type="button" value="Eliminar">
-                    </td>
+                    <td>Editar</td>
+                    <td>Fecha y hora de inicio</td>
+                    <td>Fecha y hora de finalización</td>
+                    <td>Eliminar</td>
                 </tr>
+                <tbody id="tblTablaAgenda"></tbody>
             </table>
         </div>
         <!--Fin Consulta Agenda-->
@@ -1202,7 +1164,7 @@ and open the template in the editor.
         <!--Editar Agenda-->
         <div class="formulario" id="editarAgenda">
             <i class="salirFor salir">Salir</i>
-            <form>
+            <form id="formEditarAgenda">
                 <ul>
                     <li>
                         <h2>Editar Agenda</h2>
@@ -1230,12 +1192,13 @@ and open the template in the editor.
                     </li>
                     <li>
                         <h4>Nombre del Evento</h4>
-                        <input type="text" placeholder="Nombre Evento" name="nombre_actividad">
+                        <input id="txt_nombre_evento_edi" type="text" placeholder="Nombre Evento" name="nombre_actividad">
+                        <input type="hidden" id="hd_id_actividad" name="id_actividad">
                     </li>
 
                     <li>
                         <h4>Desde</h4>
-                        <input id="dtFechaEventoIniedi" type="date" name="fecha_inicio_evento">
+                        <input id="dtFechaEventoIniEdi" type="date" name="fecha_inicio_evento">
                         <input id="tmHoraEventoIniEdi" type="time" name="hora_inicio_evento">
                     </li>
                     <li>
@@ -1245,10 +1208,10 @@ and open the template in the editor.
                     </li>                     
                     <li>
                         <h4>URL EVENTO</h4>
-                        <input type="text" name="url_evento">
+                        <input id="txt_url_agenda_edi" type="text" name="url_evento" style="display:none">
                     </li>  
                     <li>
-                        <input id="btnEditarEventoAgenda" type="button" value="Crear Evento">
+                        <input id="btnEditarEventoAgenda" type="button" value="Editar Evento">
                     </li> 
                 </ul>
             </form>
@@ -1312,7 +1275,7 @@ and open the template in the editor.
                             <input type="button" value="exportar" id="btnExportar">
                         </li>
                         <li>
-                            <a id="aExportado" target="_onblank"></a>
+                            <a id="aExportado" target="_onblank" href="#"></a>
                         </li>
                         <li>
                             <input type="button" value="Buscar" id="btnBuscarPin">
@@ -1357,7 +1320,7 @@ and open the template in the editor.
             <div class="resultado" id="respuestaPin">
                 <div class="divTabla">
                     <i class="salirFor salir">Salir</i>
-                    <table class="tabla" >
+                    <table class="tabla"  id="tblTablaConsulta">
                         <tr>
                             <td>Numero</td>
                              <td>Nombre curso</td>
@@ -1374,9 +1337,9 @@ and open the template in the editor.
         <!--Fin PINES-->
         
         <!--Crear Preguntas-->
-        <div class="formulario "id="crearPregunta">
+        <div class="formulario" id="crearPregunta">
             <i class="salirFor salir">Salir</i>
-            <form>
+            <form id="formCrearPregunta">
                 <ul>
                     <li>
                         <h2>Crear Preguntas</h2>

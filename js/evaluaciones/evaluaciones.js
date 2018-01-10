@@ -106,7 +106,7 @@ function iniciar_evaluacion(){
 			registrarDato("preguntas",preguntas,function(rs){
 				console.log(rs);
 				mostrarMensaje(rs);
-			});
+			},"formCrearPregunta");
 		}else{
 			mostrarMensaje("Ingresa un argumento para la pregunta");
 		}

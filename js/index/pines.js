@@ -2,10 +2,25 @@ var accion_pin;
 agregarEventoLoad(function(){
 	agregarEvento("btnCrearPines","click",function(){
 		var datos = $("#formCrearPines").serializarFormulario();
-		consultarDatos("crear_pines/"+datos.curso+"/"+datos.numero_pines,{},function(rs){
-			console.log(rs);
-			dibujar_tabla_pines(rs.datos);
-		});
+		if(datos!=false){
+			if(datos.curso!=0){
+				consultarDatos("crear_pines/"+datos.curso+"/"+datos.numero_pines,{},function(rs){
+					if(rs.respuesta){
+						console.log(rs);
+						dibujar_tabla_pines(rs.datos);
+					}else{
+						mostrarMensaje(rs);
+					}
+				});
+			}else{
+				$('#tblTablaConsulta').fadeOut('fast');
+				mostrarMensaje("Por favor seleccione un curso");	
+			}
+		}else{
+			$('#tblTablaConsulta').fadeOut('fast');
+			mostrarMensaje("No olvides ingresdar todos los datos");	
+		}
+		
 	});
 
 	agregarEvento("btnBuscarPin","click",function(){
@@ -13,8 +28,13 @@ agregarEventoLoad(function(){
 		if(datos!=false){
 			consultarDatos("consultar_pin_admin/"+datos.curso+"/"+datos.pin,{},function(rs){
 				console.log(rs);
-				accion_pin="consultar";
-				dibujar_tabla_pines(rs.datos);
+				if(rs.respuesta){
+					accion_pin="consultar";
+					dibujar_tabla_pines(rs.datos);
+				}else{
+					$('#tblTablaConsulta').fadeOut('fast');
+					mostrarMensaje(rs);
+				}
 
 			});
 		}
@@ -31,8 +51,14 @@ agregarEventoLoad(function(){
 			}
 			consultarDatos("consultar_pin_admin/"+datos.curso+"/"+datos.pin,{},function(rs){
 				console.log(rs);
-				accion_pin="eliminar";
-				dibujar_tabla_pines(rs.datos);
+				if(rs.respuesta){
+					accion_pin="eliminar";
+					dibujar_tabla_pines(rs.datos);	
+				}else{
+					$('#tblTablaConsulta').fadeOut('fast');
+					mostrarMensaje(rs);
+				}
+				
 
 			});
 		}	
@@ -46,21 +72,32 @@ agregarEventoLoad(function(){
 			
 			consultarDatos("consultar_pin_admin/"+datos.curso+"/"+datos.pin,{},function(rs){
 				console.log(rs);
-				accion_pin="eliminar";
-				dibujar_tabla_pines(rs.datos);
+				if(rs.respuesta==true){
+					accion_pin="eliminar";
+					dibujar_tabla_pines(rs.datos);	
+				}else{
+					$('#tblTablaConsulta').fadeOut('fast');
+					mostrarMensaje(rs);
+				}
+				
 
 			});
 		}	
 	});
 	agregarEvento("btnExportar","click",function(){
-		var datos = $("#formEliPins").serializarFormulario();
+		var datos = $("#formBuscaPin").serializarFormulario();
+
 		if(datos!=false){
 			
-				datos.pin="*";
+			if(datos.curso==0){
+				if(!confirm("¿Desea exportar todos los pines esta tarea puede tardar un poco? ")){
+					return false;
+				}
+			}
 			
 			consultarDatos("exportar_pines/"+datos.curso+"/"+datos.pin,{},function(rs){
 				console.log(rs);
-				accion_pin="eliminar";
+				//accion_pin="eliminar";
 				document.getElementById("aExportado").href=globales._URL+"/recursos/exportacion/"+rs.archivo;
 				document.getElementById("aExportado").innerHTML="DESCARGAR";
 
@@ -71,9 +108,9 @@ agregarEventoLoad(function(){
 
 function dibujar_tabla_pines(datos){
 	$('#crearPin, #consultaPin').fadeOut('fast');
-	$('#respuestaPin').fadeIn('slow');
-	document.getElementById("aExportado").href="";
-	document.getElementById("aExportado").innerHTML="google.js";
+	$('#respuestaPin, #tbConsultalPines, #tblTablaConsulta').fadeIn('slow');
+	document.getElementById("aExportado").href="#";
+	document.getElementById("aExportado").innerHTML="";
 	var tabl=document.getElementById("tbConsultalPines");
 	tabl.innerHTML="";
 	for(var f in datos){
