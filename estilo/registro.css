@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: "bienvenida";
+    src: url('../font/arial.TTF');
+}
+@font-face {
+    font-family: "parrafo";
+    src: url('../font/parrafo.ttf');
+}
+.limpiar {
+    width: 100%;
+    clear: both;
+}
+.salir {
+    float: right;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    box-shadow: 1px 2px 3px black;
+}
+.salir:hover {
+    background-color: blue;
+}
+.formulario {
+    width: 50%;
+    margin: 10px auto;
+    border: 1px solid black;
+    padding: 20px;
+    text-align: center;
+    background-color: #B8B1F8;
+}
+.formulario h2 {
+    font-family: bienvenida;
+    font-size: 30px;
+    margin-top: -20px;
+}
+.formulario p {
+    text-align: justify;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-family: parrafo;
+    font-size: 18px;
+    margin: auto;
+    width: 90%;
+}
+.formulario ul {
+    width: 90%;
+    margin: auto;
+    background-color: #0D055F;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+}
+.formulario ul li {
+    list-style: none;
+    clear: both;
+    width: 100%;
+    margin-top: 5px;
+    display: table;
+    padding: 3px;
+}
+.formulario li h4 {
+    float: left;
+    margin-top: 7px;
+    text-align: right;
+    width: 43%;
+    font-family: arial;
+}
+.formulario li input[type=text] {
+    margin-left: 1%;
+    width: 53%;
+    height: 25px;
+    float: left;
+}
+.formulario li input[type=password] {
+    margin-left: 1%;
+    height: 25px;
+    width: 53%;
+    float: left;
+}
+.formulario li input[type=date] {
+    margin-left: 1%;
+    height: 25px;
+    width: 53%;
+    float: left;
+}
+.formulario li input[type=email] {
+    margin-left: 1%;
+    height: 25px;
+    width: 53%;
+    float: left;
+}
+.formulario li input[type=button] {
+    margin-left: 1%;
+    padding: 10px 15px;
+    background-color: blue;
+    border: 1px solid darkblue;
+    color: white;
+    cursor: pointer
+}
+.formulario li input[type=button]:hover {
+    background-color: red;
+}
+.formulario li select {
+    margin-left: 1%;
+    width: 53%;
+    height: 25px;
+    float: left;
+}
