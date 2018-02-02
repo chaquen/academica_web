@@ -34,7 +34,7 @@ function consultar_examen(valor){
 
 function dibujar_evaluacion(datos_pre){
 	 var div_pre=document.getElementById("divExamen");
-	
+	div_pre.innerHTML="";
 	 var opc="abcdefgijklmnopqrstuvwxyz";
 	
 
@@ -63,7 +63,7 @@ function dibujar_evaluacion(datos_pre){
 			
 
 			var res=datos[d].respuestas;
-			
+			console.log(res);
 			if(datos[d].tipo_pregunta=="cerrada"){
 				for(var r in res){
 					console.log(res[r]);

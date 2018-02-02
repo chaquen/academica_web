@@ -518,8 +518,8 @@ function crear_select(id_select,datos,id,valor){
           
        
         Object.keys(datos).forEach(function(clave) {
-          //console.log(clave);
-          //console.log(Object.keys(datos[clave]));
+          console.log(clave);
+          console.log(Object.keys(datos[clave]));
          
          
           var mis_llaves=Object.keys(datos[clave]);
@@ -527,8 +527,8 @@ function crear_select(id_select,datos,id,valor){
           for(var l in mis_llaves){
 
             if(existe==false && mis_llaves[l]==id){
-              //console.log(mis_llaves[l]);
-              //console.log(datos[clave][id]);
+              console.log(mis_llaves[l]);
+              console.log(datos[clave][id]);
               var opt=document.createElement("option");
               opt.setAttribute("value",datos[clave][id]);
               existe=true;
@@ -547,6 +547,8 @@ function crear_select(id_select,datos,id,valor){
             }
           }
        });
+
+        console.log(sel);
   }
 }
 

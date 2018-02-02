@@ -302,7 +302,7 @@ function iniciar_evaluacion(){
 
 	agregarEvento("selModuloCursoEva","change",function(){
 		if(this.value!="0"){
-			consultarDatos("actividades/fk_id_modulo_curso&=&"+this.value+"&tipo_actividad&=&evaluacion",{},function(rs){
+			consultarDatos("evaluaciones/actividades.fk_id_modulo_curso/"+this.value+"/actividades.tipo_actividad/evaluacion",{},function(rs){
 				crear_select("selActividadModuloEva",rs.datos,"id","nombre_actividad");
 			});
 		}
