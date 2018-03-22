@@ -1,0 +1,67 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22/03/2018, 11:54:38 AM
+    Author     : DarkShinobi
+*/
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.comentarioTema {
+    width: 100%;
+    border: 1px solid red;
+    padding: 20px;
+}
+.comentarioTema ul {
+    width: 100%;
+}
+.comentarioTema ul li {
+    margin-top: 10px;
+    clear: both;
+    border: 1px solid blue;
+    padding: 20px;
+    display: table;
+}
+.comentarioTema li img {
+    width: 80px;
+    height: 80px;
+    float: left;
+}
+.comentarioTema li h2 {
+    text-align: center;
+    
+}
+.comentarioTema li h3 {
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.comentarioTema li h5 {
+    float: right;
+}
+.comentarioTema li p {
+    clear: both;
+    margin-top: 10px;
+    padding: 20px;
+}
+.comentarioTema li a {
+    float: left;
+    margin-left: 10px;
+}
+.salir {
+    right: 100px;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    margin-right: 100px;
+    position: fixed;
+    cursor: pointer;
+}
+.invisible {
+    display: none;
+}
