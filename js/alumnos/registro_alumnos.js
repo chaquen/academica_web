@@ -2,6 +2,10 @@ var id_curso;
 var pin;
 var hoy_hace_18;
 agregarEventoLoad(function(){
+
+
+
+
   console.log(horaCliente().split(" ")[0]);
   hoy_hace_18=new Date(horaCliente().split(" ")[0]);
   var anio_hace_18=hoy_hace_18.getFullYear();
@@ -17,11 +21,19 @@ agregarEventoLoad(function(){
     console.log(params);
     id_curso=params[0].split("=")[1];
     pin=params[1].split("=")[1];
+
+
+
+    consultarDatos("cursos/id&=&"+id_curso,{},function(rs){
+      console.log(rs[0]);
+      document.getElementById("bNombreCurso").innerHTML=rs.datos[0].nombre_curso;
+    });
+
     agregarEvento("btn_editar_perfil","click",function(){
        var datos = $("#formUsuarioPerfil").serializarFormulario();
            if(datos!=false){
-                 if(datos.password[0]==datos.password[1]){
-                      datos.password=datos.password[0];
+                 if(datos.clave[0]==datos.clave[1]){
+                      datos.clave=datos.clave[0];
                       if(datos.correo_usuario[0]==datos.correo_usuario[1]){
                              datos.curso=id_curso;
                              datos.correo_usuario=datos.correo_usuario[0];
