@@ -106,6 +106,10 @@ function iniciar_evaluacion(){
 			registrarDato("preguntas",preguntas,function(rs){
 				console.log(rs);
 				mostrarMensaje(rs);
+				if(rs.respuesta){
+					document.getElementById("txtArgumentoPre").value="";
+					document.getElementById("numPreguntas").value="0";
+				}
 			},"formCrearPregunta");
 		}else{
 			mostrarMensaje("Ingresa un argumento para la pregunta");
@@ -334,6 +338,9 @@ function agregar_a_evaluacion(id){
 			if(rs.respuesta){
 				dibujar_preguntas_evaluacion(rs.datos);
 				lista_preguntas.push(rs.datos);	
+			}else{
+				var div=document.getElementById("divListaPreguntas1");
+				div.innerHTML="";
 			}
 			
 		});
@@ -341,7 +348,7 @@ function agregar_a_evaluacion(id){
 function dibujar_preguntas_evaluacion(datos){
 	var div=document.getElementById("divListaPreguntas1");
 	
-	
+	div.innerHTML="";
 	var p=1;
 	for(var d in datos){
 		var lista=document.createElement("ul");

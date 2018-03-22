@@ -346,29 +346,6 @@ function recibirValorGet(){
     
       
 }
-function cambiarAccion(){
-    
-    switch(this.id.split("_")[0]){
-        //USUARIO
-       
-         case "buscar":
-         accionUsuario="consulta";
-            break;
-         case "editar":
-         accionUsuario="editar";
-            break;
-         case "eliminar":
-            accionUsuario="eliminar";
-            break;   
-         
-         //DEFAULT   
-         default:
-             mostrarMensaje({mensaje:"Por favor agrega una accion para el usuario "+this.id.split("_")[0]});
-             break;
-    }
-}
-
-
 
 
 //funcion para el control de teclas 
@@ -759,4 +736,7 @@ $.fn.serializarFormulario = function()
   }
     
     
+}
+function abrir_ventana(url){
+  window.open(url,"Evaluación","toolbar=yes");
 }
