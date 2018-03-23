@@ -288,11 +288,14 @@ function dibujar_actividades_alumno(cursos){
 }	
 
 function dibujar_div_actividad(actividad){
+	console.log(horaCliente());
+	var hoy=horaCliente();
 	var divActividades=document.getElementById("divActividades");
 	
 	//console.log(actividad);
 	for(var f in actividad){
 		console.log(actividad);
+		
 		var div=document.createElement("div");
 		div.className="proxActividad";
 		var hfechaI=document.createElement("h4");
@@ -308,6 +311,14 @@ function dibujar_div_actividad(actividad){
 		var hCurso=document.createElement("h3");
 		if(actividad[f].nombre_curso!=undefined){
 			hCurso.innerHTML=actividad[f].nombre_curso;
+			console.log(new Date(actividad[f].activo_desde).getTime());
+
+			console.log(new Date(hoy).getTime());
+			if(new Date(hoy).getTime()>=new Date(actividad[f].activo_desde).getTime() ){
+				hCurso.setAttribute("onclick","abrir_ventana("+true+",'mi_evaluacion.html?id="+actividad[f].id+"')");
+			}else{
+				hCurso.setAttribute("onclick","abrir_ventana("+false+",'"+0+"')");
+			}
 		}
 		
 		var hActividad=document.createElement("h3");

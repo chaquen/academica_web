@@ -737,6 +737,11 @@ $.fn.serializarFormulario = function()
     
     
 }
-function abrir_ventana(url){
-  window.open(url,"Evaluación","toolbar=yes");
+function abrir_ventana(abrir,url){
+  if(abrir){
+    window.open(url,"Evaluación","toolbar=yes");  
+  }else{
+    mostrarMensaje("¡Aún no es hora de que te evalues!");
+  }
+  
 }
