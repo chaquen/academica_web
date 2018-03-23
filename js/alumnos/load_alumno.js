@@ -232,7 +232,7 @@ function dibujar_cursos_alumno(datos){
 		li.appendChild(a);
 		ul.appendChild(li);
 		//FIN lista contenido
-		//lista CALIFICACIONES
+		//lista ACTIVIDADES
 		var li=document.createElement("li");
 		
 		var a =document.createElement("a");

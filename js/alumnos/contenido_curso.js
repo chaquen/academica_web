@@ -141,6 +141,9 @@ function dibujar_lista_contenido(id_modulo){
 function dibujar_contenido(id_actividad){
  	var divContenido=document.getElementById("divContenido");
  	divContenido.innerHTML="";
+ 	var divx=document.createElement("div");
+ 	divx.innerHTML="X";
+ 	divContenido.appendChild(divx);
  	for(var f in _curso.modulos){
  		for(var ff in _curso.modulos[f].actividades){
 
