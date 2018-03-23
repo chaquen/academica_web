@@ -59,8 +59,9 @@ function iniciar_recuperar_clave(){
 
 		agregarEvento("btnLoginRecuperado","click",function(){
 			if(globales._usuario!=false){
+				globales._cerrar_sesion=false;
 				iniciar_panel(globales._usuario);
-		    	inicia_app();		
+		    	//inicia_app();		
 			}else{
 				mostrarMensaje("Por favor inicia sesion nuevamente");
 			}

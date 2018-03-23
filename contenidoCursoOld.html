@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title id="tlContenidoCurso">TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="estilo/contenidoCurso.css" rel="stylesheet" type="text/css"/>
+       
+        <!--SCRIPT EDGAR-->
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>        
+         <script src="script/inicio.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/funciones/CrudBase.js"></script>
+        <script type="text/javascript" src="js/funciones/formatos.js"></script>
+        <script type="text/javascript" src="js/funciones/peticiones_ajax.js"></script>
+        <script type="text/javascript" src="js/funciones/storage.js"></script>
+        <script type="text/javascript" src="js/funciones/utilidades.js"></script>
+        <script type="text/javascript" src="js/prototipos/prototipos.js"></script>
+        <script type="text/javascript" src="js/globales.js"></script>
+        <script type="text/javascript" src="js/alumnos/contenido_curso.js"></script>       
+        <script type="text/javascript" src="js/alumnos/load_contenido_curso.js"></script>
+        <script type="text/javascript" src="js/evaluaciones/responder_examen_contenido_curso.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.24.0/jquery.fancytree-all-deps.min.js"></script>
+        
+        <!-- Include Fancytree skin and library -->
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.24.0/skin-win8-n/ui.fancytree.css" rel="stylesheet">
+          
+          <!-- Initialize the tree when page is loaded -->
+          <script type="text/javascript">
+            $(function(){
+                /*[
+                        {title: "prueba me este", key: "1",valor:"x1",tipo:"documento",recurso:"prueba1.docx"},
+                        {title: "modulo 1", key: "2", folder: true, children: [
+                          {title: "prueba", key: "3",valor:"x2",tipo:"examen",recurso:"prueba.pdf"},
+                          {title: "prueba2", key: "4",valor:"x3",tipo:"video",recurso:"yRMvAN_H4Yc"},
+                        
+                        ]},
+                        {title: "modulo 2", key: "2", folder: true, children: [
+                          {title: "prueba", key: "3",valor:"x2",tipo:"examen",recurso:"prueba.pdf"},
+                          {title: "prueba2", key: "4",valor:"x3",tipo:"video",recurso:"yRMvAN_H4Yc"},
+                        
+                        ]}
+                      ]*/;
+
+              // Create the tree inside the <div id="tree"> element.
+              $("#arbol").fancytree({
+                activate: function(event, data){
+                  // A node was activated: display its title:
+
+                  var node = data.node;
+                  console.log(node);
+                  if(node.data.tipo=="video"){
+                    document.getElementById("ifYoutube").style.display="";
+                    document.getElementById("ifYoutube").src="https://www.youtube.com/embed/"+node.data.recurso;
+                    document.getElementById("ifDocu").style.display="none";
+                    document.getElementById("divAudio").innerHTML="";
+                  }else if (node.data.tipo=="documento") {
+                    document.getElementById("ifYoutube").style.display="none";
+                    document.getElementById("ifDocu").style.display="";
+                    console.log(node.data.nombre_curso.split(" "));
+                    var ar=node.data.id_curso;
+                    var ur=globales._URL+"recursos/cursos/"+ar+"/"+node.data.recurso;
+                    document.getElementById("divAudio").innerHTML="";
+                     document.getElementById("ifYoutube").innerHTML="";
+                    document.getElementById("ifDocu").src=ur;  
+                  }else if(node.data.tipo=="evaluacion"){
+                    document.getElementById("ifYoutube").style.display="none";
+                    document.getElementById("ifDocu").style.display="none";
+                    document.getElementById("divAudio").innerHTML="";
+                    document.getElementById("ifYoutube").innerHTML="";
+                    if(node.data.valor!=undefined){
+                      consultar_examen(node.data.valor);
+                    }
+                  }else if(node.data.tipo=="evento"){
+                    document.getElementById("ifYoutube").style.display="none";
+                    document.getElementById("ifDocu").style.display="none";
+                    document.getElementById("divAudio").innerHTML="";
+                    document.getElementById("ifYoutube").innerHTML="";
+                  }else if(node.data.tipo=="audio"){
+                     document.getElementById("ifYoutube").style.display="none";
+                     document.getElementById("ifYoutube").innerHTML="";
+                    document.getElementById("ifDocu").style.display="none";
+                    document.getElementById("divExamen").style.display="none";
+                    document.getElementById("divAudio").style.display="";
+                    document.getElementById("divAudio").innerHTML=node.data.recurso;
+                  }
+                  //node.icon = "iconos_arbol/descarga1.jpg";
+                },
+                beforeSelect: function(event, data){
+                  // A node is about to be selected: prevent this, for folder-nodes:
+                  if( data.node.isFolder() ){
+                    return false;
+                  }
+                },
+                source: {
+                  url:globales._URL+"modulos_del_cursos/"+recibirValorGet(),
+                  cache:false,
+
+                },
+                //icon: false//oculta los iconos
+                  
+                
+                
+               
+
+               });
+            });
+          </script>
+          <style type="text/css">
+              .iframe{
+                width: 100%;
+                height:100%;
+              }
+
+          </style>
+          <style type="text/css">
+              span.fancytree-node.custom1 > span.fancytree-icon {
+                background-position: 0 0;
+                background-image: url("iconos_arbol/tierra.png");
+              }
+              span.fancytree-node.custom1 > span.fancytree-title {
+                color: maroon;
+                font-family: "Audiowide";
+              }
+          </style>
+    </head>
+    <body>
+        <ul class="menuVistaAl">
+            <li>
+                <img src="Imagen/cycle.png" id="logoUsu">
+            </li>   
+            <li id="liSalir">
+                <img>
+                <h4>Salir</h4>                
+            </li>
+            <li>
+                <a><img></a>
+                <a><h4 id="h4NombreUsuario">Nombre del usuario loqueado</h4></a>
+            </li>
+            <li>
+                <a href="alumno.html"><img></a>
+                <a href="alumno.html"><h4>Mis Cursos</h4></a>
+            </li>
+        </ul>
+        <div class="limpiar"></div>
+        <div class="contenidoCurso" id="arbol">
+            
+        </div>
+        <div class="vistaContenidoCurso">
+             <iframe class="iframe"  id="ifDocu"></iframe>
+            <iframe id="ifYoutube" class="iframe" frameborder="0" allowfullscreen></iframe>     
+            <div id="divExamen"></div>
+          <div id="divAudio"></div>
+      </div>
+    </body>
+</html>

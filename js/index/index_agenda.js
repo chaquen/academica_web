@@ -150,7 +150,151 @@ function iniciar_agenda(){
 	agregarEvento("tmHoraEventoFin","click",function(){
 		
 	});
+
+	agregarEvento("btnBuscarAgenda","click",function(){
+		var datos = $("#formConsultarAgenda").serializarFormulario();
+		if(datos!=false){
+			
+				consultarDatos("agenda/"+datos.id_curso,datos,function(rs){
+						mostrarMensaje(rs);
+						if(rs.respuesta){
+							$('#consultaAgenda').fadeOut('fast');
+        					$('#respuestaAgenda').fadeIn('slow');
+							dibujar_tabla_agendas(rs.datos);
+						}
+				},"formAgenda");
+				
+
+		
+			
+		}else{
+			mostrarMensaje("Por favor ingresa todos los campos");
+		}
+	});
+	agregarEvento("selTipoEventoAgenda","change",function(){
+		if(this.value=="evento"){
+			document.getElementById("txt_url_agenda").style.display='';
+		}else{
+			document.getElementById("txt_url_agenda").style.display='none';
+		}
+	});
+	agregarEvento("selTipoEventoAgendaEdi","change",function(){
+		if(this.value=="evento"){
+			document.getElementById("txt_url_agenda_edi").style.display='';
+		}else{
+			document.getElementById("txt_url_agenda_edi").style.display='none';
+		}
+	});
+	agregarEvento("selAgendaCursoEdi","change",function(){
+		if(this.value!="0"){
+			consultarDatos("modulo_curso/"+this.value,{},function(rs){
+				if(rs.respuesta){
+
+					crear_select("selAgendaModulos",rs.datos,"id","nombre_modulo");
+				}
+			});
+		}
+	});
+
+	agregarEvento("btnEditarEventoAgenda","click",function(){
+		
+		var datos = $("#formEditarAgenda").serializarFormulario();
+		if(datos!=false){
+				console.log(datos);
+				editarDato("agenda/"+datos.id_actividad,datos,function(rs){
+						mostrarMensaje(rs);
+				},"formEditarAgenda");
+				
+
+		
+			
+		}else{
+			mostrarMensaje("Por favor ingresa todos los campos");
+		}
+	});
 }
 
+function dibujar_tabla_agendas(datos){
 
+	 var tbl=document.getElementById("tblTablaAgenda");
+	 tbl.innerHTML="";
+	 for(var f in datos){
+	 	 console.log(datos[f]);
+	 	 var tr=document.createElement("tr");
+	 	 
+	 	 var td=document.createElement("td");
+	 	 td.innerHTML=datos[f].nombre_modulo;
+	 	 tr.appendChild(td);
+
+	 	 var td=document.createElement("td");
+	 	 td.innerHTML=datos[f].nombre_actividad;
+	 	 tr.appendChild(td);
+
+	 	 var td=document.createElement("td");
+	 	 td.innerHTML=datos[f].activo_desde;
+	 	 tr.appendChild(td);
+
+	 	 var td=document.createElement("td");
+	 	 td.innerHTML=datos[f].activo_hasta;
+	 	 tr.appendChild(td);
+
+	 	 var td=document.createElement("td");
+	 	 var inp=document.createElement("input");
+	 	 inp.setAttribute("type","button");
+	 	 inp.setAttribute("value","EDITAR");
+	 	 inp.setAttribute("onclick","editar_agenda("+datos[f].id+")");
+	 	 td.appendChild(inp);
+	 	 tr.appendChild(td);
+
+	 	  var td=document.createElement("td");
+	 	 var inp=document.createElement("input");
+	 	 inp.setAttribute("type","button");
+	 	 inp.setAttribute("value","ELIMINAR");
+	 	 inp.setAttribute("onclick","eliminar_agenda("+datos[f].id+")");
+	 	 td.appendChild(inp);
+	 	 tr.appendChild(td);
+
+
+	 	 tbl.appendChild(tr);
+	 }
+
+}
+
+function editar_agenda(id_agenda){
+	if(confirm("¿Desea editar esta agenda?")){
+		consultarDatos("agenda_por_id/"+id_agenda,{},function(rs){
+			if(rs.respuesta){
+				$('#respuestaAgenda').fadeOut('fast');
+        		$('#editarAgenda').fadeIn('slow');
+				mostrarAgendaEdicion(rs.datos[0]);
+			}
+		});
+	}
+}
+function mostrarAgendaEdicion(datos){
+	document.getElementById("selAgendaCursoEdi").value=datos.fk_id_curso;
+	document.getElementById("hd_id_actividad").value=datos.id;
+	consultarDatos("modulo_curso/"+datos.fk_id_curso,{},function(rs){
+				if(rs.respuesta){
+
+					crear_select("selAgendaModulosEdi",rs.datos,"id","nombre_modulo");
+					document.getElementById("selAgendaModulosEdi").value=datos.fk_id_modulo_curso;
+				}
+	});
+	document.getElementById("selTipoEventoAgendaEdi").value=datos.tipo_actividad;
+	document.getElementById("txt_nombre_evento_edi").value=datos.nombre_actividad;
+	
+	document.getElementById("dtFechaEventoIniEdi").value=datos.activo_desde.split(" ")[0];
+	document.getElementById("tmHoraEventoIniEdi").value=datos.activo_desde.split(" ")[1];
+	document.getElementById("dtFechaEventoFinEdi").value=datos.activo_hasta.split(" ")[0];
+	document.getElementById("tmHoraEventoFinEdi").value=datos.activo_hasta.split(" ")[1];
+}
+
+function eliminar_agenda(id_agenda){
+	if(confirm("¿Deseas eliminare esta actividad?")){
+		eliminarDato("agenda/"+id_agenda,{},function(rs){	
+			mostrarMensaje(rs);
+		});
+	}
+}
 

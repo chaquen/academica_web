@@ -34,6 +34,7 @@ function consultar_examen(){
 
 function dibujar_evaluacion(datos_pre){
 	 var div_pre=document.getElementById("divExamen");
+	 div_pre.innerHTML="";
 	
 	var opc="abcdefgijklmnopqrstuvwxyz";
 	

@@ -412,10 +412,11 @@ var main = (function($) { var _ = {
 			_.$thumbnails.children()
 				.each(function() {
 
-					var	$this = $(this),
+						var	$this = $(this),
+
 						$thumbnail = $this.children('.thumbnail'),
 						s;
-
+						console.log($this);
 					// Slide object.
 						s = {
 							$parent: $this,
@@ -433,7 +434,7 @@ var main = (function($) { var _ = {
 
 						// Create elements.
 	 						s.$slide = $('<div class="slide"><div class="caption"></div><div class="image"></div></div>');
-
+	 						console.log(s.$slide);
 	 					// Image.
  							s.$slideImage = s.$slide.children('.image');
 
@@ -444,7 +445,7 @@ var main = (function($) { var _ = {
 
 						// Caption.
 							s.$slideCaption = s.$slide.find('.caption');
-
+							console.log(s.$slideCaption);
 							// Move everything *except* the thumbnail itself to the caption.
 								$this.children().not($thumbnail)
 									.appendTo(s.$slideCaption);

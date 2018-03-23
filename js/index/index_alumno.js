@@ -74,6 +74,7 @@ function iniciar_index_alumno(){
 
 		editarDato("usuarios/"+datos.id_usuario,datos,function(rs){
 			mostrarMensaje(rs);
+			document.getElementById("txtBuscarAlumno").value="";
 		},"formEditarAlumno");
 	});
 	agregarEvento("btnInscribirAlumno","click",function(){
@@ -196,6 +197,7 @@ function mostrar_editar(id){
 			document.getElementById("txtTelefonoAlumnoEdi").value=al.telefono_usuario;
 			document.getElementById("txtDireccionAlumnoEdi").value=al.direccion_usuario;
 			document.getElementById("txtCorreoAlumnoEdi").value=al.correo_usuario;
+			document.getElementById("dtFechaCumpleAlu").value=al.fecha_nacimiento;
 			document.getElementById("liMisCursos").innerHTML="";
 			for(var c in al.cursos){
 				var li=document.createElement("li");

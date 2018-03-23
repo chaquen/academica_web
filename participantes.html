@@ -6,15 +6,15 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Participantes</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div>
-            <h1>NOMBRE COMPLETO DEL CURSO</h1>
+            <h1 id="h1NombreCurso" >NOMBRE COMPLETO DEL CURSO</h1>
             <h3>Participantes</h3>
-            <ul>
+            <ul id="liParticipantes">
                 <li>
                     <img>
                     <h4>Nombre completo del participante</h4>
@@ -51,7 +51,17 @@ and open the template in the editor.
                     <h5>Nombre completo del curso</h5>
                 </li>
             </ul>
-            <input type="button" value="Aceptar">
+            <input type="button" value="Atras" onclick="javascript:window.history.go(-1);">
         </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>        
+            <script type="text/javascript" src="js/funciones/CrudBase.js"></script>
+            <script type="text/javascript" src="js/funciones/formatos.js"></script>
+            <script type="text/javascript" src="js/funciones/peticiones_ajax.js"></script>
+            <script type="text/javascript" src="js/funciones/storage.js"></script>
+            <script type="text/javascript" src="js/funciones/utilidades.js"></script>
+            <script type="text/javascript" src="js/prototipos/prototipos.js"></script>
+            <script type="text/javascript" src="js/globales.js"></script>
+            <script type="text/javascript" src="js/alumnos/participantes_curso.js"></script>       
+            
     </body>
 </html>

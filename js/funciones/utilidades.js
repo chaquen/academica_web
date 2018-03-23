@@ -53,6 +53,31 @@ function horaCliente(){
     return ultActividad;
     
 }
+function horaClienteFormato(fecha){
+       
+
+    var a=fecha.getFullYear();
+    if(a<=9){
+      a="0"+a;
+    }
+    var m= fecha.getMonth();
+    if(m<9){
+      m="0"+(m+1);
+    }else{  
+      m=(m+1);
+    }
+    var d=fecha.getDate();
+    if(d<=9){
+      d="0"+d;
+    }
+
+    
+   
+    
+    var ultActividad=a+"-"+m+"-"+d;
+    return ultActividad;
+    
+}
 function horaClientePersonlizada(){
     var anio= new Date();
     var mes= new Date();
@@ -180,204 +205,7 @@ function ayer(){
     console.log(anio+"-"+(mes)+"-"+(dia));
     return anio+"-"+(mes)+"-"+(dia);
 }
-/*function esta_semana(){
-  var hoy=new Date();
-  var mes1=hoy.getMonth()+1;
-  var mes2= hoy.getMonth()+1;
-  var primer_dia_semana;
-  var ultimo_dia_semana;
 
-
-  //var dia_del_mes=hoy.getDate();
-  var dia_del_mes=29;
-  var semana=["domingo","lunes","martes","miercoles","jueves","viernes","sabado"];
-  var anio=hoy.getFullYear();
-  //var dia_de_la_semana=semana[hoy.getDay()];
-  var dia_de_la_semana=semana[3];
-  mes=12;
-  switch(dia_de_la_semana){
-      case "domingo":
-        primer_dia_semana=dia_del_mes;
-        ultimo_dia_semana=dia_del_mes+6;
-       break;
-      case "lunes":
-        primer_dia_semana=dia_del_mes-1;  
-        ultimo_dia_semana=dia_del_mes+5;
-       break;
-      case "martes":
-        primer_dia_semana=dia_del_mes-2;
-        ultimo_dia_semana=dia_del_mes+4;
-       break;
-      case "miercoles":
-        primer_dia_semana=dia_del_mes-3;
-        ultimo_dia_semana=dia_del_mes+3;
-       break;
-      case "jueves":
-        primer_dia_semana=dia_del_mes-4;
-        ultimo_dia_semana=dia_del_mes+2;
-       break;
-      case "viernes":
-        primer_dia_semana=dia_del_mes-5;
-        ultimo_dia_semana=dia_del_mes+1; 
-       break;   
-      case "sabado":
-        primer_dia_semana=dia_del_mes-6;
-        ultimo_dia_semana=dia_del_mes;
-       break;
-      
-  }
-  //aqui valido el primer dia de la semana
-  if(primer_dia_semana<1){
-    switch(mes){
-      case 1:
-            primer_dia_semana=31+primer_dia_semana;
-       break;
-      case 2:
-        //pilas con los biciestos
-        if ((anio % 4 == 0) && (anio % 100 != 0) || (anio % 400 == 0)){
-            primer_dia_semana=29+primer_dia_semana; 
-        }else{
-            primer_dia_semana=28+primer_dia_semana; 
-        }
-          
-        
-       break;
-      case 3: 
-          primer_dia_semana=31+primer_dia_semana;
-       break;
-      case 4: 
-        primer_dia_semana=30+primer_dia_semana;
-       break;
-      case 5: 
-         primer_dia_semana=31+primer_dia_semana; 
-       break;
-      case 6: 
-        
-        primer_dia_semana=30+primer_dia_semana;
-
-        
-       break;
-      case 7: 
-        primer_dia_semana=31+primer_dia_semana;
-       break;
-      case 8: 
-        primer_dia_semana=31+primer_dia_semana;
-       break;
-      case 9: 
-        primer_dia_semana=30+primer_dia_semana;
-       break;
-      case 10: 
-        primer_dia_semana=31+primer_dia_semana;
-       break;
-      case 11: 
-        primer_dia_semana=30+primer_dia_semana;
-       break;
-      case 12: 
-        primer_dia_semana=31+primer_dia_semana;
-
-       break;
- 
-
-    }
-  }
-  //aqui valido el ultimo dia de la semana
-  switch(mes){
-    case 1:
-      if(ultimo_dia_semana>31){
-          ultimo_dia_semana=ultimo_dia_semana-31;
-          mes=mes+1;
-      }
-      break;
-    case 2:
-        if ((anio % 4 == 0) && (anio % 100 != 0) || (anio % 400 == 0)){
-          if(ultimo_dia_semana>29){
-              ultimo_dia_semana=ultimo_dia_semana-29;
-              mes=mes+1;
-          }
-        }else{
-           if(ultimo_dia_semana>28){
-              ultimo_dia_semana=ultimo_dia_semana-28;
-              mes=mes+1;
-           } 
-        }
-      break;
-    case 3:
-        if(ultimo_dia_semana>31){
-          ultimo_dia_semana=ultimo_dia_semana-31;
-          mes=mes+1;
-        }
-      break;
-    case 4:
-        if(ultimo_dia_semana>30){
-          ultimo_dia_semana=ultimo_dia_semana-30;
-          mes=mes+1;
-        }
-      break;
-    case 5:
-      if(ultimo_dia_semana>31){
-        ultimo_dia_semana=ultimo_dia_semana-31;
-        mes=mes+1;
-      }
-      break;
-    case 6:
-      if(ultimo_dia_semana>30){
-        ultimo_dia_semana=ultimo_dia_semana-30;
-        mes=mes+1;
-      }
-      break;
-    case 7:
-      if(ultimo_dia_semana>31){
-          ultimo_dia_semana=ultimo_dia_semana-31;
-          mes=mes+1;
-
-      }
-      break;
-    
-    case 8:
-      if(ultimo_dia_semana>31){
-        ultimo_dia_semana=ultimo_dia_semana-31;  
-        mes=mes+1;
-      }
-      break;
-    case 9:
-      if (ultimo_dia_semana>30) {
-        ultimo_dia_semana=ultimo_dia_semana-30;
-        mes=mes+1;
-
-      }
-      break;
-    case 10:
-      if(ultimo_dia_semana>31){
-          ultimo_dia_semana=ultimo_dia_semana-31;
-          mes=mes+1;
-      }
-      break;
-    
-    case 11:
-      if(ultimo_dia_semana>30){
-          ultimo_dia_semana=ultimo_dia_semana-30;
-          mes=mes+1;
-      }
-      break;
-    
-    case 12:
-      if(ultimo_dia_semana>31){
-        ultimo_dia_semana=ultimo_dia_semana-31;
-        mes1="01";
-        anio=anio+1;
-      }
-      break;          
-    }
-  
- 
-  return [anio+"-"+mes+"-"+primer_dia_semana,anio+"-"+mes1+"-"+ultimo_dia_semana];
-
-
-
-}*/
-/*function semana_anterior(){
-
-}*/
 function este_mes(){
   var mes = new Date();
   switch(mes.getMonth()+1){
@@ -468,18 +296,6 @@ function agregarEventoPageShow(funcion){
     window.addEventListener("pageshow",funcion,false);
 }
 
-function redireccionar(url){
-    location.href=url;
-}
-function imprimir(datos){
-    console.log(datos);
-    console.log(datos.respuesta);
-    console.log(datos.valores_consultados);
-    
-}
-function imprimir_en_documento(datos){
-    document.write(JSON.stringify(datos.valores_consultados));
-}
 function mostrarMensaje(dato){
     
     if(dato.mensaje!=undefined){
@@ -491,34 +307,6 @@ function mostrarMensaje(dato){
     }
     
 }
-function validar_igualdad_campos(id1,id2){
-    var v1=document.getElementById(id1);
-    var v2=document.getElementById(id2);
-    if(v1.value==v2.value){
-        return true;
-    }
-    return false;
-}
-
-function abrir_ventana(url,u){
-    
-    var w=window;
-    w.fullScreen=true;
-    var ancho= screen.availWidth;
-    var largo=screen.availHeight;
-    if(w.open(url,u.nombre_usuario,"menubar=no,toolbar=no,width="+ancho+","+"height="+largo+",resizable=no,location=no")==null){
-         mostrarMensaje("Parece que tiene desabilitadas las ventanas emergentes en su navegador por favor cambie la configuracion para tener acceso");   
-    }else{
-        //location.href="/";
-    }
-
-
-}
-
-
-
-
-
 function salir(_usuario){
     
     if(confirm("Desea salir de la aplicacion?")){
@@ -533,8 +321,6 @@ function salir(_usuario){
         location.href="index.html";
      }
 }
-
-
 /*
  * Funcion para convertir los valores enviados por GET 
  * a un array
@@ -545,38 +331,21 @@ function recibirValorGet(){
   console.log(window.location.href);
   console.log(window.location.pathname);
     params=window.location.href.split("?");
-    params=params[1].split("&");
-    if(params!=""){
-        return params;
+    if(params[1]!=undefined){
+      params=params[1].split("&");
+      if(params!=""){
+          return params;
+      }else{
+          return false;
+      }  
     }else{
-        return false;
+      console.log("No ay parametros enviados a la página");
+      return false;
     }
+    
     
       
 }
-function cambiarAccion(){
-    
-    switch(this.id.split("_")[0]){
-        //USUARIO
-       
-         case "buscar":
-         accionUsuario="consulta";
-            break;
-         case "editar":
-         accionUsuario="editar";
-            break;
-         case "eliminar":
-            accionUsuario="eliminar";
-            break;   
-         
-         //DEFAULT   
-         default:
-             mostrarMensaje({mensaje:"Por favor agrega una accion para el usuario "+this.id.split("_")[0]});
-             break;
-    }
-}
-
-
 
 
 //funcion para el control de teclas 
@@ -726,8 +495,8 @@ function crear_select(id_select,datos,id,valor){
           
        
         Object.keys(datos).forEach(function(clave) {
-          //console.log(clave);
-          //console.log(Object.keys(datos[clave]));
+          console.log(clave);
+          console.log(Object.keys(datos[clave]));
          
          
           var mis_llaves=Object.keys(datos[clave]);
@@ -735,8 +504,8 @@ function crear_select(id_select,datos,id,valor){
           for(var l in mis_llaves){
 
             if(existe==false && mis_llaves[l]==id){
-              //console.log(mis_llaves[l]);
-              //console.log(datos[clave][id]);
+              console.log(mis_llaves[l]);
+              console.log(datos[clave][id]);
               var opt=document.createElement("option");
               opt.setAttribute("value",datos[clave][id]);
               existe=true;
@@ -755,6 +524,8 @@ function crear_select(id_select,datos,id,valor){
             }
           }
        });
+
+        console.log(sel);
   }
 }
 
@@ -965,4 +736,12 @@ $.fn.serializarFormulario = function()
   }
     
     
+}
+function abrir_ventana(abrir,url){
+  if(abrir){
+    window.open(url,"Evaluación","toolbar=yes");  
+  }else{
+    mostrarMensaje("¡Aún no es hora de que te evalues!");
+  }
+  
 }

@@ -2,20 +2,48 @@ agregarEventoLoad(iniciar_login);
 function iniciar_login(){
 		var existe=obtener_session_storage("ssGlobales");
 		if(existe!=false){
+			
 			if(existe._usuario==false){
 				existe=obtener_local_storage("ssGlobales");
 			}
-		}else{
 
-				existe=obtener_local_storage("ssGlobales");
-			
+		}else{
+				existe=obtener_local_storage("ssGlobales");		
+				if(existe!=false){
+
+					document.getElementById("txt_usuario").value=existe._recordarme.usuario;
+					document.getElementById("txt_pass").value=existe._recordarme.clave;
+					document.getElementById("chRecormarme").checked=true;
+				}	
 		}
+
+
+
 			
 		if(existe!=false && existe._cerrar_sesion==false){
+
 			globales=existe;
 			iniciar_panel(globales._usuario);		
 		}else{
-		
+
+			if(existe!=false){
+					
+					if(existe._recordarme!=false){
+						document.getElementById("txt_usuario").value=existe._recordarme.usuario;
+						document.getElementById("txt_pass").value=existe._recordarme.clave;
+						document.getElementById("chRecormarme").checked=true;
+					}else{
+						document.getElementById("txt_usuario").value="";
+						document.getElementById("txt_pass").value="";
+						document.getElementById("chRecormarme").checked=false;	
+					}
+				}else{
+						document.getElementById("txt_usuario").value="";
+						document.getElementById("txt_pass").value="";
+						document.getElementById("chRecormarme").checked=false;
+				}	
+
+
 			agregarEvento("btnIngresar","click",function(){
 				var datos = $("#formLogin").serializarFormulario();
 				console.log(datos);
@@ -123,16 +151,27 @@ function iniciar_login(){
 			});
 			agregarEvento("chRecormarme","change",function(){
 				if(this.checked){
-					guardar();
+					guardar(true);
 
+				}else{
+					guardar(false);					
 				}
 			});
 		}	
 }
 /*Aqui creo mi local storage*/
-function guardar(){
+function guardar(valor){
+	if(valor){
+		globales._recordarme={
+			usuario:globales._usuario.correo_usuario,
+			clave:globales._usuario.password,
+		};
+		agregar_local_storage("ssGlobales",globales);	
+	}else{
+		globales._recordarme=false;
+		agregar_local_storage("ssGlobales",globales);	
+	}
 	
-	agregar_local_storage("ssGlobales",globales);
 }
 /*CONSULTO EL PIN*/
 function consultar_pin(pin){

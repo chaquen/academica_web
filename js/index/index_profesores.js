@@ -89,7 +89,7 @@ function iniciar_profesores(){
 	agregarEvento("btnEditarProfesor","click",function(){
 		var datos = $("#formEditarProfesor").serializarFormulario();
 		if(datos!=false){
-			
+			console.log(datos);
 			//var archivo=document.getElementById("flFotoProfe");
 			//console.log(archivo.files);
 			
@@ -100,8 +100,18 @@ function iniciar_profesores(){
 					});		*/
 					datos.rol="2";//2 => profesor
 					datos.curso="0";//0 => n/a
+
+					if(datos.clave.length==2){
+						if(datos.clave[0]==datos.clave[1]){
+							datos.clave=datos.clave[0];
+						}else{
+							mostrarMensaje("Las contraseñas deben coincidir");
+							return false;
+						}	
+					}
 					editarDato("usuarios/"+datos.id_usuario,datos,function(rs){
 						mostrarMensaje(rs);
+						document.getElementById("txtBuscarProfesor").value="";
 					},"formEditarProfesor");
 				
 
@@ -255,6 +265,7 @@ function  mostrar_editar_profe(id) {
 			document.getElementById("txtTeleProfeEdi").value=al.telefono_usuario;
 			document.getElementById("txtDirProfeEdi").value=al.direccion_usuario;
 			document.getElementById("txtCorreoProfeEdi").value=al.correo_usuario;
+			document.getElementById("dtFechaNacProfeEdi").value=al.fecha_nacimiento;
 			//document.getElementById("selCursoActivoEdi").value=al.curso;
 			
 			$('#respuestaProfesor').fadeOut('fast');
