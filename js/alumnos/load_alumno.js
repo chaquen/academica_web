@@ -315,7 +315,7 @@ function dibujar_div_actividad(actividad){
 
 			console.log(new Date(hoy).getTime());
 			if(new Date(hoy).getTime()>=new Date(actividad[f].activo_desde).getTime() ){
-				hCurso.setAttribute("onclick","abrir_ventana("+true+",'mi_evaluacion.html?id="+actividad[f].id+"')");
+				hCurso.setAttribute("onclick","abrir_ventana("+true+",'mi_evaluacion.html?id_eva="+actividad[f].id+"&id_us="+globales._usuario.id+"')");
 			}else{
 				hCurso.setAttribute("onclick","abrir_ventana("+false+",'"+0+"')");
 			}
