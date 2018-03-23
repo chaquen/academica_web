@@ -169,7 +169,7 @@ function dibujar_cursos_alumno(datos){
 
 		
 		var a =document.createElement("a");
-		a.href="contenidoCurso.html?id="+datos[d].id;
+		a.href="vistaAlumno.html?id="+datos[d].id;
 		var h2 =document.createElement("h2");
 		h2.innerHTML=datos[d].nombre_curso;
 		a.appendChild(h2);
@@ -181,7 +181,7 @@ function dibujar_cursos_alumno(datos){
 		var li=document.createElement("li");
 		
 		var a =document.createElement("a");
-		a.href="contenidoCurso.html?id="+datos[d].id;
+		a.href="vistaAlumno.html?id="+datos[d].id;
 		var img=document.createElement("img");
 		a.appendChild(img);
 		li.appendChild(a);
@@ -190,7 +190,7 @@ function dibujar_cursos_alumno(datos){
 		var a =document.createElement("a");
 		
 		var h4=document.createElement("h4");
-		a.href="contenidoCurso.html?id="+datos[d].id;
+		a.href="vistaAlumno.html?id="+datos[d].id;
 		h4.innerHTML="contenido";
 		a.appendChild(h4);
 		li.appendChild(a);
@@ -215,22 +215,26 @@ function dibujar_cursos_alumno(datos){
 		//FIN lista CALIFIICACIONES
 		//lista PARTICIPANTES
 		var li=document.createElement("li");
+		
 		var a =document.createElement("a");
-		a.href="#";
+		a.href="participantes.html?id="+datos[d].id;
 		var img=document.createElement("img");
 		a.appendChild(img);
 		li.appendChild(a);
 		ul.appendChild(li);
 
 		var a =document.createElement("a");
-		li.appendChild(a);
+		
 		var h4=document.createElement("h4");
-		h4.innerHTML="Participantes";
-		li.appendChild(h4);
+		a.href="participantes.html?id="+datos[d].id;
+		h4.innerHTML="participantes";
+		a.appendChild(h4);
+		li.appendChild(a);
 		ul.appendChild(li);
-		//FIN lista PARTICIPANTES
-		//lista actividades
+		//FIN lista contenido
+		//lista CALIFICACIONES
 		var li=document.createElement("li");
+		
 		var a =document.createElement("a");
 		a.href="#";
 		var img=document.createElement("img");

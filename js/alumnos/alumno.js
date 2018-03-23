@@ -174,4 +174,5 @@ function cargar_datos_perfil(us){
     document.getElementById("txt_dir_alumno").value=us.direccion_usuario;
     document.getElementById("txt_mail_alumno").value=us.correo_usuario; 
     document.getElementById("txt_mail_alumno_2").value=us.correo_usuario; 
+    document.getElementById("txt_cumple_alumno").value=us.fecha_nacimiento;
 }   
