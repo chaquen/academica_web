@@ -1,0 +1,66 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22/03/2018, 04:16:35 PM
+    Author     : DarkShinobi
+*/
+* {
+    padding: 0;
+    margin: 0; 
+    list-style: none;
+}
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    width: 100%;
+    height: 100%;
+}
+.menuAlumno {
+    width: 20%;
+    float: left;
+    height: 100%;
+    bottom: 0;
+    background-color: aquamarine;
+}
+.contenido {
+    width: 80%;
+    float: left;
+    height: 100%;
+    background-color: rosybrown;
+}
+.modulo {
+    width: 100%;
+}
+.modulo li {
+    padding: 10px;
+    background-color: blue;
+    text-align: center;
+    color: white;
+    margin-top: 2px;
+    cursor: pointer;
+}
+.actividad {
+    width: 100%;
+    display: table;
+}
+.actividad li {
+    float: left;
+    width: 46.5%;
+    margin: 1%;
+    height: 100px;
+    background-color: red;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+.actividad li img {
+    display: table;
+    width: 100px;
+    
+}
+
