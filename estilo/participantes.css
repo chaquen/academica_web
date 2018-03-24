@@ -1,0 +1,78 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23/03/2018, 10:12:18 PM
+    Author     : DarkShinobi
+*/
+@font-face {
+    font-family: "gotica";
+    src: url('../font/GOTHIC.TTF');
+}
+* {
+    font-family: gotica;
+    padding: 0;
+    margin: 0;   
+    list-style: none;
+}
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+}
+h1 {
+    text-shadow: 2px 2px 3px black;
+    padding-top: 20px;
+}
+.participantes {
+    width: 50%;
+    margin: auto;
+    background-color: gray;
+    padding-bottom: 20px;
+}
+#liParticipantes {
+    width: 80%;
+    margin: auto;
+    background-color: silver;
+    padding: 20px;
+    display: table;
+    color: black;
+}
+#liParticipantes li {
+    width: 100%;
+    display: table;
+    margin-top: 10px;
+    
+}
+#liParticipantes li img {
+    width: 80px;
+    height: 80px;
+    float: left;
+    border: 2px solid black;
+}
+#liParticipantes li h4 {
+    float: left;
+    margin-left: 10px;
+    margin-top: 30px;
+    font-size: 20px;
+}
+#liParticipantes li h5 {
+    float: left;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+input {
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+    border: 1px solid blue;
+}

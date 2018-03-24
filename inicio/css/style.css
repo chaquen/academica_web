@@ -52,6 +52,7 @@ a:active {
   font-family: 'Volkhov', serif;
   font-style: italic;
   color: #666;
+  text-align: justify; 
 }
 /*--
 	Header Start 
@@ -796,4 +797,17 @@ footer .footer-manu ul li a {
 }
 footer .footer-manu ul li a:hover {
   color: #000;
+}
+
+#logo {
+    width: 235px;
+    height: 100px;
+    margin-top: -30px;
+}
+p {
+    text-align: justify;
+}
+.icon {
+    width: 80px;
+    height: 80px;
 }

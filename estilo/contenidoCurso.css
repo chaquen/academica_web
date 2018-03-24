@@ -141,7 +141,7 @@ body {
     z-index: 9999;
     position: fixed;
     display: none;
-    margin-top: -490px;
+    top: 0;
     background-color: rgba(1,1,1,0.7);
     padding-top: 100px;
 }
@@ -154,10 +154,9 @@ body {
 }
 .formulario {
     width: 50%;
-    margin: 50px auto;
+    margin: auto;
     border: 1px solid black;
     padding: 50px;
-    display: none;
     text-align: center;
     background-color: #ECE0F8;
 }
