@@ -1,4 +1,5 @@
 var preguntas_evaluacion;
+var valor;
 agregarEventoLoad(iniciar_responder_examen);
 
 function iniciar_responder_examen(){
@@ -17,9 +18,9 @@ function iniciar_responder_examen(){
 	});
 }
 function consultar_examen(){
-	var valor=recibirValorGet();
+	valor=recibirValorGet();
 	console.log(valor);
-	consultarDatos("evaluacion/"+valor,{},function(rs){
+	consultarDatos("evaluacion/"+valor[0].split("=")[1],{},function(rs){
 		if(rs.respuesta){
 			console.log(rs.datos[0].preguntas);
 			//agregar_local_storage("preguntas",rs.datos);
@@ -186,7 +187,7 @@ function dibujar_evaluacion(datos_pre){
 			var li=document.createElement("li");
 			var btn_sig=document.createElement("input");
 			btn_sig.setAttribute("type","button");
-			btn_sig.setAttribute("value","enviar");
+			btn_sig.setAttribute("value","Finalizar");
 			btn_sig.setAttribute("class","uno");
 			btn_sig.setAttribute("id","btn_sig_"+datos[d].id);
 			btn_sig.setAttribute("onclick","siguiente("+datos[d].id+","+true+")");			
@@ -262,7 +263,7 @@ function siguiente(id,salir){
 	 			break;
 	 		}
 	 		
-	 	}
+	 	}	
 	 }
 
 	 if(selecciona){
@@ -290,10 +291,12 @@ function finalizar_concurso(){
 	var d=preguntas_evaluacion.preguntas;
 	registrarDato("respuestas_de_usuario",{
 		preguntas:d,
-		usuario:3//globales._usuario.id
+		usuario:valor[1].split("=")[1],//globales._usuario.id
+		evaluacion:valor[0].split("=")[1]
 	},validar,"");
 }
 function validar(rs){
 	mostrarMensaje(rs);
 	console.log(rs);
+	eliminar_local_storage("preguntas");
 }
