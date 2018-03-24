@@ -170,6 +170,10 @@ $(document).ready(function(){
         $('#consultaPregunta').fadeIn('slow');
     });
     //Crear Evaluacion
+    $('#calificarPar').click(function(){
+        $('.subMenu').fadeOut('fast');
+        $('#calificar').fadeIn('slow');
+    });
     $('#crearEv').click(function(){
         $('.subMenu').fadeOut('fast');
         $('#crearEvaluacion').fadeIn('slow');
