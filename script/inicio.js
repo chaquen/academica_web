@@ -39,7 +39,7 @@ $(document).ready(function(){
     
     //Salir de los formularios
     $('.salirFor, .salir').click(function(){
-        $('.formulario, #crearCurso, #respuestaProfesor, #editarCurso, .tabla').fadeOut('fast');
+        $('.formulario, #crearCurso, #respuestaProfesor, #editarCurso, .tabla, .mascara').fadeOut('fast');
     });
     
     
@@ -179,6 +179,9 @@ $(document).ready(function(){
    $('#datosUsuario').click(function(){
         $('#formUsuarioLog').fadeIn('slow');
     });
+    
+    //Participantes del curso
+    
     
     
 });

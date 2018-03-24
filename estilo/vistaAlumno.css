@@ -7,10 +7,17 @@ and open the template in the editor.
     Created on : 22/03/2018, 04:16:35 PM
     Author     : DarkShinobi
 */
+
+@font-face {
+    font-family: "gotica";
+    src: url('../font/GOTHIC.TTF');
+}
+
 * {
     padding: 0;
     margin: 0; 
     list-style: none;
+    font-family: gotica;
 }
 html {
     width: 100%;
@@ -25,13 +32,19 @@ body {
     float: left;
     height: 100%;
     bottom: 0;
-    background-color: aquamarine;
+    margin-top: -28px;
+}
+.limpiar {
+    clear: both;
+    width: 100%;
+    height: 1px;
 }
 .contenido {
     width: 80%;
     float: left;
-    height: 100%;
-    background-color: rosybrown;
+    height: 100%;  
+    margin-top: -28px;
+    background-color: gray;
 }
 .modulo {
     width: 100%;
@@ -43,6 +56,7 @@ body {
     color: white;
     margin-top: 2px;
     cursor: pointer;
+    font-family: gotica;
 }
 .modulo li:hover {
     background-color: darkslateblue;
@@ -70,4 +84,40 @@ body {
     height: 100px;
     
 }
-
+.menuVistaAl {
+    width: 100%;
+    height: 50px;
+    background-color: darkblue;
+    color: orange;
+    padding-bottom: 20px;
+}
+.menuVistaAl li {
+    float: right;
+    padding: 20px;
+    margin: 2px;
+}
+.menuVistaAl li:first-child {
+    float: left;
+}
+.menuVistaAl a {
+    color: orange;
+}
+.menuVistaAl li h4 {
+    float: right;
+    margin-right: 5px;
+    cursor: pointer;
+    font-family: gotica;
+    
+}
+#logoUsu {
+    margin-top: -20px;
+    width: 150px;
+    height: 70px;
+    background-color: rgba(254,249,231,0.8);
+}
+.vistaContenido {
+    width: 90%;
+    margin: auto;
+    height: 95%;
+    background-color: black;
+}
