@@ -97,29 +97,36 @@ function dibujar_lista_contenido(id_modulo){
 				if(_curso.modulos[f].id==id_modulo){
 						for(var ff in _curso.modulos[f].actividades){
 							var img="";
+							var nom="";
 							switch(_curso.modulos[f].actividades[ff].tipo_actividad){
 								case "documento":
 										img="lectura.png";	
+										nom="DOCUMENTO";
 										break;
 								case "video":
 										img="video.png";	
+										nom="VIDEO";
 										break;
 								case "evento":
 										img="taller.png";	
+										nom="TALLER";
 										break;				
 								case "evaluacion":
 										img="evaluacion.png";
-
+										nom="EVALUACIÓN";
 										break;
 								case "audio":
 										img="audio.png";
+										nom="AUDIO";
 										break;				
 							}
+
 							var li=document.createElement("li");
 							var image=document.createElement("img");
 							image.setAttribute("src","Imagen/"+img);
 							var h4=document.createElement("h4");
-							h4.innerHTML=_curso.modulos[f].nombre_modulo;
+							//h4.innerHTML=_curso.modulos[f].nombre_modulo;
+							h4.innerHTML=nom;
 							image.setAttribute("onclick","dibujar_contenido('"+_curso.modulos[f].actividades[ff].id+"')");
 							li.appendChild(image);
 							li.appendChild(h4);
