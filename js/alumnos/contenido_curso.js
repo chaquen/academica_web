@@ -19,7 +19,10 @@ function consultar_curso(params){
 		globales=existe;
 		//aqui valavalidacion delusuario 
 	}
-
+	agregarEvento("liSalir","click",function(){
+		salir();
+	});
+	
 	consultarDatos("cursos/id&=&"+params,{},function(rs){
 			if(rs.respuesta){
 				var liListaActividades=document.getElementById("liListaActividades");
@@ -27,7 +30,7 @@ function consultar_curso(params){
 				_curso=rs.datos[0];
 				document.getElementById("tlTitulo").innerHTML=rs.datos[0].nombre_curso;
 				document.getElementById("h1TlContenidoCurso").innerHTML=rs.datos[0].nombre_curso;
-				//document.getElementById("pTlDescCurso").innerHTML=rs.datos[0].descripcion_curso;
+				document.getElementById("h4NombreUsuario").innerHTML=globales._usuario.nombre_usuario+" "+globales._usuario.apellido_usuario;
 				var lista=document.getElementById("liModulosCurso");
 				lista.innerHTML="";
 				for(var d in rs.datos[0].modulos){
@@ -151,13 +154,13 @@ function dibujar_contenido(id_actividad){
  				switch(_curso.modulos[f].actividades[ff].tipo_actividad){
 					case "documento":
 								var iframe=document.createElement("iframe");
-								//iframe.setAttribute("class","ifram");
+								iframe.setAttribute("class","vistaContenido");
 								iframe.setAttribute("src",globales._URL+"recursos/cursos/"+_curso.id+"/"+_curso.modulos[f].actividades[ff].actividad_recurso);
 								divContenido.appendChild(iframe);
 							break;
 					case "video":
 								var iframe=document.createElement("iframe");
-								//iframe.setAttribute("class","ifram");
+								iframe.setAttribute("class","vistaContenido");
 								iframe.setAttribute("src","https://www.youtube.com/embed/"+_curso.modulos[f].actividades[ff].actividad_recurso);
 								iframe.setAttribute("frameborder","0");
 								//iframe.setAttribute("allow","autoplay");
