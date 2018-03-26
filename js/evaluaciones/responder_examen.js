@@ -3,7 +3,7 @@ var valor;
 agregarEventoLoad(iniciar_responder_examen);
 
 function iniciar_responder_examen(){
-	preguntas_evaluacion=obtener_local_storage("preguntas");
+	preguntas_evaluacion=obtener_session_storage("preguntas");
 	console.log(preguntas_evaluacion);
 
 	if(preguntas_evaluacion==false){
@@ -219,7 +219,7 @@ function seleccionar(id_pregunta,id_respuesta){
 						datos[e].respuestas[ee].texto_respuesta=document.getElementById("res_"+id_respuesta).value;
 					}
 					preguntas_evaluacion.preguntas=datos;
-					agregar_local_storage("preguntas",preguntas_evaluacion);
+					agregar_session_storage("preguntas",preguntas_evaluacion);
 
 				}else{
 					datos[e].respuestas[ee].seleccionada=false;
@@ -286,7 +286,7 @@ function siguiente(id,salir){
 }
 function finalizar_concurso(){
 	
-	preguntas_evaluacion=obtener_local_storage("preguntas");
+	preguntas_evaluacion=obtener_session_storage("preguntas");
 	eliminar_session_storage("preguntas");
 	var d=preguntas_evaluacion.preguntas;
 	registrarDato("respuestas_de_usuario",{
@@ -296,7 +296,12 @@ function finalizar_concurso(){
 	},validar,"");
 }
 function validar(rs){
-	mostrarMensaje(rs);
-	console.log(rs);
-	eliminar_local_storage("preguntas");
+	if(rs.respuesta){
+		mostrarMensaje(rs);
+		console.log(rs);
+		eliminar_session_storage("preguntas");
+		window.close();
+	}
+	
+
 }

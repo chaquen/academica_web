@@ -183,6 +183,7 @@ function dibujar_cursos_alumno(datos){
 		var a =document.createElement("a");
 		a.href="vistaAlumno.html?id="+datos[d].id;
 		var img=document.createElement("img");
+		img.src="Imagen/contenido.png";
 		a.appendChild(img);
 		li.appendChild(a);
 		ul.appendChild(li);
@@ -202,6 +203,7 @@ function dibujar_cursos_alumno(datos){
 		var a =document.createElement("a");
 		a.href="#";
 		var img=document.createElement("img");
+		img.src="Imagen/actividad.png";
 		a.appendChild(img);
 		li.appendChild(a);
 		ul.appendChild(li);
@@ -219,6 +221,7 @@ function dibujar_cursos_alumno(datos){
 		var a =document.createElement("a");
 		a.href="participantes.html?id="+datos[d].id;
 		var img=document.createElement("img");
+		img.src="Imagen/participantes.png";
 		a.appendChild(img);
 		li.appendChild(a);
 		ul.appendChild(li);
@@ -238,6 +241,7 @@ function dibujar_cursos_alumno(datos){
 		var a =document.createElement("a");
 		a.href="#";
 		var img=document.createElement("img");
+		img.src="Imagen/calificacion.png";
 		a.appendChild(img);
 		li.appendChild(a);
 		ul.appendChild(li);
@@ -315,9 +319,9 @@ function dibujar_div_actividad(actividad){
 
 			console.log(new Date(hoy).getTime());
 			if(new Date(hoy).getTime()>=new Date(actividad[f].activo_desde).getTime() ){
-				hCurso.setAttribute("onclick","abrir_ventana("+true+",'mi_evaluacion.html?id_eva="+actividad[f].id+"&id_us="+globales._usuario.id+"')");
+				hCurso.setAttribute("onclick","abrir_ventana_evaluacion("+true+",'mi_evaluacion.html?id_eva="+actividad[f].id+"&id_us="+globales._usuario.id+"')");
 			}else{
-				hCurso.setAttribute("onclick","abrir_ventana("+false+",'"+0+"')");
+				hCurso.setAttribute("onclick","abrir_ventana_evaluacion("+false+",'"+0+"')");
 			}
 		}
 		
@@ -334,6 +338,24 @@ function dibujar_div_actividad(actividad){
 	
 }
 
+function abrir_ventana_evaluacion(abrir,url){
+	if(abrir){
+		if(confirm("¿Deseas responder esta evaluación?")){
+			var ie=url.split("&")[0].split("=")[1];
+			var us=url.split("&")[1].split("=")[1];
+
+			registrarDato("intento_evaluacion",{id_evaluacion:ie,id_usuario:us},function(rs){
+				if(rs.respuesta){
+					//abrir_ventana(abrir,url);
+					window.open(url,"Evaluación","toolbar=yes");  
+				}
+			});	
+		}
+		
+	}else{
+		abrir_ventana(abrir,url);
+	}
+}
 
 function mostrar_eventos_curso(id_curso){
 	consultarDatos("eventos/"+id_curso,{},function(rs){
