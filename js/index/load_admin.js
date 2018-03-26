@@ -54,7 +54,8 @@ function consulta_inicial(){
      	  crear_select("selBusCurPines",rs.datos.cursos,"id","nombre_curso");
      	  crear_select("selEliPinCur",rs.datos.cursos,"id","nombre_curso");
      	  crear_select("selCursoActivo",rs.datos.cursos,"id","nombre_curso");
-
+     	  crear_select("selCursosCalificaciones",rs.datos.cursos,"id","nombre_curso");
+     	  
      	  
      	  
 	});

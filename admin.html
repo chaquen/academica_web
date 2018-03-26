@@ -31,6 +31,7 @@ and open the template in the editor.
         <script type="text/javascript" src="js/index/load_admin.js"></script>  
          <script type="text/javascript" src="js/index/pines.js"></script>  
          <script type="text/javascript" src="js/evaluaciones/evaluaciones.js"></script>
+         <script type="text/javascript" src="js/evaluaciones/calificar.js"></script>
         <!--FIN SCRIPT MANEJO DE DATOS-->
     </head>
     <body class="bodyAdmin">
@@ -1533,14 +1534,14 @@ and open the template in the editor.
         <!--Formulario para calificar-->
         <div class="formulario" id="calificar">
             <i class="salirFor salir">Salir</i>
-            <form>
+            <form id="formCalificar">
                 <ul>
                     <li>
                         <h2>Calificar participante</h2>
                     </li>
                     <li>
                         <h4>Seleccione el curso</h4>
-                        <select>
+                        <select name="curso" id="selCursosCalificaciones">
                             <option>Curso 1</option>
                             <option>Curso 2</option>
                             <option>Curso 3</option>
@@ -1550,7 +1551,7 @@ and open the template in the editor.
                     </li>
                     <li>
                         <h4>Seleccione la actividad a calificar</h4>
-                        <select>
+                        <select name="actividad" id="SelActividadesCalificaciones">
                             <option>Actividad 1</option>
                             <option>Actividad 2</option>
                             <option>Actividad 3</option>
@@ -1560,7 +1561,7 @@ and open the template in the editor.
                     </li>
                     <li>
                         <h4>Seleccione el participante a calificar</h4>
-                        <select>
+                        <select name="usuario" id="selAlumnosCalificaciones">
                             <option>Participante 1</option>
                             <option>Participante 2</option>
                             <option>Participante 3</option>
@@ -1570,10 +1571,10 @@ and open the template in the editor.
                     </li>
                     <li>
                         <h4>Escriba la nota</h4>
-                        <input type="text" placeholder="Nota">
+                        <input name="nota"  type="text" placeholder="Nota">
                     </li>
                     <li>
-                        <input type="button" value="Calificar">
+                        <input id="btnCalificar" type="button" value="Calificar">
                     </li>
                 </ul>
             </form>
