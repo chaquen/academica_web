@@ -201,7 +201,7 @@ function dibujar_cursos_alumno(datos){
 		var li=document.createElement("li");
 		
 		var a =document.createElement("a");
-		a.href="#";
+		a.href="calificaciones.html?id="+globales._usuario.id;
 		var img=document.createElement("img");
 		img.src="Imagen/actividad.png";
 		a.appendChild(img);
@@ -209,10 +209,12 @@ function dibujar_cursos_alumno(datos){
 		ul.appendChild(li);
 
 		var a =document.createElement("a");
-		li.appendChild(a);
+		a.href="calificaciones.html?id="+globales._usuario.id;
+		
 		var h4=document.createElement("h4");
 		h4.innerHTML="Calificaciones";
-		li.appendChild(h4);
+		a.appendChild(h4);
+		li.appendChild(a);	
 		ul.appendChild(li);
 		//FIN lista CALIFIICACIONES
 		//lista PARTICIPANTES
