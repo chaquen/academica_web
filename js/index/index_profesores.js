@@ -22,14 +22,26 @@ function iniciar_profesores(){
 		}
 
 	});
-	
+	agregarEvento("txtDocumentoProfesor","change",function(){
+		console.log(this.value);
+		if(this.value!=""){
+				
+				consultarDatos("validar_usuario/"+this.value,{},function(rs){
+					if(rs.respuesta){
+						mostrarMensaje(rs);
+						this.value="";
+
+					}
+				});
+		}
+	});
 	agregarEvento("txtBuscarProfesor","change",function(){
 		if(this.value!=""){
 				
 				consultarDatos("usuarios/"+this.value,{},function(rs){
 					crear_data_list("dtProfesores",rs.datos,"id","nombre_usuario");
 				});
-			}	
+		}	
 
 	});
 	//BUSCAR PROFESOR

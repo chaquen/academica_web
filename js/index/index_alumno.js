@@ -92,6 +92,22 @@ function iniciar_index_alumno(){
 		}
 		
 	});
+
+
+	agregarEvento("txtDocumentoUsuario","change",function(){
+		console.log(this.value);
+		if(this.value!=""){
+				
+				consultarDatos("validar_usuario/"+this.value,{},function(rs){
+					if(rs.respuesta){
+						mostrarMensaje(rs);
+						this.value="";
+
+					}
+				});
+		}
+
+	});
 }
 
 function dibujar_alumno_consultado(datos){
