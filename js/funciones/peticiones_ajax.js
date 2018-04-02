@@ -5,7 +5,7 @@ function funPeticion(){
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
     });
-
+    
     var datos=JSON.stringify(this);//convierte a una cadena de texto
     
     this.respuestaServidor=$.ajax({
@@ -29,7 +29,7 @@ function funPeticionUpload(datos){
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
         });
-
+        datos.token=globales._token;
 		this.respuestaServidor = $.ajax({
 			data:datos,
 			url: this.url,

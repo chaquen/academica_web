@@ -191,20 +191,56 @@ function volver_recupera(){
 }
 /*FUNCION PARA VALIDAR*/
 function validar_login(rs){
-	if(rs.respuesta){
+
+
+	if(rs.expulsar!=undefined ){
+
+
+		if(confirm(rs.mensaje)){
+			registrarDato("sobre_escribir_tk",{id:rs.datos.id},function(rs){
+				if(rs.respuesta){
 		
-		document.getElementById("nombreLogin").innerHTML=rs.datos.nombre_usuario.toUpperCase()+" "+rs.datos.apellido_usuario.toUpperCase();
+						document.getElementById("nombreLogin").innerHTML=rs.datos.nombre_usuario.toUpperCase()+" "+rs.datos.apellido_usuario.toUpperCase();
 
-		$('#formLogin').fadeOut('fast');
-        $('#mensajeBienvenida').fadeIn('slow');
-		globales._usuario=rs.datos;
-		globales._cerrar_sesion=false;
+						$('#formLogin').fadeOut('fast');
+				        $('#mensajeBienvenida').fadeIn('slow');
+						globales._usuario=rs.datos;
+						globales._token=rs.token;
+						globales._cerrar_sesion=false;
 
+
+					
+				    }else{
+				    	globales._usuario=false;
+				    	$('#formLogin').fadeOut('fast');
+				        $('#mensajeErroIngreso').fadeIn('slow');
+				    }	
+			});
+					
+		}
 
 		
-    }else{
-    	globales._usuario=false;
-    	$('#formLogin').fadeOut('fast');
-        $('#mensajeErroIngreso').fadeIn('slow');
-    }
+
+	}else{
+			if(rs.respuesta){
+		
+				document.getElementById("nombreLogin").innerHTML=rs.datos.nombre_usuario.toUpperCase()+" "+rs.datos.apellido_usuario.toUpperCase();
+
+				$('#formLogin').fadeOut('fast');
+		        $('#mensajeBienvenida').fadeIn('slow');
+				globales._usuario=rs.datos;
+				globales._token=rs.token;
+				globales._cerrar_sesion=false;
+
+
+			
+		    }else{
+		    	globales._usuario=false;
+		    	$('#formLogin').fadeOut('fast');
+		        $('#mensajeErroIngreso').fadeIn('slow');
+		    }		
+	}
+
+
+	
 }

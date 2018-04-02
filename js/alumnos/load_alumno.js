@@ -143,15 +143,16 @@ function consulta_inicial_alumno(){
 			  iniciar_eventos(eventos);
 		  }else{
 		  	
-	         	var eventos=[
+	        /*var eventos=[
 	                        {
 	                            title: 'Bienvenido '+globales._usuario.nombre_usuario,
 	                            start: new Date(),
 	                            description:"Que HOY es tu mejor dia!",
 	                        }]
 	          
-			  iniciar_eventos(eventos);
-		  	mostrarMensaje("Aun no tienes cursos pendientes");
+			iniciar_eventos(eventos);*/
+		  	
+		  	salir_ya(rs);
 		  }
 
 	});

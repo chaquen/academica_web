@@ -57,45 +57,50 @@ function registrarDato(url,datos,callback,formulario,fun_error){
  * {id_formulario} id id_formulario que desea limpiar
  *  * */    
 function registrarDatoArchivo(url,dat,archivo,id_formulario,callback){
-    
-    
-    if(dat){
-       var datos={
-           peticion:"",
-           datos:{},
-           hora_cliente:horaCliente(),
-       };
+    if(archivo.files[0].size < 2097152){
+        if(dat){
+           var datos={
+               peticion:"",
+               datos:{},
+               hora_cliente:horaCliente(),
+               token:globales._token,
+           };
 
-       var miAjax=new miObjetoAjax(url,datos,"POST");
-       var form_data=new FormData();
-       form_data.append("miArchivo",archivo.files[0]);
-       dat.nombre_archivo=archivo.files[0].name;
-       console.log(archivo.files[0]);
-       console.log(form_data);
-       datos.datos=dat;
-       form_data.append("datos",JSON.stringify(datos));
-       miAjax.peticion_ajax_upload(form_data);
+           var miAjax=new miObjetoAjax(url,datos,"POST");
+           var form_data=new FormData();
+           form_data.append("miArchivo",archivo.files[0]);
+           dat.nombre_archivo=archivo.files[0].name;
+           console.log(archivo.files[0]);
+           console.log(form_data);
+           datos.datos=dat;
+           form_data.append("datos",JSON.stringify(datos));
+           miAjax.peticion_ajax_upload(form_data);
+            
+            
+            miAjax.respuestaServidor.done(function(rs){
+                
+                console.log(rs);
+                
+                    if(id_formulario!=undefined){
+                        limpiarFormulario(id_formulario);
+                    }                 
+                     callback(rs);
+                
+                
+            }).fail(function( jqXHR, textStatus, errorThrown){
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            });
         
-        
-        miAjax.respuestaServidor.done(function(rs){
-            
-            console.log(rs);
-            
-                if(id_formulario!=undefined){
-                    limpiarFormulario(id_formulario);
-                }                 
-                 callback(rs);
-            
-            
-        }).fail(function( jqXHR, textStatus, errorThrown){
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-        });
-    
+        }else{
+            mostrarMensaje({mensaje:"por favor ingresa valores ☻ en el objeto datos"});
+        }
     }else{
-        mostrarMensaje({mensaje:"por favor ingresa valores ☻ en el objeto datos"});
+      mostrarMensaje("Archivo es demasiado grande");
     }
+    
+    
    
 }
 /* CONSULTAR DATOS 

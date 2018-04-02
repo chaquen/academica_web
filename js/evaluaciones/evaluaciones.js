@@ -270,7 +270,11 @@ function iniciar_evaluacion(){
 		registrarDato("evaluacion",evaluacion,function(rs){
 			console.log(rs);
 			mostrarMensaje(rs);
-		});
+			if(rs.respuesta){
+				document.getElementById("divListaPreguntas1").innerHTML="";	
+			}
+			
+		},"formCrearEvaluaciones");
 	});
 
 	agregarEvento("selTipoEdiPregunta","change",function(){
@@ -336,6 +340,7 @@ function iniciar_evaluacion(){
 		for(var f in fecha_evaluacion){
 			console.log(fecha_evaluacion[f]);
 			if(fecha_evaluacion[f].id==this.value){
+				document.getElementById("txtNombreEvaluacion").value=this[this.selectedIndex].innerHTML;
 				document.getElementById("dtFechaInicioEva").value=fecha_evaluacion[f].activo_desde.split(" ")[0];
 				document.getElementById("dthHoraInicioEva").value=fecha_evaluacion[f].activo_desde.split(" ")[1];
 				document.getElementById("dtFechaFinEva").value=fecha_evaluacion[f].activo_hasta.split(" ")[0];
