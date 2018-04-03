@@ -13,14 +13,14 @@ function inicia_app(){
 		globales=existe;
 		document.getElementById("h2NombreDelUsuario").innerHTML=globales._usuario.nombre_usuario;
 		consulta_inicial();	
-		
+		iniciar_profesores();
 		
 		iniciar_curso();
 		iniciar_index_alumno();
 		iniciar_crear_cursos();
 		iniciar_editar_cursos();
 		iniciar_agenda();
-		iniciar_profesores();
+		
 
 		agregarEvento("menuSalir","click",function(){
 			salir();
@@ -54,7 +54,8 @@ function consulta_inicial(){
      	  crear_select("selBusCurPines",rs.datos.cursos,"id","nombre_curso");
      	  crear_select("selEliPinCur",rs.datos.cursos,"id","nombre_curso");
      	  crear_select("selCursoActivo",rs.datos.cursos,"id","nombre_curso");
-
+     	  crear_select("selCursosCalificaciones",rs.datos.cursos,"id","nombre_curso");
+     	  
      	  
      	  
 	});

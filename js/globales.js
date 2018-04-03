@@ -10,6 +10,7 @@ var globales={
 	_usuario:false,
 	_cerrar_sesion:true,
 	_recordarme:false,
+	_token:"0",
 
 };
 

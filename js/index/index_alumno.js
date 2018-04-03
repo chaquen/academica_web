@@ -4,13 +4,13 @@ function iniciar_index_alumno(){
 	agregarEvento("txtBuscarAlumno","keypress",function(e){
 		if(e.keyCode!=13){
 			if(this.value!=""){
-				consultarDatos("usuarios/"+this.value,{},function(rs){
+				consultarDatos("alumnos/"+this.value,{},function(rs){
 					crear_data_list("dtAlumnos",rs.datos,"id","nombre_usuario");
 				});
 			}	
 		}else{
 			e.preventDefault();
-			consultarDatos("usuarios/"+this.value,{},function(rs){
+			consultarDatos("alumnos/"+this.value,{},function(rs){
 					if(rs.respuesta){
 						$('#consultaAlumno').fadeOut('fast');
         				$('#resultadoAl').fadeIn('slow');
@@ -25,7 +25,7 @@ function iniciar_index_alumno(){
 	agregarEvento("btnconsultaAl","click",function(){
 
 		if(document.getElementById("txtBuscarAlumno").value!=""){
-				consultarDatos("usuarios/"+document.getElementById("txtBuscarAlumno").value,{},function(rs){
+				consultarDatos("alumnos/"+document.getElementById("txtBuscarAlumno").value,{},function(rs){
 					if(rs.respuesta){
 						 $('#consultaAlumno').fadeOut('fast');
         				 $('#resultadoAl, #tblAlumnos').fadeIn('slow');
@@ -91,6 +91,22 @@ function iniciar_index_alumno(){
 			}
 		}
 		
+	});
+
+
+	agregarEvento("txtDocumentoUsuario","change",function(){
+		console.log(this.value);
+		if(this.value!=""){
+				
+				consultarDatos("validar_usuario/"+this.value,{},function(rs){
+					if(rs.respuesta){
+						mostrarMensaje(rs);
+						this.value="";
+
+					}
+				});
+		}
+
 	});
 }
 

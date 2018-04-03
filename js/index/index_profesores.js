@@ -4,13 +4,13 @@ function iniciar_profesores(){
 	agregarEvento("txtBuscarProfesor","keypress",function(e){
 		if(e.keyCode!=13){
 			if(this.value!=""){
-				consultarDatos("usuarios/"+this.value,{},function(rs){
+				consultarDatos("profes/"+this.value,{},function(rs){
 					crear_data_list("dtProfesores",rs.datos,"id","nombre_usuario");
 				});
 			}	
 		}else{
 			e.preventDefault();
-			consultarDatos("usuarios/"+this.value,{},function(rs){
+			consultarDatos("profes/"+this.value,{},function(rs){
 					mostrarMensaje(rs);
 					if(rs.respuesta){
 						//$('#consultaAlumno').fadeOut('fast');
@@ -22,20 +22,32 @@ function iniciar_profesores(){
 		}
 
 	});
-	
+	agregarEvento("txtDocumentoProfesor","change",function(){
+		console.log(this.value);
+		if(this.value!=""){
+				
+				consultarDatos("validar_usuario/"+this.value,{},function(rs){
+					if(rs.respuesta){
+						mostrarMensaje(rs);
+						this.value="";
+
+					}
+				});
+		}
+	});
 	agregarEvento("txtBuscarProfesor","change",function(){
 		if(this.value!=""){
 				
-				consultarDatos("usuarios/"+this.value,{},function(rs){
-					crear_data_list("dtProfesores",rs.datos,"id","nombre_usuario");
+				consultarDatos("profes/"+this.value,{},function(rs){
+					crear_data_list("dtProfesores",rs.datos,"documento_usuario","nombre_usuario");
 				});
-			}	
+		}	
 
 	});
 	//BUSCAR PROFESOR
 	agregarEvento("btnconsultaProfesor","click",function(){
 		if(document.getElementById("txtBuscarProfesor").value!=""){
-				consultarDatos("usuarios/"+document.getElementById("txtBuscarProfesor").value,{},function(rs){
+				consultarDatos("profes/"+document.getElementById("txtBuscarProfesor").value,{},function(rs){
 					if(rs.respuesta){
 						 $('#crearProfesor, #consultaProfesor, #editarProfesor').fadeOut('fast');
         				 $('#respuestaProfesor, #tbConsultalProfesores').fadeIn('slow');

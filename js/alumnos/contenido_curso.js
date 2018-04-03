@@ -24,6 +24,9 @@ function consultar_curso(params){
 	});
 	
 	consultarDatos("cursos/id&=&"+params,{},function(rs){
+		if(rs.expulsar!=undefined ){
+				salir_ya(rs);
+		}else{
 			if(rs.respuesta){
 				var liListaActividades=document.getElementById("liListaActividades");
 				liListaActividades.innerHTML="";
@@ -44,24 +47,13 @@ function consultar_curso(params){
 
 						
 				}	
-				//dibujar_lista_contenido(1);
-				/*agregarEvento("liSalir","click",function(){
 
-					if(confirm("¿Desea salir de la aplicación?")){
-						
-						globales._usuario=false;
-						globales._cerrar_sesion=true;
-						console.log(globales);	
-					
-						agregar_session_storage("ssGlobales",globales);
-						
-						location.href="index.html";
-					}
-
-
-					
-				});*/
+				
 			}
+		}
+
+		
+			
 			
 		});		
 	
@@ -198,6 +190,7 @@ function dibujar_contenido(id_actividad){
 
 							break;
 					case "audio":
+								divContenido.innerHTML=_curso.modulos[f].actividades[ff].actividad_recurso;
 							break;				
 				}		
  			}

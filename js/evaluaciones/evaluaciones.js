@@ -3,6 +3,7 @@
 	tipo_pregunta:"abierta",
 	respuestas:[],
 };
+var fecha_evaluacion;
 agregarEventoLoad(iniciar_evaluacion);
 function iniciar_evaluacion(){
 	consultar_todas_las_preguntas();
@@ -269,7 +270,11 @@ function iniciar_evaluacion(){
 		registrarDato("evaluacion",evaluacion,function(rs){
 			console.log(rs);
 			mostrarMensaje(rs);
-		});
+			if(rs.respuesta){
+				document.getElementById("divListaPreguntas1").innerHTML="";	
+			}
+			
+		},"formCrearEvaluaciones");
 	});
 
 	agregarEvento("selTipoEdiPregunta","change",function(){
@@ -307,7 +312,9 @@ function iniciar_evaluacion(){
 	agregarEvento("selModuloCursoEva","change",function(){
 		if(this.value!="0"){
 			consultarDatos("evaluaciones/actividades.fk_id_modulo_curso/"+this.value+"/actividades.tipo_actividad/evaluacion",{},function(rs){
+				fecha_evaluacion=rs.datos;
 				crear_select("selActividadModuloEva",rs.datos,"id","nombre_actividad");
+
 			});
 		}
 	});
@@ -329,7 +336,22 @@ function iniciar_evaluacion(){
 			this.value="";
 		}
 	});
-	agregarEvento("","change",function(){});
+	agregarEvento("selActividadModuloEva","change",function(){
+		for(var f in fecha_evaluacion){
+			console.log(fecha_evaluacion[f]);
+			if(fecha_evaluacion[f].id==this.value){
+				document.getElementById("txtNombreEvaluacion").value=this[this.selectedIndex].innerHTML;
+				document.getElementById("dtFechaInicioEva").value=fecha_evaluacion[f].activo_desde.split(" ")[0];
+				document.getElementById("dthHoraInicioEva").value=fecha_evaluacion[f].activo_desde.split(" ")[1];
+				document.getElementById("dtFechaFinEva").value=fecha_evaluacion[f].activo_hasta.split(" ")[0];
+				document.getElementById("dtHoraFinEva").value=fecha_evaluacion[f].activo_hasta.split(" ")[1];		
+			}
+			
+		}	
+		
+
+
+	});
 }
 var lista_preguntas=[];
 function agregar_a_evaluacion(id){
@@ -348,7 +370,7 @@ function agregar_a_evaluacion(id){
 function dibujar_preguntas_evaluacion(datos){
 	var div=document.getElementById("divListaPreguntas1");
 	
-	div.innerHTML="";
+	//div.innerHTML="";
 	var p=1;
 	for(var d in datos){
 		var lista=document.createElement("ul");
@@ -379,14 +401,14 @@ function dibujar_preguntas_evaluacion(datos){
 		li.appendChild(h4);
 		lista.appendChild(li);
 		if(datos[d].tipo_pregunta!="abierta"){
-				var li=document.createElement("li");
+				/*var li=document.createElement("li");
 				var inp=document.createElement("input");
 				inp.setAttribute("type","button");
-				inp.setAttribute("id","arg_"+datos[d].id);
+				inp.setAttribute("id","arg_res"+datos[d].id);
 				//inp.setAttribute("onclick","agregar_respuesta('"+datos[d].id+"');");
 				inp.value="Agregar respuesta";
 				li.appendChild(inp);
-				lista.appendChild(li);
+				lista.appendChild(li);*/
 
 			for(var r in datos[d].respuestas){
 				var li=document.createElement("li");
@@ -410,14 +432,14 @@ function dibujar_preguntas_evaluacion(datos){
 				li.appendChild(inp);		
 				lista.appendChild(li);
 
-				var li=document.createElement("li");
+				/*var li=document.createElement("li");
 				var inp=document.createElement("input");
 				inp.setAttribute("type","button");
-				inp.setAttribute("id","arg_"+datos[d].id);
+				inp.setAttribute("id","btn_arg_td_"+datos[d].id);
 				//inp.setAttribute("onclick","quitar_respuesta('"+datos[d].respuestas[r].id+"');");
 				inp.value="Quitar";
 				li.appendChild(inp);
-				lista.appendChild(li);
+				lista.appendChild(li);*/
 
 
 			}
@@ -547,7 +569,7 @@ function dibujar_preguntas_por_tipo(datos){
 				var li=document.createElement("li");
 				var inp=document.createElement("input");
 				inp.setAttribute("type","button");
-				inp.setAttribute("id","arg_"+datos[d].id);
+				inp.setAttribute("id","btn_arg_tp_"+datos[d].id);
 				inp.setAttribute("onclick","quitar_respuesta('"+datos[d].respuestas[r].id+"');");
 				inp.value="Quitar";
 				li.appendChild(inp);
@@ -704,7 +726,7 @@ function dibujar_preguntas_todas(datos){
 		var li=document.createElement("li");
 		var inp=document.createElement("input");
 		inp.setAttribute("type","text");
-		inp.setAttribute("id","arg_"+datos[d].id);
+		inp.setAttribute("id","argumento_"+datos[d].id);
 		//inp.setAttribute("onchange","editar_argumento_pregunta('"+datos[d].id+"');");
 		inp.value=datos[d].argumento_pregunta;
 		li.appendChild(inp);

@@ -310,6 +310,21 @@ function mostrarMensaje(dato){
 function salir(_usuario){
     
     if(confirm("Desea salir de la aplicacion?")){
+
+          var datos={
+            id_usuario:globales._usuario.id
+          };
+          registrarDato("logout",datos,function(rs){
+              globales._usuario=false;
+              globales._cerrar_sesion=true;
+              
+              agregar_session_storage("ssGlobales",globales);
+              if(obtener_local_storage("ssGlobales")){
+                
+                agregar_local_storage("ssGlobales",globales);
+              }  
+              location.href="index.html";
+          });
         globales._usuario=false;
         globales._cerrar_sesion=true;
         
@@ -321,7 +336,22 @@ function salir(_usuario){
         location.href="index.html";
      }
 }
+function salir_ya(rs){
+        
+  mostrarMensaje(rs.mensaje);
+            globales._usuario=false;
+              globales._cerrar_sesion=true;
+              
+              agregar_session_storage("ssGlobales",globales);
+              if(obtener_local_storage("ssGlobales")){
+                
+                agregar_local_storage("ssGlobales",globales);
+              }  
+              location.href="index.html";
+      
+}
 /*
+
  * Funcion para convertir los valores enviados por GET 
  * a un array
  * 
