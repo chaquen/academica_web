@@ -28,7 +28,8 @@ function consultar_examen(){
 			dibujar_evaluacion(preguntas_evaluacion);
 
 		}else{
-			//redireccinar
+			mostrarMensaje(rs);
+			window.close();
 		}
 	});
 }

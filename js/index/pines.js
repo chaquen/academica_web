@@ -4,7 +4,7 @@ agregarEventoLoad(function(){
 		var datos = $("#formCrearPines").serializarFormulario();
 		if(datos!=false){
 			if(datos.curso!=0){
-				consultarDatos("crear_pines/"+datos.curso+"/"+datos.numero_pines,{},function(rs){
+				consultarDatos("crear_pines/"+datos.curso+"/"+datos.numero_pines+"/"+datos.prefijo,{},function(rs){
 					if(rs.respuesta){
 						console.log(rs);
 						dibujar_tabla_pines(rs.datos);
@@ -98,7 +98,7 @@ agregarEventoLoad(function(){
 			consultarDatos("exportar_pines/"+datos.curso+"/"+datos.pin,{},function(rs){
 				console.log(rs);
 				//accion_pin="eliminar";
-				document.getElementById("aExportado").href=globales._URL+"/recursos/exportacion/"+rs.archivo;
+				document.getElementById("aExportado").href=globales._URL+"recursos_para_exportar/"+rs.archivo;
 				document.getElementById("aExportado").innerHTML="DESCARGAR";
 
 			});

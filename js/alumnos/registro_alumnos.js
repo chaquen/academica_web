@@ -24,12 +24,12 @@ agregarEventoLoad(function(){
 
 
 
-    consultarDatos("cursos/id&=&"+id_curso,{},function(rs){
+    consultarDatos("cursos_redimir_pin/id&=&"+id_curso,{},function(rs){
       console.log(rs[0]);
       document.getElementById("bNombreCurso").innerHTML=rs.datos[0].nombre_curso;
     });
 
-    agregarEvento("btn_editar_perfil","click",function(){
+    agregarEvento("btn_crear_perfil","click",function(){
        var datos = $("#formUsuarioPerfil").serializarFormulario();
            if(datos!=false){
                  if(datos.clave[0]==datos.clave[1]){
@@ -44,7 +44,10 @@ agregarEventoLoad(function(){
                                   if(rs.respuesta){
                                      globales._usuario=rs.datos;
                                      globales._cerrar_sesion=false;
-                                     iniciar_panel(rs.datos);
+                                     document.getElementById("pMensaje").innerHTML=rs.mensaje;
+                                     document.getElementById("divMensaje").style.display="";
+                                     document.getElementById("formUsuarioLog").style.display="none";
+                                     //iniciar_panel(rs.datos);
                                      
                                   }
                               });
@@ -59,7 +62,7 @@ agregarEventoLoad(function(){
            }
           
     });
-    agregarEvento("dt_fecha_nac","change",function(){
+    agregarEvento("dt_fecha_nac_1","change",function(){
       var f1=new Date(this.value);
       var hoy= new Date(horaCliente().split(" ")[0]);
       
