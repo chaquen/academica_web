@@ -320,6 +320,7 @@ function iniciar_editar_cursos(){
 					document.getElementById("liDocEdi").style.display="";
 					document.getElementById("liVideoEdi").style.display="none";
 					document.getElementById("liEventoEdi").style.display="none";
+					document.getElementById("liAudioEdi").style.display="none";
 					actividades_edi.tipo_actividad="documento";
 
 				break;
@@ -327,22 +328,33 @@ function iniciar_editar_cursos(){
 					document.getElementById("liDocEdi").style.display="none";
 					document.getElementById("liVideoEdi").style.display="";
 					document.getElementById("liEventoEdi").style.display="none";
+					document.getElementById("liAudioEdi").style.display="none";
 					actividades_edi.tipo_actividad="video";
 				break;
 			case "evento":
 					document.getElementById("liDocEdi").style.display="none";
 					document.getElementById("liVideoEdi").style.display="none";
+					document.getElementById("liAudioEdi").style.display="none";
 					document.getElementById("liEventoEdi").style.display="";
 					
 					actividades_edi.nombre_actividad="evento";
+				break;	
+			case "audio":
+					document.getElementById("liDocEdi").style.display="none";
+					document.getElementById("liVideoEdi").style.display="none";
+					document.getElementById("liEventoEdi").style.display="none";
+					document.getElementById("liAudioEdi").style.display="";
+					
+					actividades_edi.nombre_actividad="audio";
 				break;	
 			case "0":
 					document.getElementById("liDocEdi").style.display="none";
 					document.getElementById("liVideoEdi").style.display="none";
 					document.getElementById("liEventoEdi").style.display="none";
+					document.getElementById("liAudioEdi").style.display="";
 					actividades_edi.tipo_actividad="";
 					actividades_edi.nombre_actividad="";
-				break;	
+				break;		
 
 		}
 	});

@@ -341,24 +341,6 @@ function dibujar_div_actividad(actividad){
 	
 }
 
-function abrir_ventana_evaluacion(abrir,url){
-	if(abrir){
-		if(confirm("¿Deseas responder esta evaluación?")){
-			var ie=url.split("&")[0].split("=")[1];
-			var us=url.split("&")[1].split("=")[1];
-
-			registrarDato("intento_evaluacion",{id_evaluacion:ie,id_usuario:us},function(rs){
-				if(rs.respuesta){
-					//abrir_ventana(abrir,url);
-					window.open(url,"Evaluación","toolbar=yes");  
-				}
-			});	
-		}
-		
-	}else{
-		abrir_ventana(abrir,url);
-	}
-}
 
 function mostrar_eventos_curso(id_curso){
 	consultarDatos("eventos/"+id_curso,{},function(rs){

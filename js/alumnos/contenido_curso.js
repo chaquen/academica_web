@@ -183,7 +183,7 @@ function dibujar_contenido(id_actividad){
 								//div_eva.setAttribute("class","ifram");
 								var a=document.createElement("a");
 								a.innerHTML=_curso.modulos[f].actividades[ff].nombre_actividad;
-								a.setAttribute("onclick","abrir_ventana('mi_evaluacion.html?ev="+_curso.modulos[f].actividades[ff].id+"&us="+globales._usuario.id+"')");
+								a.setAttribute("onclick","abrir_ventana_evaluacion("+true+",'mi_evaluacion.html?id_eva="+_curso.modulos[f].actividades[ff].id+"&id_us="+globales._usuario.id+"')");
 								//a.setAttribute("href","#");
 								div_eva.appendChild(a);
 								divContenido.appendChild(div_eva);
