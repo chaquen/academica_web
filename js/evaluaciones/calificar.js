@@ -5,7 +5,7 @@ agregarEventoLoad(function(){
 		});
 
 		consultarDatos("usuarios_por_curso/"+this.value,{},function(rs){
-			crear_select("selAlumnosCalificaciones",rs.datos,"id","nombre_usuario");
+			crear_select_dos("selAlumnosCalificaciones",rs.datos);
 		});
 	});
 
@@ -18,6 +18,17 @@ agregarEventoLoad(function(){
 				mostrarMensaje(rs);
 				
 			},"formCalificar");
+	});
+
+	agregarEvento("selAlumnosCalificaciones","change",function(){
+		if(this.value!="0"){
+			consultarDatos("actividades_del_usuario/"+document.getElementById("selAlumnosCalificaciones").value+"/"+document.getElementById("selCursosCalificaciones").value+"/"+document.getElementById("SelActividadesCalificaciones").value,{},function(rs){
+
+				console.log(rs);
+			});
+		}else{
+			mostrarMensaje("Debes seleccionar un alumno");
+		}
 	});
 	
 });

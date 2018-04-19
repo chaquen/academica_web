@@ -13,14 +13,12 @@ function iniciar_responder_examen(){
 		dibujar_evaluacion(preguntas_evaluacion)
 	}
 	
-	agregarEvento("","click",function(rs){
-
-	});
+	
 }
 function consultar_examen(){
 	valor=recibirValorGet();
 	console.log(valor);
-	consultarDatos("evaluacion/"+valor[0].split("=")[1],{},function(rs){
+	consultarDatos("evaluacion_de_alumno/"+valor[0].split("=")[1]+"/"+valor[1].split("=")[1],{},function(rs){
 		if(rs.respuesta){
 			console.log(rs.datos[0].preguntas);
 			//agregar_local_storage("preguntas",rs.datos);

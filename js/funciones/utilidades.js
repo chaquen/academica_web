@@ -558,6 +558,35 @@ function crear_select(id_select,datos,id,valor){
         console.log(sel);
   }
 }
+function crear_select_dos(id_select,datos){
+    
+  var existe=false;
+   var sel=document.getElementById(id_select);
+  if(sel!=null){
+
+          sel.innerHTML="";
+          var opt=document.createElement("option");
+          opt.innerHTML="SELECCIONA UNA OPCION";
+          opt.setAttribute("value","0");
+          sel.appendChild(opt); 
+          
+       
+       
+          
+          for(var l in datos){
+
+            
+              var opt=document.createElement("option");
+              opt.setAttribute("value",datos[l].id);
+              opt.innerHTML=datos[l].nombre_usuario+" "+datos[l].apellido_usuario;
+              sel.appendChild(opt); 
+            
+          }
+      
+
+        console.log(sel);
+  }
+}
 
 
 /*  FUNCION PARA CREAR TABLAS SIN FUNCIONES
@@ -784,12 +813,13 @@ function abrir_ventana_evaluacion(abrir,url){
 			var ie=url.split("&")[0].split("=")[1];
 			var us=url.split("&")[1].split("=")[1];
 
-			registrarDato("intento_evaluacion",{id_evaluacion:ie,id_usuario:us},function(rs){
+			/*registrarDato("intento_evaluacion",{id_evaluacion:ie,id_usuario:us},function(rs){
 				if(rs.respuesta){
 					//abrir_ventana(abrir,url);
-					window.open(url,"Evaluación","toolbar=yes");  
+					
 				}
-			});	
+			});*/
+      window.open(url,"Evaluación","toolbar=yes");  	
 		}
 		
 	}else{
