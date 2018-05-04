@@ -165,7 +165,8 @@ function dibujar_evaluacion(datos_pre){
 			
 				}
 		}
-		
+		console.log(Number(d));
+		console.log(Object.keys(datos).length-1);
 		if(Number(d)<Object.keys(datos).length-1){
 			var li=document.createElement("li");
 			
@@ -250,7 +251,8 @@ function siguiente(id,salir){
 
 	 		}
 	 		//valido que la siguiente pregunta exista
-	 		if(datos[valor].id!=undefined){
+	 		console.log(datos[valor]);
+	 		if(datos[valor]!=undefined){
 	 			for(var r in datos[p].respuestas){
 	 				if(datos[p].respuestas[r].seleccionada){
 	 					selecciona=true;

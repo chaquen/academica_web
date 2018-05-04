@@ -1,8 +1,9 @@
 var _curso;
 var id_act=0;
+var params;
 agregarEventoPageShow(iniciar_contenido_curso);
 function iniciar_contenido_curso(){
-	var params=recibirValorGet();
+	params=recibirValorGet();
 	console.log(params[0].split("=")[1]);	
 	consultar_curso(params[0].split("=")[1]);	
 	agregarEvento("flvSubirActividad","change",function(){
@@ -125,6 +126,7 @@ function dibujar_lista_contenido(id_modulo){
 							image.setAttribute("src","Imagen/"+img);
 							var h4=document.createElement("h4");
 							//h4.innerHTML=_curso.modulos[f].nombre_modulo;
+							console.log(_curso.modulos[f].actividades[ff].id);
 							h4.innerHTML=nom;
 							image.setAttribute("onclick","dibujar_contenido('"+_curso.modulos[f].actividades[ff].id+"')");
 							li.appendChild(image);
@@ -148,74 +150,88 @@ function dibujar_lista_contenido(id_modulo){
 }
 
 function dibujar_contenido(id_actividad){
-	id_act=id_actividad;
-	var hoy=horaCliente();
- 	var divContenido=document.getElementById("divContenido");
- 	divContenido.innerHTML="";
- 	var divx=document.createElement("div");
- 	divx.innerHTML="X";
- 	divContenido.appendChild(divx);
- 	for(var f in _curso.modulos){
- 		for(var ff in _curso.modulos[f].actividades){
 
- 			if(_curso.modulos[f].actividades[ff].id==id_actividad){
- 				switch(_curso.modulos[f].actividades[ff].tipo_actividad){
-					case "documento":
-								var iframe=document.createElement("iframe");
-								iframe.setAttribute("class","vistaContenido");
-								iframe.setAttribute("src",globales._URL+"recursos/cursos/"+_curso.id+"/"+_curso.modulos[f].actividades[ff].actividad_recurso);
-								divContenido.appendChild(iframe);
-								document.getElementById("divSubirActividad").style.display="";
-							break;
-					case "video":
-								var iframe=document.createElement("iframe");
-								iframe.setAttribute("class","vistaContenido");
-								iframe.setAttribute("src","https://www.youtube.com/embed/"+_curso.modulos[f].actividades[ff].actividad_recurso);
-								iframe.setAttribute("frameborder","0");
-								//iframe.setAttribute("allow","autoplay");
-								iframe.setAttribute("allow","encrypted-media");
-								iframe.setAttribute("allowfullscreen","");
-								divContenido.appendChild(iframe);
-								document.getElementById("divSubirActividad").style.display="";
-							break;
-					case "evento":
-								var div_eva=document.createElement("div");
-								//div_eva.setAttribute("class","ifram");
-								var a=document.createElement("a");
-								a.innerHTML=_curso.modulos[f].actividades[ff].nombre_actividad;
-								a.setAttribute("onclick","abrir_ventana('webinar.html?ev="+_curso.modulos[f].actividades[ff].id+"&us="+globales._usuario.id+"')");
-								//a.setAttribute("href","#");
-								div_eva.appendChild(a);
-								divContenido.appendChild(div_eva);
-								document.getElementById("divSubirActividad").style.display="none";
-							break;				
-					case "evaluacion":
-								console.log(_curso.modulos[f].actividades[ff].nombre_actividad);
-								var div_eva=document.createElement("div");
-								//div_eva.setAttribute("class","ifram");
-								var a=document.createElement("a");
-								a.innerHTML=_curso.modulos[f].actividades[ff].nombre_actividad;
-								if(new Date(hoy).getTime()>=new Date(_curso.modulos[f].actividades[ff].activo_desde).getTime() ){
-									a.setAttribute("onclick","abrir_ventana_evaluacion("+true+",'mi_evaluacion.html?id_eva="+_curso.modulos[f].actividades[ff].id+"&id_us="+globales._usuario.id+"')");
-								}else{
-									a.setAttribute("onclick","abrir_ventana_evaluacion("+false+",'"+0+"')");
-									
-								}
 
-								
-								//a.setAttribute("href","#");
-								div_eva.appendChild(a);
-								divContenido.appendChild(div_eva);
-								document.getElementById("divSubirActividad").style.display="none";
-							break;
-					case "audio":
-								divContenido.innerHTML=_curso.modulos[f].actividades[ff].actividad_recurso;
-								document.getElementById("divSubirActividad").style.display="";
-							break;				
-				}		
- 			}
- 			
- 		}
- 	}
+	//debe validar que la actividada anterori ya esta pendiete por calificar o calificada
+	consultarDatos("validar_actividad_anterior/"+params[0].split("=")[1]+"/"+id_actividad+"/"+globales._usuario.id,{},function(rs){
+		if(rs.respuesta){
+
+				id_act=id_actividad;
+				var hoy=horaCliente();
+			 	var divContenido=document.getElementById("divContenido");
+			 	divContenido.innerHTML="";
+			 	var divx=document.createElement("div");
+			 	divx.innerHTML="X";
+			 	divContenido.appendChild(divx);
+			 	for(var f in _curso.modulos){
+		 		for(var ff in _curso.modulos[f].actividades){
+
+		 			if(_curso.modulos[f].actividades[ff].id==id_actividad){
+		 				document.getElementById("h4DescripcionActividad").innerHTML=_curso.modulos[f].actividades[ff].descripcion_de_actividad;
+		 				switch(_curso.modulos[f].actividades[ff].tipo_actividad){
+							case "documento":
+										var iframe=document.createElement("iframe");
+										iframe.setAttribute("class","vistaContenido");
+										iframe.setAttribute("src",globales._URL+"recursos/cursos/"+_curso.id+"/"+_curso.modulos[f].actividades[ff].actividad_recurso);
+										divContenido.appendChild(iframe);
+										document.getElementById("divSubirActividad").style.display="";
+									break;
+							case "video":
+										var iframe=document.createElement("iframe");
+										iframe.setAttribute("class","vistaContenido");
+										iframe.setAttribute("src","https://www.youtube.com/embed/"+_curso.modulos[f].actividades[ff].actividad_recurso);
+										iframe.setAttribute("frameborder","0");
+										//iframe.setAttribute("allow","autoplay");
+										iframe.setAttribute("allow","encrypted-media");
+										iframe.setAttribute("allowfullscreen","");
+										divContenido.appendChild(iframe);
+										document.getElementById("divSubirActividad").style.display="";
+									break;
+							case "evento":
+										var div_eva=document.createElement("div");
+										//div_eva.setAttribute("class","ifram");
+										var a=document.createElement("a");
+										a.innerHTML=_curso.modulos[f].actividades[ff].nombre_actividad;
+										a.setAttribute("onclick","abrir_ventana('webinar.html?ev="+_curso.modulos[f].actividades[ff].id+"&us="+globales._usuario.id+"')");
+										//a.setAttribute("href","#");
+										div_eva.appendChild(a);
+										divContenido.appendChild(div_eva);
+										document.getElementById("divSubirActividad").style.display="none";
+									break;				
+							case "evaluacion":
+										console.log(_curso.modulos[f].actividades[ff].nombre_actividad);
+										var div_eva=document.createElement("div");
+										//div_eva.setAttribute("class","ifram");
+										var a=document.createElement("a");
+										a.innerHTML=_curso.modulos[f].actividades[ff].nombre_actividad;
+										if(new Date(hoy).getTime()>=new Date(_curso.modulos[f].actividades[ff].activo_desde).getTime() ){
+											a.setAttribute("onclick","abrir_ventana_evaluacion("+true+",'mi_evaluacion.html?id_eva="+_curso.modulos[f].actividades[ff].id+"&id_us="+globales._usuario.id+"')");
+										}else{
+											a.setAttribute("onclick","abrir_ventana_evaluacion("+false+",'"+0+"')");
+											
+										}
+
+										
+										//a.setAttribute("href","#");
+										div_eva.appendChild(a);
+										divContenido.appendChild(div_eva);
+										document.getElementById("divSubirActividad").style.display="none";
+									break;
+							case "audio":
+										divContenido.innerHTML=_curso.modulos[f].actividades[ff].actividad_recurso;
+										document.getElementById("divSubirActividad").style.display="";
+									break;				
+						}		
+		 			}
+		 			
+		 		}
+		 		}
+		}else{
+			mostrarMensaje(rs);
+		}
+	});
+
+
+
  
 }
